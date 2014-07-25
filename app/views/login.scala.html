@@ -1,0 +1,24 @@
+@(message: String)
+
+@template("Log In") {
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-warning">
+            <div class="panel-heading"><h3>Log in</h3></div>
+                <div class="panel-body">
+                    @if(!message.isEmpty()) {
+                        <p style="color: #FF0000;">@message</p>
+                    }
+                    <form action="@routes.Application.login()" method="POST">
+   					    <div class="form-group">
+   						    <input type="email" class="form-control" name="email" placeholder="Email" />
+   					    </div>
+   					    <div class="form-group">
+   						    <input type="password" class="form-control" name="password" placeholder="Password" />
+   					    </div>
+   					    <input type="submit" class="btn btn-warning" value="Sign in" />
+   					</form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

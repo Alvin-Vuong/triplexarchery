@@ -1,0 +1,47 @@
+CREATE TABLE account (
+	account_id 	serial PRIMARY KEY,
+	email 		VARCHAR (355) UNIQUE NOT NULL,
+	password 	VARCHAR (40) NOT NULL,
+	first_name	VARCHAR (45) NOT NULL,
+	last_name	VARCHAR (45) NOT NULL, 
+	isCoach		BOOLEAN,
+	coaches_id	INTEGER[],
+	athletes_id	INTEGER[]
+);
+
+CREATE TABLE round (
+	round_id	serial PRIMARY KEY,
+	account_id	INTEGER NOT NULL,
+	description	VARCHAR (140),
+	date_created	DATE,
+	score		INTEGER,
+	end_1		TEXT[3],
+	end_1_total	INTEGER,
+	end_2		TEXT[3],
+	end_2_total	INTEGER,
+	end_3		TEXT[3],
+	end_3_total	INTEGER,
+	end_4		TEXT[3],
+	end_4_total	INTEGER,
+	end_5		TEXT[3],
+	end_5_total	INTEGER,
+	end_6		TEXT[3],
+	end_6_total	INTEGER,
+	end_7		TEXT[3],
+	end_7_total	INTEGER,
+	end_8		TEXT[3],
+	end_8_total	INTEGER,
+	end_9		TEXT[3],
+	end_9_total	INTEGER,
+	end_10		TEXT[3],
+	end_10_total	INTEGER,
+	CONSTRAINT round_account_id_fkey FOREIGN KEY (account_id)
+		REFERENCES account (account_id) MATCH SIMPLE
+		ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+ALTER TABLE round ALTER COLUMN description
+SET DEFAULT '';
+
+ALTER TABLE round ALTER COLUMN date_created
+SET DEFAULT CURRENT_DATE;

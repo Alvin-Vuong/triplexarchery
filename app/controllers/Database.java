@@ -1,0 +1,856 @@
+package controllers;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+//import javax.json.*;
+import java.util.List;
+import java.util.ArrayList;
+import models.End;
+import models.Round;
+import models.User;
+
+public class Database {
+
+    // Checks email with existing accounts in the database.
+    // Returns true if email is available, false if taken.
+    // (Comment Blocked: Returns JsonArray: {"valid": true} if email is available, false if taken.)
+    public static boolean registerCheck(String em) throws SQLException {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            String query = "SELECT email FROM account WHERE email = ?";
+            pst = con.prepareStatement(query);
+            pst.setString(1, em);
+            rs = pst.executeQuery();
+
+            if (rs.next() == false)
+            {
+                return true;
+            /* Json Return Implementation
+            //    System.out.println("Account available!");
+                JsonArray array = Json.createArrayBuilder()
+                .add(Json.createObjectBuilder()
+                    .add("valid", true))
+                .build();
+                
+                // FOR TESTING
+                JsonObject value = array.getJsonObject(0);
+                boolean truth = value.getBoolean("valid");
+                
+                if (truth)
+                    System.out.println("Yep, available truth"); // SHOULD PRINT THIS
+                else
+                    System.out.println("Nope, available else");
+                //
+                
+                return array;
+            */
+            }
+            else
+            {
+                return false;
+            /*
+            //    System.out.println("Account already exists!");
+                JsonArray array = Json.createArrayBuilder()
+                .add(Json.createObjectBuilder()
+                    .add("valid", false))
+                .build();
+                
+                // FOR TESTING
+                JsonObject value = array.getJsonObject(0);
+                boolean truth = value.getBoolean("valid");
+                
+                if (truth)
+                    System.out.println("Yep, exists truth");
+                else
+                    System.out.println("Nope, exists else");    // SHOULD PRINT THIS
+                //
+                
+                return array;
+            */
+            }
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // Inserts a new account into the database.
+    // Returns true if successful, false if not.
+    public static boolean registerNew(String em, String pw, String fn, String ln) {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+
+            String stm = "INSERT INTO account(email, password, first_name, last_name) VALUES(?, ?, ?, ?)";
+            pst = con.prepareStatement(stm);
+            pst.setString(1, em);
+            pst.setString(2, pw);
+            pst.setString(3, fn);
+            pst.setString(4, ln);
+            pst.executeUpdate();
+            
+            return true;
+
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            return false;
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // Checks database to see if account exists, and that password is correct.
+    // Returns true if entries are valid, false if not.
+    // (Comment Blocked: Returns JsonArray: {"valid": true} if login successful, false if not.)
+    public static boolean login(String em, String pw) throws SQLException{
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            String query = "SELECT email, password FROM account WHERE email = ? AND password = ?";
+            pst = con.prepareStatement(query);
+            pst.setString(1, em);
+            pst.setString(2, pw);
+            rs = pst.executeQuery();
+
+            if (rs.next() == false)
+            {
+                return false;
+            /* Json Return Implementation
+            //    System.out.println("No account match"); // TODO: Redirect user back to login: "Either email or password is incorrect."
+                JsonArray array = Json.createArrayBuilder()
+                .add(Json.createObjectBuilder()
+                    .add("valid", false))
+                .build();
+                
+                // FOR TESTING
+                JsonObject value = array.getJsonObject(0);
+                boolean truth = value.getBoolean("valid");
+                
+                if (truth)
+                    System.out.println("Yep, no account match?!");
+                else
+                    System.out.println("Nope, no account else");    // SHOULD PRINT THIS
+                //
+                
+                return array;
+            */
+            }
+            else
+            {
+                return true;
+            /* Json Return Implementation
+            //    System.out.println("Logged in!"); // TODO: This is where a session would be implemented...
+                JsonArray array = Json.createArrayBuilder()
+                .add(Json.createObjectBuilder()
+                    .add("valid", true))
+                .build();
+                
+                // FOR TESTING
+                JsonObject value = array.getJsonObject(0);
+                boolean truth = value.getBoolean("valid");
+                
+                if (truth)
+                    System.out.println("Yep, logged in"); // SHOULD PRINT THIS
+                else
+                    System.out.println("Nope, logged else?");
+                //
+                
+                return array;
+            */
+            }
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // Looks up an email in the database.
+    // Returns User object with account_id and first_name associated with email, SQLException if not found.
+    public static User getInfo(String em) {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            User userQuery = new User();
+            
+            String query = "SELECT account_id, first_name FROM account WHERE email = ?";
+            pst = con.prepareStatement(query);
+            pst.setString(1, em);
+            boolean isResult = pst.execute();
+            do {
+                rs = pst.getResultSet();
+
+                while (rs.next()) {
+            //        System.out.print(rs.getInt(1));
+                    userQuery.id = rs.getInt(1);
+                    userQuery.firstname = rs.getString(2);
+                }
+                isResult = pst.getMoreResults();
+            } while (isResult);
+
+            return userQuery;
+            
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            return new User();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+                
+            }
+        }
+    }
+    
+    // Looks up an account_id in the database.
+    // Returns User object with email and first_name associated with id, SQLException if not found.
+    public static User getInfo(int acc_id) {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            User userQuery = new User();
+            
+            String query = "SELECT email, first_name FROM account WHERE account_id = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, acc_id);
+            boolean isResult = pst.execute();
+            do {
+                rs = pst.getResultSet();
+
+                while (rs.next()) {
+            //        System.out.print(rs.getInt(1));
+                    userQuery.email = rs.getString(1);
+                    userQuery.firstname = rs.getString(2);
+                }
+                isResult = pst.getMoreResults();
+            } while (isResult);
+
+            return userQuery;
+            
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            return new User();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // Adds a new round in the database.
+    // Returns the round_id if successful, 0 if not.
+    public static int addRound(int acc_id, String desc) throws SQLException {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL(); 
+        String user = DB.user();
+        String password = DB.pass();
+        
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            int rnd_id = 0; // Zero means unsuccessful query.
+            
+            String stm = "INSERT INTO round (account_id, description, score, date_created) VALUES (?, ?, 0, DEFAULT) RETURNING round_id";
+            pst = con.prepareStatement(stm);
+            pst.setInt(1, acc_id);
+            pst.setString(2, desc);
+            boolean isResult = pst.execute();
+            do {
+                rs = pst.getResultSet();
+
+                while (rs.next()) {
+            //        System.out.print(rs.getInt(1));
+                    rnd_id = rs.getInt(1);
+                }
+                isResult = pst.getMoreResults();
+            } while (isResult);
+            
+            //System.out.println("rnd_id: " + rnd_id);
+            
+            return rnd_id;
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // Adds an end to the round table in the database.
+    // If unsuccessful, should throw a SQLException.
+    public static void addEnd(int acc_id, int rnd_id, int end, String arrow1, String arrow2, String arrow3, int endTotal) throws SQLException {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+        
+        try {
+            
+            String[] arrows = {arrow1, arrow2, arrow3};
+            int curTotal = getScore(acc_id, rnd_id) + Application.sumArrows(arrows, true);      // TODO: true parameter for outer 10, false parameter for inner 10.
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            String stm = "UPDATE round SET end_" + end + " = '{" + arrow1 + ", " + arrow2 + ", " + arrow3 + "}', score = ?, end_" + end + "_total = " + endTotal + " WHERE account_id = ? AND round_id = ?";
+            pst = con.prepareStatement(stm);
+            pst.setInt(1, curTotal);
+            pst.setInt(2, acc_id);
+            pst.setInt(3, rnd_id);
+            pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // Retrieves all ends of a given round in the database.
+    // Returns a List containing these ends, throws SQLException otherwise.
+    public static List<End> getAllEnds(int acc_id, int rnd_id) throws SQLException {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            List<End> ends = new ArrayList<End>();
+            String[] x = new String[3];
+            
+            for ( int i = 1; i < 11; i++)       // TODO: For other than 10 ends: i < numEnds + 1
+            {
+                String query = "SELECT end_" + i + " FROM round WHERE account_id = ? AND round_id = ?";
+                pst = con.prepareStatement(query);
+                pst.setInt(1, acc_id);
+                pst.setInt(2, rnd_id);
+                rs = pst.executeQuery();
+                
+                while (rs.next()) {
+                    x = (String[]) rs.getArray(1).getArray();
+                }
+                ends.add(new End(x[0], x[1], x[2], i, Application.sumArrows(x, true)));     // TODO: true parameter for outer 10, false parameter for inner 10.
+            }
+            /* FOR TESTING            
+            for (End e : ends)
+            {
+                System.out.println(e);
+            }
+            */            
+            return ends;
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // Retrieves a certain ten rounds of a given account in the database, using a set #.
+    // Returns a List containing these rounds, throws SQLException otherwise.
+    public static List<Round> getTenRounds(int acc_id, int setNum) throws SQLException {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            List<Round> rounds = new ArrayList<Round>();
+            int id = 0;
+            int score = -1;
+            String desc = "";
+            String date = "";
+            
+            String query = "SELECT round_id, score, description, date_created FROM round WHERE account_id = ? ORDER BY date_created DESC, round_id DESC LIMIT 10 OFFSET ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, acc_id);
+            pst.setInt(2, ((setNum-1)*10));
+            boolean isResult = pst.execute();
+            do {
+                rs = pst.getResultSet();
+                
+                while (rs.next()) {
+                //    System.out.println(rs.getInt(1));
+                //    System.out.println(rs.getInt(2));
+                //    System.out.println(rs.getString(3));
+                //    System.out.println(rs.getString(4));
+                    id = rs.getInt(1);
+                    score = rs.getInt(2);
+                    desc = rs.getString(3);
+                    date = rs.getString(4);
+                    rounds.add(new Round(id, score, desc, date, null));
+                }
+                isResult = pst.getMoreResults();
+            } while (isResult);
+            
+            /* FOR TESTING            
+            for (Round r : rounds)
+            {
+                System.out.println(r);
+            }
+            */
+            return rounds;
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // Retrieves current score of a round in the database.
+    // Returns this value if successful, throws SQLException if not.
+    public static int getScore(int acc_id, int rnd_id) throws SQLException {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            int score = 0;
+            
+            String query = "SELECT score FROM round WHERE account_id = ? AND round_id = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, acc_id);
+            pst.setInt(2, rnd_id);
+            rs = pst.executeQuery();
+            
+            while (rs.next()) {
+            //    System.out.println(rs.getInt(1)); FOR TESTING
+                score = rs.getInt(1);
+            }
+            
+            return score;
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // Retrieves the information associated with a certain round from the database.
+    // Returns a Round object containing this, throws SQLException otherwise.
+    public static Round getRoundInfo(int rnd_id) throws SQLException {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            List<End> ends = new ArrayList<End>();
+            String[] x = new String[3];
+            
+            for ( int i = 1; i < 11; i++)       // TODO: For other than 10 ends: i < numEnds + 1
+            {
+                String query = "SELECT end_" + i + " FROM round WHERE round_id = ?";
+                pst = con.prepareStatement(query);
+                pst.setInt(1, rnd_id);
+                rs = pst.executeQuery();
+                
+                while (rs.next()) {
+                    x = (String[]) rs.getArray(1).getArray();
+                }
+                ends.add(new End(x[0], x[1], x[2], i, Application.sumArrows(x, true)));     // TODO: true parameter for outer 10, false parameter for inner 10.
+            }
+            /* FOR TESTING            
+            for (End e : ends)
+            {
+                System.out.println(e);
+            }
+            */
+            
+            int score = -1;
+            String desc = "";
+            String date = "";
+            Round round = new Round();
+            
+            String query = "SELECT score, description, date_created FROM round WHERE round_id = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, rnd_id);
+            boolean isResult = pst.execute();
+            do {
+                rs = pst.getResultSet();
+                
+                while (rs.next()) {
+                //    System.out.println(rs.getInt(1));
+                //    System.out.println(rs.getString(2));
+                //    System.out.println(rs.getString(3));
+                    score = rs.getInt(1);
+                    desc = rs.getString(2);
+                    date = rs.getString(3);
+                    round.id = rnd_id;
+                    round.score = score;
+                    round.description = desc;
+                    round.date = date;
+                    round.ends = ends;
+                }
+                isResult = pst.getMoreResults();
+            } while (isResult);
+            
+            return round;
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // TODO: Test this.
+    // Deletes a round given a round_id from the database.
+    // Returns true if successful, false if not.
+    public static boolean deleteRound(int rnd_id) {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+
+            String stm = "DELETE FROM round WHERE round_id = ?";
+            pst = con.prepareStatement(stm);
+            pst.setInt(1, rnd_id);
+            
+            pst.executeUpdate();
+            
+            return true;
+
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            return false;
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    // TODO: Implement inner 10 vs. outer 10
+    // TODO: Account_id passed into functions might not be needed for every function... Check this. (Example: getAllEnds())
+    // TODO: If end submit button is repeatedly clicked too quickly, score is added multiple times...
+    // TODO: Any number of ends (Maybe in getAllEnds(), use numEnds where numEnds is a column in the round table
+    // TODO: Deal with incomplete rounds
+    // TODO: Implement isCoach
+    // TODO: Encrypt passwords
+    // TODO: Email verification
+    // TODO: Graph data plots (Maybe Google Charts?)
+}

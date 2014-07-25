@@ -1,0 +1,167 @@
+@(userForm: Form[User])
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Triple X Archery: Digital Scoring Notebook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="@routes.Assets.at("style.css")" />
+    <link href='http://fonts.googleapis.com/css?family=Faster+One|Economica:700' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/icon" href="@routes.Assets.at("images/favicon.ico")" />
+    
+    
+    
+  </head>
+  
+  <body>
+
+   
+    <div class="navbar navbar-inverse navbar-static-top" style="margin-bottom: 0;">
+   <div class="container">
+    <a href="/" class="navbar-brand">
+        <span style="font-family: 'Faster One', cursive; font-size: 36pt;">X X X </span>
+        <span style="font-family: 'Economica', sans-serif; font-size: 18pt;">Archery</span>
+    </a>
+
+    <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+      <span class="glyphicon glyphicon-list" style="color: #ec971f;"></span>
+    </button>
+
+    <div class="collapse navbar-collapse navHeaderCollapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="@routes.Application.learnMore()">About</a></li>
+        <li><a href="@routes.Application.register()">Register</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+          <div class="dropdown-menu" style="padding: 10px;">
+            <form action="@routes.Application.login()" method="POST" id="login">
+                <div class="form-group">
+                  <input type="email" class="form-control" name="email" placeholder="Email" />
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" name="password" placeholder="Password" />
+                </div>
+                <input type="submit" class="btn btn-warning" value="Sign in" />
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+    </div>
+    </div>
+
+
+   		
+   		<div class="jumbotron" style="background-image: url(@routes.Assets.at("images/bales2.jpg")); background-size: 100%; background-repeat: no-repeat;">
+        <div class="container text-center">
+          <h1><br /><br /><br /></h1>
+        </div>
+   		</div>
+
+   		<div class="container">
+   		
+   		    <div class="row">
+   		            <div class="col-lg-12">
+                    <div class="container text-center">
+   		                <h3 style="margin-top: -1px;margin-bottom: 10px;">All arrows, one place.</h3>
+                    </div>
+   		            </div>
+   		    </div>
+   		
+   		
+   		
+   		<div class="row text-center">
+            <div class="col-sm-6 col-sm-3">
+                <div class="thumbnail" style="border: none;">
+                    <img src="@routes.Assets.at("images/target.png")" style="margin-bottom: -15px;">
+                    <div class="caption">
+                        <h4>Archers</h4>
+                        <p>Record and access
+   					        your scores via desktop or mobile device.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-sm-3">
+                <div class="thumbnail" style="border: none;">
+                    <img src="@routes.Assets.at("images/clipboard.png")" style="margin-bottom: -15px;">
+                    <div class="caption">
+                        <h4>Coaches</h4>
+                        <p>Get automatic progress reports on all your athletes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-sm-3">
+                <div class="thumbnail" style="border: none;">
+                    <img src="@routes.Assets.at("images/graph.png")" style="margin-bottom: -15px;">
+                    <div class="caption">
+                        <h4>Data</h4>
+                        <p>See your improvements and trends plotted over time.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-sm-3">
+                <div class="thumbnail" style="border: none;">
+                    <img src="@routes.Assets.at("images/printer.png")" style="margin-bottom: -15px;">
+                    <div class="caption">
+                        <h4>Print</h4>
+                        <p>Get your complete scoresheet in one click.</p>
+                    </div>
+                </div>
+            </div>
+</div>
+   		
+   		
+   		
+   		
+   		
+   			<!--<div class="row">
+   				<div class="col-sm-3">
+   				    <div class="panel panel-warning">
+   					    <div class="panel-heading"><h2>Archers</h2></div>
+   					    <div class="panel-body"><p>Record every arrow, every end, every round with XXX, and access
+   					        your scores later on the desktop or on your mobile device.
+   					    </p></div>
+   				    </div>
+   				</div>
+
+   				<div class="col-sm-3">
+   				    <div class="panel panel-warning">
+   					    <div class="panel-heading"><h2>Coaches</h2></div>
+   					    <div class="panel-body"><p>Track the progress of all your athletes</p></div>
+   				    </div>
+   				</div>
+   				
+   				<div class="col-sm-3">
+   				    <div class="panel panel-warning">
+   					    <div class="panel-heading"><h2>Graphs</h2></div>
+   					    <div class="panel-body"><p>Coming soon</p></div>
+   				    </div>
+   				</div>
+   				
+   				<div class="col-sm-3">
+   				    <div class="panel panel-warning">
+   					    <div class="panel-heading"><h2>Print</h2></div>
+   					    <div class="panel-body"><p>Coming soon</p></div>
+   				    </div>
+   				</div>
+   			</div>
+   		</div>-->
+
+   		<!--<div class="navbar navbar-default navbar-fixed-bottom">
+   			<div class="container">
+   				<p class="navbar-text">Created by Yuki Pan</p>
+   			</div>
+   		</div>-->
+
+   	
+  
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    
+  </body>
+</html>

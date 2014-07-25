@@ -1,0 +1,16 @@
+.navbar-brand {
+	color: #ec971f !important;
+}
+
+.nav a {
+	color: #ec971f !important;
+}
+
+.nav a:hover {
+	color: #FFFFFF !important;
+}
+
+.panel-warning .panel-heading {
+	background-color: #ec971f;
+	color: #FFFFFF !important;
+}

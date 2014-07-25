@@ -1,0 +1,27 @@
+@(u: User, rounds: List[Round])
+
+@template(u.firstname) {
+    <div class="col-lg-8 col-lg-offset-2">
+    <div class="panel panel-warning">
+    <div class="panel-heading"><h3>Completed Rounds</h3></div>
+    <div class="panel-body">
+    <table class="table table-striped">
+        <tr>
+            <th class="col-md-5">Description</th>
+            <th class="col-md-2">Date</th>
+            <th class="col-md-1">Score</th>
+        </tr>
+            @for( r <- rounds ) {
+                
+                <tr>
+                    <td><a href="@routes.Application.viewAllEnds(u.id, r.id)">@r.description</a></td>
+                    <td>@r.date</td>
+                    <td>@r.score</td>
+                </td>
+        
+            }
+    </table>
+    </div>
+    </div>
+    </div>
+}

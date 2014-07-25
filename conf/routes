@@ -1,0 +1,17 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET     /                           controllers.Application.index()
+POST    /dashboard                  controllers.Application.login()
+GET     /more                       controllers.Application.learnMore()
+POST    /:id/new                    controllers.Application.create(id: Int)
+POST    /:id/:roundid/:end          controllers.Application.submit(id: Int, roundid:Int, end: Int)
+POST    /:id/view-rounds            controllers.Application.roundsList(id: Int)
+GET     /:id/round/:roundid         controllers.Application.viewAllEnds(id: Int, roundid: Int)
+GET     /register                   controllers.Application.register()
+POST    /verify                     controllers.Application.verify()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /webjars/*file              controllers.WebJarAssets.at(file)
