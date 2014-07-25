@@ -4,7 +4,7 @@ CREATE TABLE account (
 	password 	VARCHAR (40) NOT NULL,
 	first_name	VARCHAR (45) NOT NULL,
 	last_name	VARCHAR (45) NOT NULL, 
-	isCoach		BOOLEAN,
+	isCoach		BOOLEAN NOT NULL,
 	coaches_id	INTEGER[],
 	athletes_id	INTEGER[]
 );

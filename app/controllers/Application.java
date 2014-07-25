@@ -25,7 +25,7 @@ public class Application extends Controller {
     public static Result login() {
         Form<User> filledForm = userForm.bindFromRequest();
         User user = filledForm.get();
-        System.out.print(user.email + " " + user.password);
+        // System.out.print(user.email + " " + user.password);
         
         // TODO: check DB to see if user is coach
 
@@ -43,9 +43,7 @@ public class Application extends Controller {
                 }
             } else {
                 return ok(login.render("Incorrect email or password."));
-                
                 // TODO: fix navbar on failed login -- says "logout" when not logged in
-                
             }
         } catch (SQLException e) {
             return ok(login.render("Something is wrong. Try again."));
@@ -61,14 +59,17 @@ public class Application extends Controller {
     public static Result verify() {
         Form<User> filledForm = userForm.bindFromRequest();
         User created = filledForm.get();
-        System.out.print("Registered new user " + created.email + created.firstname + created.lastname);
+        // System.out.print("Registered new user " + created.email + created.firstname + created.lastname);
         
         try {
             boolean log = Database.registerCheck(created.email);
-            if (log) { //valid username
+            // Valid email
+            if (log) {
                 Database.registerNew(created.email, created.password, created.firstname, created.lastname);
                 return ok(login.render(""));
-            } else { //redirect to register again
+            }
+            // Redirect to register again
+            else {
                 return ok(register.render(created.email + " already has an account."));
             }
         } catch (SQLException e) {
@@ -86,7 +87,7 @@ public class Application extends Controller {
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
         String d = r.description;
-        System.out.println(d);
+        // System.out.println(d);
         
         User user = Database.getInfo(id);
         user.id = id;
@@ -108,7 +109,7 @@ public class Application extends Controller {
         created.endNumber = end;
         String[] x = {created.a1, created.a2, created.a3};
         created.total = sumArrows(x, true);                                 // TODO: true parameter for outer 10, false parameter for inner 10.
-        System.out.print(created.a1 + " " + created.a2 + " " + created.a3);
+        System.out.print(created.a1 + " " + created.a2 + " " + created.a3); // THIS LINE CANT BE REMOVED FOR SOME REASON
         
         try {
             Database.addEnd(id, roundid, end, created.a1, created.a2, created.a3, created.total);    
@@ -141,6 +142,17 @@ public class Application extends Controller {
         }
         
         return ok(roundslist.render(user, rounds));
+    }
+    
+    // Handles deletion of chosen round and renders the resulting success page.
+    public static Result deleteRound(int id, int roundid) {
+        User user = Database.getInfo(id);
+        user.id = id;
+
+        if (Database.deleteRound(roundid))
+            return ok(deleteSuccess.render(user));
+        else
+            return ok(login.render("Something is wrong. Try again."));
     }
     
     // Renders list of ends of a round.

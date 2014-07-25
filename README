@@ -1,6 +1,10 @@
 Triple X Archery: Digital Scoring Notebook
 
-XXX is a digital notebook allowing archers to store their scores online in one, impossible-to-lose place.
+XXX is a digital notebook that:
+    allows archers to store their scores online in one, impossible-to-lose place,
+    lets coaches see the progress of their athletes (Planned),
+    can plot one's archery scores over time to track improvement (Planned),
+    ... and much more!
 
 Developed by Alvin Vuong (Back-end) and Yuki Pan (Front-end).
 Original concept was created during AngelHack2014 - Silicon Valley.
@@ -10,3 +14,4 @@ Technologies used:
 	Play! Framework
 	PostgreSQL
 	HTML/CSS/Twitter Bootstrap
+	Scala

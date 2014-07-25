@@ -33,7 +33,7 @@ public class Database {
             
             con = DriverManager.getConnection(url, user, password);
             
-            String query = "SELECT email FROM account WHERE email = ?";
+            String query = "SELECT account_id FROM account WHERE email = ?";
             pst = con.prepareStatement(query);
             pst.setString(1, em);
             rs = pst.executeQuery();
@@ -127,7 +127,7 @@ public class Database {
             
             con = DriverManager.getConnection(url, user, password);
 
-            String stm = "INSERT INTO account(email, password, first_name, last_name) VALUES(?, ?, ?, ?)";
+            String stm = "INSERT INTO account(email, password, first_name, last_name, isCoach) VALUES(?, ?, ?, ?, false)";
             pst = con.prepareStatement(stm);
             pst.setString(1, em);
             pst.setString(2, pw);
@@ -136,7 +136,6 @@ public class Database {
             pst.executeUpdate();
             
             return true;
-
 
         } catch (SQLException ex) {
             Logger lgr = Logger.getLogger(Database.class.getName());
@@ -843,14 +842,4 @@ public class Database {
             }
         }
     }
-    
-    // TODO: Implement inner 10 vs. outer 10
-    // TODO: Account_id passed into functions might not be needed for every function... Check this. (Example: getAllEnds())
-    // TODO: If end submit button is repeatedly clicked too quickly, score is added multiple times...
-    // TODO: Any number of ends (Maybe in getAllEnds(), use numEnds where numEnds is a column in the round table
-    // TODO: Deal with incomplete rounds
-    // TODO: Implement isCoach
-    // TODO: Encrypt passwords
-    // TODO: Email verification
-    // TODO: Graph data plots (Maybe Google Charts?)
 }
