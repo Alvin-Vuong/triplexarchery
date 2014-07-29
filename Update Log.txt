@@ -1,5 +1,6 @@
 TODO: Application.java line 112. Testing line that can't be removed for some reason.
 TODO: Push latest build to Heroku to match the isCoach NOT NULL requirement. (I think this is fixed. Check herokuapp)
+TODO: Add some kind of view button for each round in roundslist, because if description is blank, you can't view it.
 TODO: Add spacing between current round score in end entry form and the submit button.
 TODO: Implement current round possible score (Ex. 270/270).
 TODO: Add "New Round (Desktop View)" - Ianseo like input of a round already shot.
@@ -18,7 +19,7 @@ TODO: Encrypt passwords.
 TODO: Email verification.
 TODO: Graph data plots (Maybe Google Charts?).
 ---------------------------------------------------------------------------------------------------------------------
-
+7/29/2014 12:04 PM PST (PUSHED TO HEROKU AND GITHUB)
 
 Added current round score functionality in create.scala.html form page.
 Added to Application.java create() and submit() ends to display a running total of the current round score.
