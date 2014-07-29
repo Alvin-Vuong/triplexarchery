@@ -95,7 +95,7 @@ public class Application extends Controller {
         try {
             int r_id = Database.addRound(id, d);
             System.out.println("in create(), user's info: " + user.email + user.firstname);
-            return ok(create.render(user, r_id, endForm, 1));
+            return ok(create.render(user, r_id, endForm, 1, 0));
         } catch (SQLException e){
             return ok(login.render("Something is wrong. Try again."));
         }
@@ -123,9 +123,14 @@ public class Application extends Controller {
         // TODO: check DB to see if user is coach
             return ok(dash.render(user, false));
         } else {
-            return ok(create.render(user, roundid, endForm, end+1));
-        } 
-        // TODO: shows current round cumulative score
+            int curScore = -1;
+            try {
+                curScore = Database.getScore(id, roundid);
+            } catch (SQLException e) {
+                return ok(login.render("Something is wrong. Try again."));
+            }
+            return ok(create.render(user, roundid, endForm, end+1, curScore));
+        }
     }
     
     // Renders list of rounds, with links to view each round specifically.

@@ -1,64 +1,63 @@
 @(u: User, isCoach: Boolean)
 
 @template(u.firstname) {
-    <div class="container">
-      <div class="row">
+<div class="container">
+    <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <div class="panel panel-warning">
-            <div class="panel-heading"><h3>Hi, @u.firstname</h3></div>
-            <div class="panel-body">
-            <a href="#description" data-toggle="modal" class="btn btn-lg btn-warning btn-block">Add new round</a>
-            <form action="@routes.Application.roundsList(u.id)" method="POST">
-                <input type="submit" class="btn btn-lg btn-warning btn-block" value="View completed rounds" />
-            </form>
-            <form action="@routes.Application.index()">
-                <input type="submit" class="btn btn-lg btn-warning btn-block" value="Add coach" />
-            </form>
-   	        </div>
-   	    </div>
-   	  
-   	  @if(isCoach) {
-   	        <div class="col-md-6">
-   	            <div class="panel panel-warning">
-                    <div class="panel-heading"><h3>Coach panel</h3></div>
-                    <div class="panel-body">
-   	                    <a class="btn btn-lg btn-warning btn-block" href="#">View athletes</a>
-   	                </div>
-   	            </div>
-   	        </div>
-   	  }
-   	  </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3>Hi, @u.firstname!</h3>
+                </div>
+                <div class="panel-body">
+                    <a href="#description" data-toggle="modal" class="btn btn-lg btn-warning btn-block">New Round (Mobile View)</a>
+                    <form action="@routes.Application.roundsList(u.id)" method="POST">
+                        <input type="submit" class="btn btn-lg btn-warning btn-block" value="View Completed Rounds" />
+                    </form>
+                    <form action="@routes.Application.index()">     <!--This is TODO-->
+                        <input type="submit" class="btn btn-lg btn-warning btn-block" value="Add Coach" />
+                    </form>
+                </div>
+            </div>
+
+            @if(isCoach) {
+                <div class="col-md-6">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h3>Coach panel</h3>
+                        </div>
+                        <div class="panel-body">
+                            <a class="btn btn-lg btn-warning btn-block" href="#">View athletes</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-    
-    
-    
-    
     <div class="modal fade" id="description" role="dialog">
-   		<div class="modal-dialog">
-   			<div class="modal-content">
-   				<div class="modal-header">
-   					<h3>Enter round description</h3>
-   				</div>
-   				<div class="modal-body">
-   					<form class="form-horizontal" role="form" action="@routes.Application.create(u.id)" method="POST">
-   						<div class="form-group">
-   						    <div class="col-lg-12">
-   							    <input type="text" name="description" class="form-control" />
-   							</div>
-   						</div>
-   						<div class="modal-footer">
-   							<div class="form group">
-   								<div class="col-sm-offset-2 col-sm-10">
-   									<input type="submit" class="btn btn-warning" value="Create Round" />
-   								</div>
-   							</div>
-   						</div>
-   					</form>
-   				</div>
-   			</div>
-   		</div>
-   	</div>
-    
-    
-    
+	    <div class="modal-dialog">
+		    <div class="modal-content">
+			    <div class="modal-header">
+				    <h3>Enter Round Description</h3>
+				    <p>(i.e. Practice) or (i.e. National Indoors 2013)</p>
+			    </div>
+			    <div class="modal-body">
+				    <form class="form-horizontal" role="form" action="@routes.Application.create(u.id)" method="POST">
+    				    <div class="form-group">
+	    			        <div class="col-lg-12">
+		    			        <input type="text" name="description" class="form-control" />
+			    		    </div>
+				        </div>
+				        <div class="modal-footer">
+    				        <div class="form group">
+    						    <div class="col-sm-offset-2 col-sm-10">
+   								    <input type="submit" class="btn btn-warning" value="Create Round" />
+   							    </div>
+   						    </div>
+   					    </div>
+   				    </form>
+   			    </div>
+   		    </div>
+   	    </div>
+    </div>
+</div>
 }

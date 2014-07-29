@@ -1,0 +1,185 @@
+TODO: Application.java line 112. Testing line that can't be removed for some reason.
+TODO: Push latest build to Heroku to match the isCoach NOT NULL requirement. (I think this is fixed. Check herokuapp)
+TODO: Add spacing between current round score in end entry form and the submit button.
+TODO: Implement current round possible score (Ex. 270/270).
+TODO: Add "New Round (Desktop View)" - Ianseo like input of a round already shot.
+TODO: Add back buttons to pages.
+TODO: After an entire round entry, take to round view. (Need to add button to go back to dashboard)
+TODO: Implement inner 10 vs. outer 10.
+TODO: Implement editing rounds function.
+TODO: Rename html files to more specific ones.
+TODO: Account_id passed into functions might not be needed for every function... Check this. (Example: getAllEnds()).
+TODO: If end submit button is repeatedly clicked too quickly, score is added multiple times.
+TODO: Any number of ends (Maybe in getAllEnds(), use numEnds where numEnds is a column in the round table.
+TODO: Deal with incomplete rounds.
+TODO: Implement add coach button on dashboard.
+TODO: Implement coach view.
+TODO: Encrypt passwords.
+TODO: Email verification.
+TODO: Graph data plots (Maybe Google Charts?).
+---------------------------------------------------------------------------------------------------------------------
+
+
+Added current round score functionality in create.scala.html form page.
+Added to Application.java create() and submit() ends to display a running total of the current round score.
+Removed some hanging tags from end.scala.html.
+Capitalized "Arrow" and added "#" to create.scala.html for each arrow form submission.
+Stylized running total to match page style. Might change.
+Cleaned up create.scala.html.
+Cleaned up dash.scala.html w/ minor text changes.
+Added previous git history to this update log.
+---------------------------------------------------------------------------------------------------------------------
+7/25/2014 4:50 PM EST (PUSHED TO HEROKU AND GITHUB)
+
+Added default isCoach is false upon registration of a new account.
+Set isCoach column in the database init file to NOT NULL.
+Added Scala to the list of technologies used in the README.
+Added POST /:id/:roundid/ controllers.Appliation.deleteRound(id: Int, roundid: Int) to routes file.
+Wrote deleteRound() in Application.java. (Requires account_id as a parameter? Routes?)
+Added delete buttons in roundslist view, alongside each round.
+Wrote deleteSuccess.scala.html to render success page after deletion.
+Downloaded jQuery script from http://code.jquery.com/jquery.js into public folder.
+Modified index.scala.html to use this file locally, instead of web servers.
+Updated Heroku Database to reflect end total changes.
+Minor fixes to Application.java comments.
+Commented out Application.java testing code (Exception of Application.java line 112).
+---------------------------------------------------------------------------------------------------------------------
+7/25/2014 4:42 AM EST (PUSHED TO HEROKU AND GITHUB)
+
+Added useful comments in DB.java about local vs. heroku hosting.
+Fixed some comments in Database.java describing some functions.
+Added various TODOs to Database.java.
+Set default radio buttons on create.scala.html to X.
+Added ORDER BY to getTenRounds().
+Wrote deleteRound() and getRoundInfo() in Database.java.
+Fixed up end.scala.html to display round description and date.
+Also end.scala.html displays an End Total column, with Round Total aligned.
+Added end total columns in the round table.
+Implemented end total calculation in addEnd().
+Added end total column to the round score view.
+Changed some styling for the round score view.
+Changed toValue() in Application.java to reflect inner/outer 10 scoring.
+Changed sumArrows() to reflect inner/outer 10 scoring.
+Changed all instances of sumArrows() to default to outer 10 scoring.
+---------------------------------------------------------------------------------------------------------------------
+7/21/2014 1:44 PM PST (PUSHED TO HEROKU)
+
+Navbar added to subpages.
+---------------------------------------------------------------------------------------------------------------------
+7/21/2014 12:36 AM PST (PUSHED TO HEROKU)
+
+Tagline text changed.
+---------------------------------------------------------------------------------------------------------------------
+7/21/2014 12:30 AM PST (PUSHED TO HEROKU)
+7/21/2014 12:27 AM PST (PUSHED TO HEROKU)
+
+Panel color.
+Panel color added for all pages.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 11:45 PM PST (PUSHED TO HEROKU)
+7/20/2014 11:33 PM PST (PUSHED TO HEROKU)
+
+Modifications to About page.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 10:38 PM PST (PUSHED TO HEROKU)
+7/20/2014 10:34 PM PST (PUSHED TO HEROKU)
+7/20/2014 10:29 PM PST (PUSHED TO HEROKU)
+7/20/2014 10:25 PM PST (PUSHED TO HEROKU)
+7/20/2014 10:22 PM PST (PUSHED TO HEROKU)
+7/20/2014 10:18 PM PST (PUSHED TO HEROKU)
+7/20/2014 10:12 PM PST (PUSHED TO HEROKU)
+7/20/2014 10:07 PM PST (PUSHED TO HEROKU)
+7/20/2014 9:45 PM PST (PUSHED TO HEROKU)
+7/20/2014 9:39 PM PST (PUSHED TO HEROKU)
+
+Styling changes.
+Added styles.css
+Modifications to styles.css.
+Image logo.
+Hovering style modification to styles.css.
+Homepage text changes.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 9:33 PM PST (PUSHED TO HEROKU)
+7/20/2014 9:25 PM PST (PUSHED TO HEROKU)
+7/20/2014 9:21 PM PST (PUSHED TO HEROKU)
+7/20/2014 9:11 PM PST (PUSHED TO HEROKU)
+7/20/2014 9:10 PM PST (PUSHED TO HEROKU)
+
+Jumbotron fixes.
+Navbar fixes.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 9:06 PM PST (PUSHED TO HEROKU)
+
+Cropped banner picture.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 9:04 PM PST (PUSHED TO HEROKU)
+
+More jumbotron fixes.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 8:58 PM PST (PUSHED TO HEROKU)
+
+Changed jumbotron image.
+Add coach button on dashboard now redirects to homepage. Fix functionality later.
+Fixes to About page.
+Logout button now doesn't produce an error. Fix functionality later.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 10:02 AM PST (PUSHED TO LOCAL GIT REPO AND HEROKU AND GITHUB)
+
+Database is now working.
+Last commit of AngelHack2014 - Silicon Valley.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 9:55 AM PST (PUSHED TO LOCAL GIT REPO AND HEROKU)
+7/20/2014 9:44 AM PST (PUSHED TO LOCAL GIT REPO AND HEROKU)
+7/20/2014 9:39 AM PST (PUSHED TO LOCAL GIT REPO AND HEROKU)
+
+Database is not working.
+Changing application.conf file to see if anything works.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 9:34 AM PST (PUSHED TO LOCAL GIT REPO AND HEROKU)
+
+Oops. Database problems.
+Changing database credentials and environment variables.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 8:22 AM PST (PUSHED TO LOCAL GIT REPO AND HEROKU)
+
+Added favicon.
+Updated title of webpage: "Triple X Archery: Digital Scoring Notebook".
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 8:03 AM PST (PUSHED TO LOCAL GIT REPO AND HEROKU)
+
+Set DB.java's environment variables for url, user, and pass to Heroku's.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 7:36 AM PST (PUSHED TO LOCAL GIT REPO AND HEROKU)
+
+Removed switch statement from Application.java toValue().
+Strings must be compared using the .equals() method.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 7:28 AM PST (PUSHED TO LOCAL GIT REPO)
+
+Tweaks to Application.java and end.scala.html.
+Ready to push to Heroku.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 6:54 AM PST (PUSHED TO LOCAL GIT REPO)
+
+Edits to Application.java, dashboard html file, and roundslist html file.
+Rounds List page now works locally.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 6:28 AM PST (PUSHED TO LOCAL GIT REPO)
+
+Edits to Applicaiton.java for merging front and backend.
+---------------------------------------------------------------------------------------------------------------------
+7/20/2014 6:12 AM PST (PUSHED TO LOCAL GIT REPO)
+
+Original concept.
+Setup Java Play! Framework as the work environment.
+Initial local PostgreSQL database.
+Creation of initial login & web functionality. (HTML files, Bootstrap, Application.java, routes file, etc.)
+Creation of Database functionality. (Database.java, Application.java)
+Credentials stored in DB.java for local testing.
+Created models: End.java, Round.java, User.java
+Creation of front webpage for the application.
+Name of app decided.
+Added pictures and favicon.
+Front-end styling, etc.
+Initial merge of front and backend to work as a local appliation for now.
+First commit of AngelHack2014 - Silicon Valley.
