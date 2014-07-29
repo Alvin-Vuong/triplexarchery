@@ -1,0 +1,51 @@
+@(u: User, endForm: Form[Round])
+
+@template(u.firstname + ": Add entire round") {
+
+	<div class="col-lg-8 col-lg-offset-2">
+		<div class="panel panel-warning">
+		    <div class="panel-heading text-center"><h3>Add entire round</h3></div>
+		   	<div class="panel-body text-center">
+		   		<form action="@routes.Application.createDesktop(u.id)" method="POST">
+		   			<div class="form-group">
+				   		<label for"desc"><h4>Round description</h4></label>
+				   		<input type="text" id="desc" class="form-control" name="description" placeholder="Practice, National Indoors 2013, etc."/>
+				   	</div>
+
+				   	<h4>Enter arrow scores</h4>
+				   	<p>Arrows take the following values: m (for miss), 1, 2, 3, ..., 8, 9, 10, X.</p>
+
+				   		<table class="table table-striped">
+				   			<tr class="warning">
+				   				<th class="col-sm-2" style="text-align: center;">End</th>
+				   				<th class="col-sm-2" style="text-align: center;">Arrow 1</th>
+				   				<th class="col-sm-2" style="text-align: center;">Arrow 2</th>
+				   				<th class="col-sm-2" style="text-align: center;">Arrow 3</th>
+				   			</tr>
+
+				   			@for(a <- 1 to 10) {
+				   				<tr>
+				   				<td>@a</td>
+				   				<td><input type="text" class="form-control" name="rawEnds[@(3*a-3)]" /></td>
+				   				<td><input type="text" class="form-control" name="rawEnds[@(3*a-2)]" /></td>
+				   				<td><input type="text" class="form-control" name="rawEnds[@(3*a-1)]" /></td>
+				   			</tr>
+				   			}
+
+				   		</table>
+
+				   		<div class="panel panel-footer text-center">
+				   			<input type="submit" class="btn btn-warning" value="Submit Round" />
+				   		</div>
+	            
+		   		</form>
+
+		   	</div>
+	   	</div>
+	</div>
+
+
+
+
+
+}

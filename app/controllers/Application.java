@@ -15,6 +15,7 @@ public class Application extends Controller {
     
     final static Form<User> userForm = Form.form(User.class);
     final static Form<End> endForm = Form.form(End.class);
+    final static Form<Round> roundForm = Form.form(Round.class);
     
     // Render homepage.
     public static Result index() {
@@ -99,6 +100,19 @@ public class Application extends Controller {
         } catch (SQLException e){
             return ok(login.render("Something is wrong. Try again."));
         }
+    }
+
+    public static Result createDesktop(int id) {
+        /**Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
+        Round r = filledForm.get();
+
+        for (int i = 0; i < r.rawEnds.length; i++) {
+            System.out.println(r.rawEnds[i]);
+        }**/
+        User user = Database.getInfo(id);
+        user.id = id;
+        
+        return ok(createDesktopRound.render(user, roundForm));
     }
     
     // Handles end entry, renders next end entry. (Loop)

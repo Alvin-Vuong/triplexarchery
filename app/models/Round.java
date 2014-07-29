@@ -6,6 +6,7 @@ public class Round {
     public String description, date;
     public int score, id;
     public List<End> ends;
+    public String[] rawEnds = new String[30];
     
     public Round() {
     }
