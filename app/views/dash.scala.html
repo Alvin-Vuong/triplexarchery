@@ -9,9 +9,9 @@
                     <h3>Hi, @u.firstname!</h3>
                 </div>
                 <div class="panel-body">
-                    <a href="#description" data-toggle="modal" class="btn btn-lg btn-warning btn-block">New Round (Mobile View)</a>
+                    <a href="#description" data-toggle="modal" class="btn btn-lg btn-warning btn-block">New Round (End-by-End)</a>
                     <form action="@routes.Application.createDesktop(u.id)" method="POST">
-                        <input type="submit" class="btn btn-lg btn-warning btn-block" value="New Round (Desktop View)" />
+                        <input type="submit" class="btn btn-lg btn-warning btn-block" value="New Round (Completed)" />
                     </form>
                     <form action="@routes.Application.roundsList(u.id)" method="POST">
                         <input type="submit" class="btn btn-lg btn-warning btn-block" value="View Completed Rounds" />

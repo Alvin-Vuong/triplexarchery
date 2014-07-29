@@ -103,12 +103,6 @@ public class Application extends Controller {
     }
 
     public static Result createDesktop(int id) {
-        /**Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
-        Round r = filledForm.get();
-
-        for (int i = 0; i < r.rawEnds.length; i++) {
-            System.out.println(r.rawEnds[i]);
-        }**/
         User user = Database.getInfo(id);
         user.id = id;
         
@@ -145,6 +139,20 @@ public class Application extends Controller {
             }
             return ok(create.render(user, roundid, endForm, end+1, curScore));
         }
+    }
+
+    public static Result submitDesktop(int id) {
+        Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
+        Round r = filledForm.get();
+
+        for (int i = 0; i < r.rawEnds.length; i++) {
+            System.out.println(r.rawEnds[i]);
+        }
+
+        User user = Database.getInfo(id);
+        user.id = id;
+
+        return ok(dash.render(user, false));
     }
     
     // Renders list of rounds, with links to view each round specifically.
