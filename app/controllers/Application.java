@@ -116,11 +116,10 @@ public class Application extends Controller {
         End created = filledForm.get();
         created.endNumber = end;
         String[] x = {created.a1, created.a2, created.a3};
-        created.total = sumArrows(x, true);                                 // TODO: true parameter for outer 10, false parameter for inner 10.
         System.out.print(created.a1 + " " + created.a2 + " " + created.a3); // THIS LINE CANT BE REMOVED FOR SOME REASON
         
         try {
-            Database.addEnd(id, roundid, end, created.a1, created.a2, created.a3, created.total);    
+            Database.addEnd(id, roundid, end, created.a1, created.a2, created.a3);    
         } catch (SQLException e) {
             return ok(login.render("Something is wrong. Try again."));
         }
@@ -144,11 +143,19 @@ public class Application extends Controller {
     public static Result submitDesktop(int id) {
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
-
-        for (int i = 0; i < r.rawEnds.length; i++) {
-            System.out.println(r.rawEnds[i]);
+        
+        try {
+        
+            int rnd_id = Database.addRound(id, r.description);
+            // Database.addRound(id, r.description, r.date);                                                // TODO: When date is implemented.
+            
+            for (int i = 0; i < 10; i++) {                                                                  // TODO: Replace 10 with numEnds.
+                Database.addEnd(id, rnd_id, i, r.rawEnds[(i*3)-3], r.rawEnds[(i*3)-2], r.rawEnds[(i*3)-1]);
+            }
+            
+        } catch (SQLException e) {
+            return ok(login.render("Something is wrong. Try again."));
         }
-
         User user = Database.getInfo(id);
         user.id = id;
 

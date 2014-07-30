@@ -3,7 +3,7 @@ TODO: Push latest build to Heroku to match the isCoach NOT NULL requirement. (I 
 TODO: Add some kind of view button for each round in roundslist, because if description is blank, you can't view it.
 TODO: Add spacing between current round score in end entry form and the submit button.
 TODO: Implement current round possible score (Ex. 270/270).
-TODO: Add "New Round (Desktop View)" - Ianseo like input of a round already shot.
+TODO: Implement date input for Complete Round view.
 TODO: Add back buttons to pages.
 TODO: After an entire round entry, take to round view. (Need to add button to go back to dashboard)
 TODO: Implement inner 10 vs. outer 10.
@@ -18,6 +18,21 @@ TODO: Implement coach view.
 TODO: Encrypt passwords.
 TODO: Email verification.
 TODO: Graph data plots (Maybe Google Charts?).
+---------------------------------------------------------------------------------------------------------------------
+7/29/2014 7:54 PM PST (PUSHED TO HEROKU)
+
+Something is wrong with Play! Framework form binding. Only for Windows though.
+Added database functionality for createDesktop and submitDesktop() in Application.java.
+Removed addEnd parameter: endTotal.
+addEnd() now computes the endTotal in its code.
+Changed the jQuery script path in template.scala.html.
+---------------------------------------------------------------------------------------------------------------------
+7/29/2014 4:00 PM PST (PUSHED TO GITHUB)
+
+Created view for inserting a completed round.
+Wrote createDesktop() and submitDesktop() in Application.java
+Minor text changes.
+Routes changes for createDesktop and submitDesktop.
 ---------------------------------------------------------------------------------------------------------------------
 7/29/2014 12:04 PM PST (PUSHED TO HEROKU AND GITHUB)
 
