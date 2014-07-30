@@ -153,9 +153,9 @@ public class Application extends Controller {
                  Database.addEnd(id, rnd_id, i, r.rawEnds[(i*3)-3], r.rawEnds[(i*3)-2], r.rawEnds[(i*3)-1]);
              }
              
-         } catch (SQLException e) {
-             return ok(login.render("Something is wrong. Try again."));
-          }
+        } catch (SQLException e) {
+            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+        }
 
         User user = Database.getInfo(id);
         user.id = id;
