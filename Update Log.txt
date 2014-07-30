@@ -27,6 +27,21 @@ Updated jQuery library link to remote.
 Fixed panel-warning border-color.
 Fixed panel not filling up left and right (separate col-xx-# and panel-heading).
 ---------------------------------------------------------------------------------------------------------------------
+7/29/2014 7:54 PM PST (PUSHED TO HEROKU)
+
+Something is wrong with Play! Framework form binding. Only for Windows though.
+Added database functionality for createDesktop and submitDesktop() in Application.java.
+Removed addEnd parameter: endTotal.
+addEnd() now computes the endTotal in its code.
+Changed the jQuery script path in template.scala.html.
+---------------------------------------------------------------------------------------------------------------------
+7/29/2014 4:00 PM PST (PUSHED TO GITHUB)
+
+Created view for inserting a completed round.
+Wrote createDesktop() and submitDesktop() in Application.java
+Minor text changes.
+Routes changes for createDesktop and submitDesktop.
+---------------------------------------------------------------------------------------------------------------------
 7/29/2014 12:04 PM PST (PUSHED TO HEROKU AND GITHUB)
 
 Added current round score functionality in create.scala.html form page.
