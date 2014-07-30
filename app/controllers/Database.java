@@ -445,9 +445,70 @@ public class Database {
         }
     }
     
+    // Overloaded version of previous addRound(), except with date parameter.
+    public static int addRound(int acc_id, String desc, String date) throws SQLException {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL(); 
+        String user = DB.user();
+        String password = DB.pass();
+        
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            int rnd_id = 0; // Zero means unsuccessful query.
+            
+            String stm = "INSERT INTO round (account_id, description, score, date_created) VALUES (?, ?, 0, ?) RETURNING round_id";
+            pst = con.prepareStatement(stm);
+            pst.setInt(1, acc_id);
+            pst.setString(2, desc);
+            pst.setString(3, date);
+            boolean isResult = pst.execute();
+            do {
+                rs = pst.getResultSet();
+
+                while (rs.next()) {
+            //        System.out.print(rs.getInt(1));
+                    rnd_id = rs.getInt(1);
+                }
+                isResult = pst.getMoreResults();
+            } while (isResult);
+            
+            return rnd_id;
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
     // Adds an end to the round table in the database.
     // If unsuccessful, should throw a SQLException.
-    public static void addEnd(int acc_id, int rnd_id, int end, String arrow1, String arrow2, String arrow3, int endTotal) throws SQLException {
+    public static void addEnd(int acc_id, int rnd_id, int end, String arrow1, String arrow2, String arrow3) throws SQLException {
         
         Connection con = null;
         PreparedStatement pst = null;
@@ -460,7 +521,8 @@ public class Database {
         try {
             
             String[] arrows = {arrow1, arrow2, arrow3};
-            int curTotal = getScore(acc_id, rnd_id) + Application.sumArrows(arrows, true);      // TODO: true parameter for outer 10, false parameter for inner 10.
+            int endTotal = Application.sumArrows(arrows, true);      // TODO: true parameter for outer 10, false parameter for inner 10.
+            int curTotal = getScore(acc_id, rnd_id) + endTotal;
             
             con = DriverManager.getConnection(url, user, password);
             

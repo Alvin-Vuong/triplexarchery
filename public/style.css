@@ -14,3 +14,7 @@
 	background-color: #ec971f;
 	color: #FFFFFF !important;
 }
+
+.panel-warning {
+  border-color: #ec971f;
+}

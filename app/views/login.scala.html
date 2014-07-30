@@ -1,4 +1,4 @@
-@(message: String)
+@(f: Form[User], message: String)
 
 @template("Log In") {
     <div class="col-lg-8 col-lg-offset-2">
@@ -10,7 +10,7 @@
                     }
                     <form action="@routes.Application.login()" method="POST">
    					    <div class="form-group">
-   						    <input type="email" class="form-control" name="email" placeholder="Email" />
+   						    <input type="email" class="form-control" name="email" placeholder="Email" value="@f("email").value"/>
    					    </div>
    					    <div class="form-group">
    						    <input type="password" class="form-control" name="password" placeholder="Password" />
