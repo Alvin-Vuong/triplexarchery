@@ -38,22 +38,22 @@ public class Application extends Controller {
                 userQuery.password = user.password;
                 // TODO: 911
                 if (userQuery.id == 0) {
-                    return ok(login.render("Something is wrong. Try again."));
+                    return badRequest(login.render(filledForm, "Something is wrong. Try again."));
                 } else {
                     return ok(dash.render(userQuery, false));
                 }
             } else {
-                return ok(login.render("Incorrect email or password."));
+                return badRequest(login.render(filledForm, "Incorrect email or password."));
                 // TODO: fix navbar on failed login -- says "logout" when not logged in
             }
         } catch (SQLException e) {
-            return ok(login.render("Something is wrong. Try again."));
+            return badRequest(login.render(filledForm, "Something is wrong. Try again."));
         }
     }
     
     // Renders registration form.
     public static Result register() {
-        return ok(register.render(""));
+        return ok(register.render(userForm, ""));
     }
     
     // Handles registration, renders login or re-register.
@@ -67,14 +67,14 @@ public class Application extends Controller {
             // Valid email
             if (log) {
                 Database.registerNew(created.email, created.password, created.firstname, created.lastname);
-                return ok(login.render(""));
+                return ok(login.render(userForm, ""));
             }
             // Redirect to register again
             else {
-                return ok(register.render(created.email + " already has an account."));
+                return badRequest(register.render(filledForm, created.email + " already has an account."));
             }
         } catch (SQLException e) {
-            return ok(register.render("Something is wrong. Try again."));
+            return badRequest(register.render(filledForm, "Something is wrong. Try again."));
         }
     }
     
@@ -98,7 +98,7 @@ public class Application extends Controller {
             System.out.println("in create(), user's info: " + user.email + user.firstname);
             return ok(create.render(user, r_id, endForm, 1, 0));
         } catch (SQLException e){
-            return ok(login.render("Something is wrong. Try again."));
+            return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
     }
 
@@ -121,7 +121,7 @@ public class Application extends Controller {
         try {
             Database.addEnd(id, roundid, end, created.a1, created.a2, created.a3);    
         } catch (SQLException e) {
-            return ok(login.render("Something is wrong. Try again."));
+            return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
         User user = Database.getInfo(id);
         user.id = id;
@@ -134,7 +134,7 @@ public class Application extends Controller {
             try {
                 curScore = Database.getScore(id, roundid);
             } catch (SQLException e) {
-                return ok(login.render("Something is wrong. Try again."));
+                return badRequest(login.render(userForm, "Something is wrong. Try again."));
             }
             return ok(create.render(user, roundid, endForm, end+1, curScore));
         }
@@ -143,19 +143,20 @@ public class Application extends Controller {
     public static Result submitDesktop(int id) {
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
-        
+
         try {
-        
-            int rnd_id = Database.addRound(id, r.description);
-            // Database.addRound(id, r.description, r.date);                                                // TODO: When date is implemented.
-            
-            for (int i = 1; i <= 10; i++) {                                                                  // TODO: Replace 10 with numEnds.
-                Database.addEnd(id, rnd_id, i, r.rawEnds[(i*3)-3], r.rawEnds[(i*3)-2], r.rawEnds[(i*3)-1]);
-            }
-            
-        } catch (SQLException e) {
-            return ok(login.render("Something is wrong. Try again."));
-        }
+         
+             int rnd_id = Database.addRound(id, r.description);
+             // Database.addRound(id, r.description, r.date);                                                // TODO: When date is implemented.
+             
+             for (int i = 1; i <= 10; i++) {                                                                  // TODO: Replace 10 with numEnds.
+                 Database.addEnd(id, rnd_id, i, r.rawEnds[(i*3)-3], r.rawEnds[(i*3)-2], r.rawEnds[(i*3)-1]);
+             }
+             
+         } catch (SQLException e) {
+             return ok(login.render("Something is wrong. Try again."));
+          }
+
         User user = Database.getInfo(id);
         user.id = id;
 
@@ -172,7 +173,7 @@ public class Application extends Controller {
         try {
             rounds = Database.getTenRounds(id, 1);                      // TODO: Make "Load More" button that increments second parameter.
         } catch (SQLException e) {
-            return ok(login.render("Something is wrong. Try again."));
+            return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
         
         return ok(roundslist.render(user, rounds));
@@ -186,7 +187,7 @@ public class Application extends Controller {
         if (Database.deleteRound(roundid))
             return ok(deleteSuccess.render(user));
         else
-            return ok(login.render("Something is wrong. Try again."));
+            return badRequest(login.render(userForm, "Something is wrong. Try again."));
     }
     
     // Renders list of ends of a round.
@@ -199,7 +200,7 @@ public class Application extends Controller {
         try {
             round = Database.getRoundInfo(roundid);
         } catch (SQLException e) {
-            return ok(login.render("Something is wrong. Try again."));
+            return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
         
         return ok(end.render(user, round.score, round.ends, round.description, round.date));       // TODO: Redirect back to round list.
