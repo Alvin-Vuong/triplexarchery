@@ -149,7 +149,7 @@ public class Application extends Controller {
             int rnd_id = Database.addRound(id, r.description);
             // Database.addRound(id, r.description, r.date);                                                // TODO: When date is implemented.
             
-            for (int i = 0; i < 10; i++) {                                                                  // TODO: Replace 10 with numEnds.
+            for (int i = 1; i <= 10; i++) {                                                                  // TODO: Replace 10 with numEnds.
                 Database.addEnd(id, rnd_id, i, r.rawEnds[(i*3)-3], r.rawEnds[(i*3)-2], r.rawEnds[(i*3)-1]);
             }
             
