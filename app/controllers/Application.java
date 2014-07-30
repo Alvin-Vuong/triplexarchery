@@ -22,7 +22,7 @@ public class Application extends Controller {
         return ok(index.render(userForm));
     }
     
-    // Handle login, render dashboard.
+    // Handle login, redirects to dashboard or renders login.
     public static Result login() {
         Form<User> filledForm = userForm.bindFromRequest();
         User user = filledForm.get();
@@ -40,7 +40,7 @@ public class Application extends Controller {
                 if (userQuery.id == 0) {
                     return badRequest(login.render(filledForm, "Something is wrong. Try again."));
                 } else {
-                    return ok(dash.render(userQuery, false));
+                    return redirect(routes.Application.dashboard(userQuery.id));
                 }
             } else {
                 return badRequest(login.render(filledForm, "Incorrect email or password."));
@@ -51,12 +51,24 @@ public class Application extends Controller {
         }
     }
     
+    // After successful registration, user is redirected to login page.
+    public static Result registrationSuccess() {
+        return ok(login.render(userForm, ""));
+    }
+    
+    // After successful login, user is redirected to dashboard page.
+    public static Result dashboard(int id) {
+        User user = Database.getInfo(id);
+        user.id = id;
+        return ok(dash.render(user, false));
+    }
+    
     // Renders registration form.
     public static Result register() {
         return ok(register.render(userForm, ""));
     }
     
-    // Handles registration, renders login or re-register.
+    // Handles registration, redirects to login or renders re-register.
     public static Result verify() {
         Form<User> filledForm = userForm.bindFromRequest();
         User created = filledForm.get();
@@ -67,7 +79,7 @@ public class Application extends Controller {
             // Valid email
             if (log) {
                 Database.registerNew(created.email, created.password, created.firstname, created.lastname);
-                return ok(login.render(userForm, ""));
+                return redirect(routes.Application.registrationSuccess());
             }
             // Redirect to register again
             else {
