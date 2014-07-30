@@ -2,6 +2,9 @@ package controllers;
 
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
+import play.mvc.*;
+import play.data.*;
 import play.data.Form;
 import views.html.*;
 import models.User;
@@ -19,11 +22,13 @@ public class Application extends Controller {
     
     // Render homepage.
     public static Result index() {
+        System.out.println("1");
         return ok(index.render(userForm));
     }
     
     // Handle login, redirects to dashboard or renders login.
     public static Result login() {
+        System.out.println("2");
         Form<User> filledForm = userForm.bindFromRequest();
         User user = filledForm.get();
         // System.out.print(user.email + " " + user.password);
@@ -40,7 +45,11 @@ public class Application extends Controller {
                 if (userQuery.id == 0) {
                     return badRequest(login.render(filledForm, "Something is wrong. Try again."));
                 } else {
-                    return redirect(routes.Application.dashboard(userQuery.id));
+                    session().clear();
+                    session("email", userQuery.email);
+                    System.out.println("3");
+                    System.out.println(userQuery.email);
+                    return redirect(routes.Application.dashboard());
                 }
             } else {
                 return badRequest(login.render(filledForm, "Incorrect email or password."));
@@ -57,9 +66,12 @@ public class Application extends Controller {
     }
     
     // After successful login, user is redirected to dashboard page.
-    public static Result dashboard(int id) {
-        User user = Database.getInfo(id);
-        user.id = id;
+    @Security.Authenticated(Secured.class)
+    public static Result dashboard() {
+        System.out.println("4");
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        System.out.println(request().username());
         return ok(dash.render(user, false));
     }
     

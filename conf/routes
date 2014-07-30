@@ -5,7 +5,7 @@
 GET     /                           controllers.Application.index()
 POST    /login                      controllers.Application.login()
 GET     /register-success           controllers.Application.registrationSuccess()
-GET     /dashboard/:id              controllers.Application.dashboard(id: Int)
+GET     /dashboard/                 controllers.Application.dashboard()
 GET     /more                       controllers.Application.learnMore()
 POST    /:id/new                    controllers.Application.create(id: Int)
 POST    /:id/new-complete-round     controllers.Application.createDesktop(id: Int)
