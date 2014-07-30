@@ -20,12 +20,13 @@ TODO: Email verification.
 TODO: Graph data plots (Maybe Google Charts?).
 TODO: autofill for bad completed rounds submission.
 ---------------------------------------------------------------------------------------------------------------------
-7/29/2014 8:58 PM PST (PUSHED TO GITHUB)
+7/29/2014 9:53 PM PST (PUSHED TO GITHUB AND HEROKU)
 
 Added autofill for failed form submissions: handled by Application.java, changes in login and register views.
 Updated jQuery library link to remote.
 Fixed panel-warning border-color.
 Fixed panel not filling up left and right (separate col-xx-# and panel-heading).
+Solved merge conflict.
 ---------------------------------------------------------------------------------------------------------------------
 7/29/2014 7:54 PM PST (PUSHED TO HEROKU)
 
