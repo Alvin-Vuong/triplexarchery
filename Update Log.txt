@@ -1,7 +1,5 @@
 TODO: Application.java line 112. Testing line that can't be removed for some reason.
-TODO: Push latest build to Heroku to match the isCoach NOT NULL requirement. (I think this is fixed. Check herokuapp)
 TODO: Add some kind of view button for each round in roundslist, because if description is blank, you can't view it.
-TODO: Add spacing between current round score in end entry form and the submit button.
 TODO: Implement current round possible score (Ex. 270/270).
 TODO: Implement date input for Complete Round view.
 TODO: Add back buttons to pages.
@@ -18,9 +16,10 @@ TODO: Implement coach view.
 TODO: Encrypt passwords.
 TODO: Email verification.
 TODO: Graph data plots (Maybe Google Charts?).
-TODO: autofill for bad completed rounds submission.
+TODO: Autofill for bad complete round submission.
 ---------------------------------------------------------------------------------------------------------------------
 7/29/2014 9:53 PM PST (PUSHED TO GITHUB AND HEROKU)
+7/29/2014 8:54 PM PST (PUSHED TO GITHUB AND HEROKU)
 
 Added autofill for failed form submissions: handled by Application.java, changes in login and register views.
 Updated jQuery library link to remote.
