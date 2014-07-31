@@ -162,17 +162,11 @@ public class Application extends Controller {
     // Handles end entry, renders next end entry. (Loop)
     // Renders dashboard when complete.
     @Security.Authenticated(Secured.class)
-    public static Result submit(int id, int roundid, int end) {
+    public static Result submit(int roundid, int end) {
         Form<End> filledForm = endForm.bindFromRequest();
         End created = filledForm.get();
         created.endNumber = end;
         String[] x = {created.a1, created.a2, created.a3};
-        
-        try {
-            Database.addEnd(id, roundid, end, created.a1, created.a2, created.a3);    
-        } catch (SQLException e) {
-            return badRequest(login.render(userForm, "Something is wrong. Try again."));
-        }
         
         User user = Database.getInfo(request().username());
         user.email = request().username();
@@ -180,13 +174,19 @@ public class Application extends Controller {
         System.out.println(request().username());
         System.out.println(user.id);
         
+        try {
+            Database.addEnd(user.id, roundid, end, created.a1, created.a2, created.a3);    
+        } catch (SQLException e) {
+            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+        }
+        
         if (end == 10) {                                                // TODO: 10 can be replaced with numEnds
         // TODO: check DB to see if user is coach
             return redirect(routes.Application.dashboard());
         } else {
             int curScore = -1;
             try {
-                curScore = Database.getScore(id, roundid);
+                curScore = Database.getScore(user.id, roundid);
             } catch (SQLException e) {
                 return badRequest(login.render(userForm, "Something is wrong. Try again."));
             }
