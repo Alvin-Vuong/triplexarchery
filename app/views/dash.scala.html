@@ -10,13 +10,10 @@
                 </div>
                 <div class="panel-body">
                     <a href="#description" data-toggle="modal" class="btn btn-lg btn-warning btn-block">New Round (End-by-End)</a>
-                    <form action="@routes.Application.createDesktop()" method="POST">
-                        <input type="submit" class="btn btn-lg btn-warning btn-block" value="New Round (Completed)" />
-                    </form>
+
+                    <a href="@routes.Application.createDesktop()" class="btn btn-lg btn-warning btn-block">New Round (Completed)</a>
+
                     <a href="@routes.Application.roundsList()" class="btn btn-lg btn-warning btn-block">View Rounds</a>
-                    <form action="@routes.Application.index()">     <!--This is TODO-->
-                        <input type="submit" class="btn btn-lg btn-warning btn-block" value="Add Coach" />
-                    </form>
                 </div>
             </div>
 
@@ -39,13 +36,12 @@
 		    <div class="modal-content">
 			    <div class="modal-header">
 				    <h3>Enter Round Description</h3>
-				    <p>(i.e. Practice) or (i.e. National Indoors 2013)</p>
 			    </div>
 			    <div class="modal-body">
 				    <form class="form-horizontal" role="form" action="@routes.Application.create()" method="POST">
     				    <div class="form-group">
 	    			        <div class="col-lg-12">
-		    			        <input type="text" name="description" class="form-control" required autofocus/>
+		    			        <input type="text" name="description" class="form-control" placeholder="ex: Practice, National Indoors 2013, Recurve, Compound, etc." required autofocus/>
 			    		    </div>
 				        </div>
 				        <div class="modal-footer">
