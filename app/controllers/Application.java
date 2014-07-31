@@ -21,7 +21,14 @@ public class Application extends Controller {
     final static Form<Round> roundForm = Form.form(Round.class);
     
     // Render homepage.
+    @Security.Authenticated(Secured.class)
     public static Result index() {
+        request().username();
+        System.out.println("1a");
+        return redirect(routes.Application.dashboard());
+    }
+    
+    public static Result home() {
         System.out.println("1");
         return ok(index.render(userForm));
     }
@@ -58,6 +65,17 @@ public class Application extends Controller {
         } catch (SQLException e) {
             return badRequest(login.render(filledForm, "Something is wrong. Try again."));
         }
+    }
+    
+    // Handles login after unauthorized user attempts to an account page
+    public static Result loginRedirect() {
+        return badRequest(login.render(userForm, ""));
+    }
+    
+    // Handles logging out by clearing current sessions; redirects to homepage.
+    public static Result logout() {
+        session().clear();
+        return redirect(routes.Application.index());
     }
     
     // After successful registration, user is redirected to login page.
@@ -108,17 +126,21 @@ public class Application extends Controller {
     
     // Handles round description entry and creation.
     // Renders beginning of ends entry.
-    public static Result create(int id) {
+    @Security.Authenticated(Secured.class)
+    public static Result create() {
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
         String d = r.description;
         // System.out.println(d);
         
-        User user = Database.getInfo(id);
-        user.id = id;
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        System.out.println("10");
+        System.out.println(request().username());
+        System.out.println(user.id);
         
         try {
-            int r_id = Database.addRound(id, d);
+            int r_id = Database.addRound(user.id, d);
             System.out.println("in create(), user's info: " + user.email + user.firstname);
             return ok(create.render(user, r_id, endForm, 1, 0));
         } catch (SQLException e){
@@ -126,15 +148,20 @@ public class Application extends Controller {
         }
     }
 
-    public static Result createDesktop(int id) {
-        User user = Database.getInfo(id);
-        user.id = id;
+    @Security.Authenticated(Secured.class)
+    public static Result createDesktop() {
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        System.out.println("5");
+        System.out.println(request().username());
+        System.out.println(user.id);
         
         return ok(createDesktopRound.render(user, roundForm));
     }
     
     // Handles end entry, renders next end entry. (Loop)
     // Renders dashboard when complete.
+    @Security.Authenticated(Secured.class)
     public static Result submit(int id, int roundid, int end) {
         Form<End> filledForm = endForm.bindFromRequest();
         End created = filledForm.get();
@@ -147,12 +174,16 @@ public class Application extends Controller {
         } catch (SQLException e) {
             return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
-        User user = Database.getInfo(id);
-        user.id = id;
+        
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        System.out.println("11");
+        System.out.println(request().username());
+        System.out.println(user.id);
         
         if (end == 10) {                                                // TODO: 10 can be replaced with numEnds
         // TODO: check DB to see if user is coach
-            return ok(dash.render(user, false));
+            return redirect(routes.Application.dashboard());
         } else {
             int curScore = -1;
             try {
@@ -164,6 +195,7 @@ public class Application extends Controller {
         }
     }
 
+    @Security.Authenticated(Secured.class)
     public static Result submitDesktop(int id) {
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
@@ -180,22 +212,28 @@ public class Application extends Controller {
         } catch (SQLException e) {
             return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
+        
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        System.out.println("6");
+        System.out.println(request().username());
 
-        User user = Database.getInfo(id);
-        user.id = id;
-
-        return ok(dash.render(user, false));
+        return redirect(routes.Application.dashboard());
     }
     
     // Renders list of rounds, with links to view each round specifically.
-    public static Result roundsList(int id) {
-        User user = Database.getInfo(id);
-        user.id = id;
+    @Security.Authenticated(Secured.class)
+    public static Result roundsList() {
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        System.out.println("12");
+        System.out.println(request().username());
+        System.out.println(user.id);
         
         List<Round> rounds = new ArrayList<Round>();
         
         try {
-            rounds = Database.getTenRounds(id, 1);                      // TODO: Make "Load More" button that increments second parameter.
+            rounds = Database.getTenRounds(user.id, 1);                      // TODO: Make "Load More" button that increments second parameter.
         } catch (SQLException e) {
             return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
@@ -204,20 +242,28 @@ public class Application extends Controller {
     }
     
     // Handles deletion of chosen round and renders the resulting success page.
-    public static Result deleteRound(int id, int roundid) {
-        User user = Database.getInfo(id);
-        user.id = id;
+    @Security.Authenticated(Secured.class)
+    public static Result deleteRound(int roundid) {
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        System.out.println("13");
+        System.out.println(request().username());
+        System.out.println(user.id);
 
         if (Database.deleteRound(roundid))
-            return ok(deleteSuccess.render(user));
+            return redirect(routes.Application.roundsList());
         else
             return badRequest(login.render(userForm, "Something is wrong. Try again."));
     }
     
     // Renders list of ends of a round.
-    public static Result viewAllEnds(int id, int roundid) {
-        User user = Database.getInfo(id);
-        user.id = id;
+    @Security.Authenticated(Secured.class)
+    public static Result viewAllEnds(int roundid) {
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        System.out.println("14");
+        System.out.println(request().username());
+        System.out.println(user.id);
         
         Round round = new Round();
         

@@ -15,11 +15,11 @@
             @for( r <- rounds ) {
                 
                 <tr>
-                    <td><a href="@routes.Application.viewAllEnds(u.id, r.id)">@r.description</a></td>
+                    <td><a href="@routes.Application.viewAllEnds(r.id)">@r.description</a></td>
                     <td>@r.date</td>
                     <td>@r.score</td>
                     <td style="text-align: right">
-                        <form action="@routes.Application.deleteRound(u.id, r.id)" method="POST">
+                        <form action="@routes.Application.deleteRound(r.id)" method="POST">
    				    	    <input type="submit" class="btn btn-warning" value="Delete" />
    				    	</form>
    				    </td>
