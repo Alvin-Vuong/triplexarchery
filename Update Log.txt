@@ -1,8 +1,6 @@
-TODO: Application.java line 112. Testing line that can't be removed for some reason.
 TODO: Add some kind of view button for each round in roundslist, because if description is blank, you can't view it.
 TODO: Implement current round possible score (Ex. 270/270).
 TODO: Implement date input for Complete Round view.
-TODO: Add back buttons to pages.
 TODO: After an entire round entry, take to round view. (Need to add button to go back to dashboard)
 TODO: Implement inner 10 vs. outer 10.
 TODO: Implement editing rounds function.
@@ -17,6 +15,22 @@ TODO: Encrypt passwords.
 TODO: Email verification.
 TODO: Graph data plots (Maybe Google Charts?).
 TODO: Autofill for bad complete round submission.
+TODO: submitDesktop() still takes ID; otherwise, STACK ERROR.
+TODO: Change entering entire round form from text to dropdown input (make sure TAB works).
+---------------------------------------------------------------------------------------------------------------------
+7/30/2014 6:36 PM PST (PUSHED TO GITHUB AND HEROKU)
+
+Implemented authentication with sessions (Secured.java).
+Stopped passing user by ID.
+Redirect instead of render for successful register/login.
+Login -> dashboard redirect.
+Delete round -> rounds list redirect.
+index() -> /home or /dashboard redirect.
+Logout works.
+Line 112 "magic line" abolished!
+Made round description required by HTML5 (doesn't work in safari).
+After creating round, page redirects to roundsList() not dashboard().
+Made createDesktop() fields required.
 ---------------------------------------------------------------------------------------------------------------------
 7/29/2014 9:53 PM PST (PUSHED TO GITHUB AND HEROKU)
 7/29/2014 8:54 PM PST (PUSHED TO GITHUB AND HEROKU)

@@ -182,7 +182,7 @@ public class Application extends Controller {
         
         if (end == 10) {                                                // TODO: 10 can be replaced with numEnds
         // TODO: check DB to see if user is coach
-            return redirect(routes.Application.dashboard());
+            return redirect(routes.Application.roundsList());
         } else {
             int curScore = -1;
             try {
@@ -217,7 +217,7 @@ public class Application extends Controller {
         System.out.println("6");
         System.out.println(request().username());
 
-        return redirect(routes.Application.dashboard());
+        return redirect(routes.Application.roundsList());
     }
     
     // Renders list of rounds, with links to view each round specifically.
