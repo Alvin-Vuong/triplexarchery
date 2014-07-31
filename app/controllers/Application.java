@@ -67,11 +67,6 @@ public class Application extends Controller {
         }
     }
     
-    // Handles login after unauthorized user attempts to an account page
-    public static Result loginRedirect() {
-        return badRequest(login.render(userForm, ""));
-    }
-    
     // Handles logging out by clearing current sessions; redirects to homepage.
     public static Result logout() {
         session().clear();

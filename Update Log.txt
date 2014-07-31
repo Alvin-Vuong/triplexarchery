@@ -15,7 +15,6 @@ TODO: Email verification.
 TODO: Graph data plots (Maybe Google Charts?).
 TODO: Autofill for bad complete round submission.
 TODO: submitDesktop() still takes ID; otherwise, STACK ERROR.
-TODO: Implement failed logins -> loginRedirect().
 TODO: First-timer's tutorial with dialog boxes for guidance.
 TODO: Archery social network; replace athletic-coach relationship with friends;
       dashboard emphasis on user, sidebar for friends.
