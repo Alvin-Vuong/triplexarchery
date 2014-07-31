@@ -27,6 +27,7 @@ TODO: Checkbox for discipline type (recurve, compound, barebow, etc.) and displa
 
 Implemented current round possible score (Ex. 270/270); one-line change in create.scala.html.
 Changed entering entire round form from text to dropdown input (TAB WORKS).
+Added autofocus on round description input (to stop forgetting about them).
 ---------------------------------------------------------------------------------------------------------------------
 7/31/2014 3:24 AM PST (PUSHED TO GITHUB AND HEROKU)
 7/31/2014 3:19 AM PST (PUSHED TO GITHUB AND HEROKU)
