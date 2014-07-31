@@ -21,6 +21,13 @@ TODO: Implement failed logins -> loginRedirect().
 TODO: First-timer's tutorial with dialog boxes for guidance.
 TODO: Archery social network; replace athletic-coach relationship with friends;
       dashboard emphasis on user, sidebar for friends.
+TODO: Pro version, PDFs scoresheets
+TODO: Link to Facebook
+---------------------------------------------------------------------------------------------------------------------
+7/31/2014 3:24 AM PST (PUSHED TO GITHUB AND HEROKU)
+7/31/2014 3:19 AM PST (PUSHED TO GITHUB AND HEROKU)
+
+Applcation secret key is now environment variablized.
 ---------------------------------------------------------------------------------------------------------------------
 7/30/2014 6:36 PM PST (PUSHED TO GITHUB AND HEROKU)
 
