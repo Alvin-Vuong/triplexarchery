@@ -1,5 +1,4 @@
 TODO: Add some kind of view button for each round in roundslist, because if description is blank, you can't view it.
-TODO: Implement current round possible score (Ex. 270/270).
 TODO: Implement date input for Complete Round view.
 TODO: After an entire round entry, take to round view. (Need to add button to go back to dashboard)
 TODO: Implement inner 10 vs. outer 10.
@@ -23,6 +22,10 @@ TODO: Archery social network; replace athletic-coach relationship with friends;
       dashboard emphasis on user, sidebar for friends.
 TODO: Pro version, PDFs scoresheets
 TODO: Link to Facebook
+---------------------------------------------------------------------------------------------------------------------
+7/31/2014 2:05 PM PST (PUSHED TO GITHUB AND HEROKU)
+
+Implemented current round possible score (Ex. 270/270); one-line change in create.scala.html
 ---------------------------------------------------------------------------------------------------------------------
 7/31/2014 3:24 AM PST (PUSHED TO GITHUB AND HEROKU)
 7/31/2014 3:19 AM PST (PUSHED TO GITHUB AND HEROKU)

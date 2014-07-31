@@ -14,8 +14,8 @@ public class DB {
     
     final static String url = System.getenv("DB_URL");
     final static String user = System.getenv("USERNAME");
-    final static String pass = System.getenv("PASSWORD");  
-      
+    final static String pass = System.getenv("PASSWORD");
+    
     public static String URL() {
         return url;
     }
