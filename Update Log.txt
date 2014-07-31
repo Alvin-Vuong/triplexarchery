@@ -17,6 +17,8 @@ TODO: Graph data plots (Maybe Google Charts?).
 TODO: Autofill for bad complete round submission.
 TODO: submitDesktop() still takes ID; otherwise, STACK ERROR.
 TODO: Change entering entire round form from text to dropdown input (make sure TAB works).
+TODO: Implement failed logins -> loginRedirect().
+TODO: First-timer's tutorial with dialog boxes for guidance.
 ---------------------------------------------------------------------------------------------------------------------
 7/30/2014 6:36 PM PST (PUSHED TO GITHUB AND HEROKU)
 
