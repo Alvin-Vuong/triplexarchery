@@ -167,7 +167,6 @@ public class Application extends Controller {
         End created = filledForm.get();
         created.endNumber = end;
         String[] x = {created.a1, created.a2, created.a3};
-        System.out.print(created.a1 + " " + created.a2 + " " + created.a3); // THIS LINE CANT BE REMOVED FOR SOME REASON
         
         try {
             Database.addEnd(id, roundid, end, created.a1, created.a2, created.a3);    
