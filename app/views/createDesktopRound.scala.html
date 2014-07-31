@@ -9,14 +9,14 @@
 		   		<form action="@routes.Application.submitDesktop(u.id)" method="POST">
 		   			<div class="form-group">
 				   		<label for"desc"><h4>Round description</h4></label>
-				   		<input type="text" id="desc" class="form-control" name="description" placeholder="Practice, National Indoors 2013, etc." required/>
-				   	</div>
+				   		<p>Practice, National Indoors 2013, Recurve, Compound, etc.</p>
+				   		<input type="text" id="desc" class="form-control input-lg" name="description" required/>
+				   	</div><br />
 
 				   	<h4>Enter arrow scores</h4>
-				   	<p>Arrows take the following values: m (for miss), 1, 2, 3, ..., 8, 9, 10, X.</p>
 
 				   		<table class="table table-striped">
-				   			<tr class="warning">
+				   			<tr class="warning table-bordered">
 				   				<th class="col-sm-2" style="text-align: center;">End</th>
 				   				<th class="col-sm-2" style="text-align: center;">Arrow 1</th>
 				   				<th class="col-sm-2" style="text-align: center;">Arrow 2</th>
@@ -26,18 +26,63 @@
 				   			@for(a <- 1 to 10) {
 				   				<tr>
 				   				<td>@a</td>
-				   				<td><input type="text" class="form-control" name="rawEnds[@(3*a-3)]" required/></td>
-				   				<td><input type="text" class="form-control" name="rawEnds[@(3*a-2)]" required/></td>
-				   				<td><input type="text" class="form-control" name="rawEnds[@(3*a-1)]" required/></td>
+				   				<td>
+				   					<select class="form-control" name="rawEnds[@(3*a-3)]">
+									    <option value="m">miss</option>
+									    <option value="1">1</option>
+									    <option value="2">2</option>
+									    <option value="3">3</option>
+									    <option value="4">4</option>
+									    <option value="5">5</option>
+									    <option value="6">6</option>
+									    <option value="7">7</option>
+									    <option value="8">8</option>
+									    <option value="9">9</option>
+									    <option value="10">10</option>
+									    <option value="X" selected>X</option>
+									</select>
+								</td>
+								<td>
+				   					<select class="form-control" name="rawEnds[@(3*a-2)]">
+									    <option value="m">miss</option>
+									    <option value="1">1</option>
+									    <option value="2">2</option>
+									    <option value="3">3</option>
+									    <option value="4">4</option>
+									    <option value="5">5</option>
+									    <option value="6">6</option>
+									    <option value="7">7</option>
+									    <option value="8">8</option>
+									    <option value="9">9</option>
+									    <option value="10">10</option>
+									    <option value="X" selected>X</option>
+									</select>
+								</td>
+								<td>
+				   					<select class="form-control" name="rawEnds[@(3*a-1)]">
+									    <option value="m">miss</option>
+									    <option value="1">1</option>
+									    <option value="2">2</option>
+									    <option value="3">3</option>
+									    <option value="4">4</option>
+									    <option value="5">5</option>
+									    <option value="6">6</option>
+									    <option value="7">7</option>
+									    <option value="8">8</option>
+									    <option value="9">9</option>
+									    <option value="10">10</option>
+									    <option value="X" selected>X</option>
+									</select>
+								</td>
 				   			</tr>
 				   			}
 
 				   		</table>
 
-				   		<div class="panel panel-footer text-center">
+				   		<div class="form-group">
 				   			<input type="submit" class="btn btn-warning" value="Submit Round" />
 				   		</div>
-	            
+	            	
 		   		</form>
 
 		   	</div>
