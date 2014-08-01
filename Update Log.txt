@@ -21,12 +21,15 @@ TODO: Archery social network; replace athletic-coach relationship with friends;
 TODO: Pro version, PDFs scoresheets
 TODO: Link to Facebook
 TODO: Checkbox for discipline type (recurve, compound, barebow, etc.) and display it.
+TODO: Confirmation before deleting round.
 ---------------------------------------------------------------------------------------------------------------------
 7/31/2014 2:05 PM PST (PUSHED TO GITHUB AND HEROKU)
 
 Implemented current round possible score (Ex. 270/270); one-line change in create.scala.html.
 Changed entering entire round form from text to dropdown input (TAB WORKS).
 Added autofocus on round description input (to stop forgetting about them).
+Changed POST to GET for certain requests.
+Made delete buttons smaller, and flash red on hover.
 ---------------------------------------------------------------------------------------------------------------------
 7/31/2014 3:24 AM PST (PUSHED TO GITHUB AND HEROKU)
 7/31/2014 3:19 AM PST (PUSHED TO GITHUB AND HEROKU)

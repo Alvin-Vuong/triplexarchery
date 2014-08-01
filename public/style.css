@@ -18,3 +18,8 @@
 .panel-warning {
     border-color: #ec971f;
 }
+
+#deleteButton .btn-warning:hover {
+	background-color: #c9302c;
+	border: 1px solid #ac2925;
+}
