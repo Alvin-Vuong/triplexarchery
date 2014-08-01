@@ -263,6 +263,11 @@ public class Application extends Controller {
         
         try {
             round = Database.getRoundInfo(roundid);
+            
+            // Prevents URL Injection by verifying the logged in user is accessing his/her own data.
+            if (user.id != Database.getAccount(roundid))
+                return badRequest(error.render());
+            
         } catch (SQLException e) {
             return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
