@@ -18,13 +18,21 @@ TODO: submitDesktop() still takes ID; otherwise, STACK ERROR.
 TODO: First-timer's tutorial with dialog boxes for guidance.
 TODO: Archery social network; replace athletic-coach relationship with friends;
       dashboard emphasis on user, sidebar for friends.
-TODO: Pro version, PDFs scoresheets
+TODO: Pro version: PDFs scoresheets
+				   identifying profile link (/profile/username) as opposed to profile link by ID (/profile/314).
 TODO: Link to Facebook
 TODO: Checkbox for discipline type (recurve, compound, barebow, etc.) and display it.
 TODO: Confirmation before deleting round.
 TODO: Ensure that URI Injection is not possible for all pages.
       (check that user ID and round IDs and such match before rendering.)
 TODO: Change Database to accomodate friend relationships instead of coach.
+TODO: Account settings
+---------------------------------------------------------------------------------------------------------------------
+8/1/2014 4:00 PM PST (PUSHED TO GITHUB)
+
+Started to implement activity feed on dashboard (dummy feed).
+Migrated some styling from HTML to CSS.
+Added "Account" link to navbar, to be implemented later.
 ---------------------------------------------------------------------------------------------------------------------
 8/1/2014 2:39 AM PST (PUSHED TO GITHUB AND HEROKU)
 
