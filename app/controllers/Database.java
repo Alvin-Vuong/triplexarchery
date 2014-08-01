@@ -382,6 +382,60 @@ public class Database {
         }
     }
     
+    // Looks up a round in the database.
+    // Returns the account_id linked to that round.
+    public static int getAccount(int rnd_id) throws SQLException {
+            
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            int acct_id = -1;
+            
+            String query = "SELECT account_id FROM round WHERE round_id = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, rnd_id);
+            rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                acct_id = rs.getInt(1);
+            }
+            
+            return acct_id;
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
     // Adds a new round in the database.
     // Returns the round_id if successful, 0 if not.
     public static int addRound(int acc_id, String desc) throws SQLException {

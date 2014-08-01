@@ -22,7 +22,15 @@ TODO: Pro version, PDFs scoresheets
 TODO: Link to Facebook
 TODO: Checkbox for discipline type (recurve, compound, barebow, etc.) and display it.
 TODO: Confirmation before deleting round.
-TODO: Prevent URI hacking: check that user ID and round IDs and such match before rendering.
+TODO: Ensure that URI Injection is not possible for all pages.
+      (check that user ID and round IDs and such match before rendering.)
+TODO: Change Database to accomodate friend relationships instead of coach.
+---------------------------------------------------------------------------------------------------------------------
+8/1/2014 2:39 AM PST (PUSHED TO GITHUB AND HEROKU)
+
+Error is now "Error" in error.scala.html page. Now compiles.
+Added getAccount() in Database.java: Returns account_id of a given round.
+Added acctID/rndID check in viewAllEnds() in Application.java. (to prevent URI Injection)
 ---------------------------------------------------------------------------------------------------------------------
 7/31/2014 8:17 PM PST (PUSHED TO GITHUB)
 
