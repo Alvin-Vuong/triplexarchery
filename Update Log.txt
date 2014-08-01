@@ -19,7 +19,7 @@ TODO: First-timer's tutorial with dialog boxes for guidance.
 TODO: Archery social network; replace athletic-coach relationship with friends;
       dashboard emphasis on user, sidebar for friends.
 TODO: Pro version: PDFs scoresheets
-				   identifying profile link (/profile/username) as opposed to profile link by ID (/profile/314).
+      identifying profile link (/profile/username) as opposed to profile link by ID (/profile/314).
 TODO: Link to Facebook
 TODO: Checkbox for discipline type (recurve, compound, barebow, etc.) and display it.
 TODO: Confirmation before deleting round.
