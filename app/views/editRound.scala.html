@@ -1,18 +1,18 @@
 @(u: User, endForm: Form[Round])
 
-@template(u.firstname + ": Add entire round") {
+@template(u.firstname + ": Edit round") {
     <li><a href="#">Account</a></li>
     <li><a href="@routes.Application.logout()">Logout</a></li>
 } {
 
 	<div class="col-lg-8 col-lg-offset-2">
 		<div class="panel panel-warning">
-		    <div class="panel-heading text-center"><h3>Add entire round</h3></div>
+		    <div class="panel-heading text-center"><h3>Edit round</h3></div>
 		   	<div class="panel-body text-center">
-		   		<form action="@routes.Application.submitDesktop(u.id)" method="POST">
+		   		<form action="@routes.Application.submitDesktop(u.id)" method="POST">                                                       <!--This needs to call editRound()-->
 		   			<div class="form-group">
-				   		<label for"desc"><h4>Round description</h4></label>
-				   		<input type="text" id="desc" class="form-control" name="description" placeholder="ex: Practice, National Indoors 2013, Recurve, Compound, etc." required autofocus/>
+				   		<label for"desc"><h4>Round description</h4></label>                                                                 <!--Get Round Description from database-->
+				   		<input type="text" id="desc" class="form-control" name="description" placeholder="" required autofocus/>            <!--Fill in with old description-->
 				   	</div><br />
 
 				   	<h4>Enter arrow scores</h4>
@@ -36,7 +36,7 @@
 											    @for(v <- 1 to 10) {
 											    	<option value="@v">@v</option>
 											    }
-											    <option value="X" selected>X</option>
+											    <option value="X" selected>X</option>                                                       <!--Get previous arrow values and use as selected-->
 											</select>
 										</td>
 					   				}
@@ -47,7 +47,7 @@
 				   		</table>
 
 				   		<div class="form-group">
-				   			<input type="submit" class="btn btn-warning" value="Submit Round" />
+				   			<input type="submit" class="btn btn-warning" value="Done Editing" />
 				   		</div>
 	            	
 		   		</form>
