@@ -14,16 +14,11 @@
                     <h4>Arrow #1</h4>
        	            <div data-toggle="buttons" style="margin-bottom: 5px;">
                         <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="m">m</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="1">1</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="2">2</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="3">3</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="4">4</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="5">5</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="6">6</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="7">7</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="8">8</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="9">9</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="10">10</label>
+
+                        @for(num <- 1 to 10) {
+                            <label class="btn btn-default btn-lg"><input type="radio" name="a1" value="@num">@num</label>
+                        }
+
                         <label class="btn btn-default btn-lg active"><input type="radio" name="a1" value="X" checked>X</label>
                     </div>
                 </div>
@@ -31,16 +26,11 @@
                     <h4>Arrow #2</h4>
                     <div data-toggle="buttons" style="margin-bottom: 5px;">
                         <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="m">m</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="1">1</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="2">2</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="3">3</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="4">4</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="5">5</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="6">6</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="7">7</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="8">8</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="9">9</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="10">10</label>
+
+                        @for(num <- 1 to 10) {
+                            <label class="btn btn-default btn-lg"><input type="radio" name="a2" value="@num">@num</label>
+                        }
+
                         <label class="btn btn-default btn-lg active"><input type="radio" name="a2" value="X" checked>X</label>
                     </div>
                 </div>
@@ -48,16 +38,11 @@
                     <h4>Arrow #3</h4>
                     <div data-toggle="buttons" style="margin-bottom: 5px;">
                         <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="m">m</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="1">1</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="2">2</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="3">3</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="4">4</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="5">5</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="6">6</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="7">7</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="8">8</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="9">9</label>
-                        <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="10">10</label>
+
+                        @for(num <- 1 to 10) {
+                            <label class="btn btn-default btn-lg"><input type="radio" name="a3" value="@num">@num</label>
+                        }
+                        
                         <label class="btn btn-default btn-lg active"><input type="radio" name="a3" value="X" checked>X</label>
                     </div>
                 </div>

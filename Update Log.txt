@@ -33,6 +33,7 @@ Changed panel-warning orange to lighter orange.
 Created third parameter for template.scala.html: appropriate navbar links according to logged-in status.
 Removed friend request activity from activity feed.
 Created maintemplate.scala.html that sets up homepage and about page.
+Reduced repeated code in views (arrow count)
 ---------------------------------------------------------------------------------------------------------------------
 8/1/2014 4:00 PM PST (PUSHED TO GITHUB AND HEROKU)
 

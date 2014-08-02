@@ -5,37 +5,37 @@
     <li><a href="@routes.Application.logout()">Logout</a></li>
 } {
     <div class="col-lg-8 col-lg-offset-2">
-    <div class="panel panel-warning">
-    <div class="panel-heading">
-    <h2>@desc</h2>
-    <h4>@date</h4>
-    </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h2>@desc</h2>
+                <h4>@date</h4>
+            </div>
 
-    <div class="panel-body">
-    <table class="table table-striped">
-        <tr class="warning">
-            <th class="col-md-1" style="text-align: center; border-right: 1px solid #dddddd;">End #</th>
-            <th class="col-md-2" style="text-align: center">Arrow 1</th>
-            <th class="col-md-2" style="text-align: center">Arrow 2</th>
-            <th class="col-md-2" style="text-align: center">Arrow 3</th>
-            <th class="col-md-1" style="text-align: right; border-left: 1px solid #dddddd;">End Total</th>
-        </tr>
-            @for( e <- ends ) {
-                <tr>
-                    <td style="text-align: center; border-right: 1px solid #dddddd;">@e.endNumber</td>
-                    <td style="text-align: center">@e.a1</td>
-                    <td style="text-align: center">@e.a2</td>
-                    <td style="text-align: center">@e.a3</td>
-                    <td style="text-align: right; border-left: 1px solid #dddddd;">@e.total</td>
-                </tr>
-        
-            }
-        <tr class="warning text-right">
-            <td colspan=5 class="col-md-8"><b>Round Score: @score</b></td>
-        </tr>
-        
-    </table>
-    </div>
-    </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tr class="warning">
+                        <th class="col-md-1 text-center" style="border-right: 1px solid #dddddd;">End #</th>
+                        <th class="col-md-2 text-center">Arrow 1</th>
+                        <th class="col-md-2 text-center">Arrow 2</th>
+                        <th class="col-md-2 text-center">Arrow 3</th>
+                        <th class="col-md-1 text-right" style="border-left: 1px solid #dddddd;">End Total</th>
+                    </tr>
+                        @for( e <- ends ) {
+                            <tr>
+                                <td class="text-center" style="border-right: 1px solid #dddddd;">@e.endNumber</td>
+                                <td class="text-center">@e.a1</td>
+                                <td class="text-center">@e.a2</td>
+                                <td class="text-center">@e.a3</td>
+                                <td class="text-right" style="border-left: 1px solid #dddddd;">@e.total</td>
+                            </tr>
+                    
+                        }
+                    <tr class="warning text-right">
+                        <td colspan=5 class="col-md-8"><b>Round Score: @score</b></td>
+                    </tr>
+                    
+                </table>
+            </div>
+        </div>
     </div>
 }
