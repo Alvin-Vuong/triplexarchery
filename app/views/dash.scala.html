@@ -1,6 +1,9 @@
 @(u: User, isCoach: Boolean)
 
 @template(u.firstname) {
+    <li><a href="#">Account</a></li>
+    <li><a href="@routes.Application.logout()">Logout</a></li>
+} {
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-md-offset-1">
@@ -44,12 +47,6 @@
                   </tr>
 
                   <tr>
-                    <td><a href="#"><span class="glyphicon glyphicon-user blue"></span></a></td>
-                    <td><a href="#">John Doe and Jane Smith are now friends.</a></td>
-                    <td class="activity-time"><a href="#">Today</a></td>
-                  </tr>
-
-                  <tr>
                     <td><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
                     <td><a href="#">Jane Smith shot a new round, with score: 250.</a></td>
                     <td class="activity-time"><a href="#">Today</a></td>
@@ -58,12 +55,6 @@
                   <tr>
                     <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-star gold"></span></a></td>
                     <td><a href="#">John Doe shot a new PR, with score: 280!</a></td>
-                    <td class="activity-time"><a href="#">Today</a></td>
-                  </tr>
-
-                  <tr>
-                    <td><a href="#"><span class="glyphicon glyphicon-user blue"></span></a></td>
-                    <td><a href="#">You and Jane Smith are now friends.</a></td>
                     <td class="activity-time"><a href="#">Today</a></td>
                   </tr>
 
@@ -86,12 +77,6 @@
                   </tr>
 
                   <tr>
-                    <td><a href="#"><span class="glyphicon glyphicon-user blue"></span></a></td>
-                    <td><a href="#">You and John Doe are now friends.</a></td>
-                    <td class="activity-time"><a href="#">1 day ago</a></td>
-                  </tr>
-
-                  <tr>
                     <td><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
                     <td><a href="#">You shot a new round, with score: 270.</a></td>
                     <td class="activity-time"><a href="#">4 days ago</a></td>
@@ -108,15 +93,7 @@
           </div>
         </div>
 
-
-
-
-
-
-
-
-
-
+    <!--modal box for end-by-end round description-->
     </div>
     <div class="modal fade" id="description" role="dialog">
 	    <div class="modal-dialog">
@@ -143,5 +120,6 @@
    		    </div>
    	    </div>
     </div>
+
 </div>
 }

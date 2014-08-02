@@ -1,6 +1,9 @@
 @(u: User, rounds: List[Round])
 
 @template(u.firstname) {
+    <li><a href="#">Account</a></li>
+    <li><a href="@routes.Application.logout()">Logout</a></li>
+} {
     <div class="col-lg-8 col-lg-offset-2">
         <div class="panel panel-warning">
             <div class="panel-heading"><h2>Completed Rounds</h2></div>

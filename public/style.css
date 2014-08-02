@@ -15,12 +15,13 @@
 }
 
 .panel-warning .panel-heading {
-	background-color: #ec971f;
+	background-color: #f0ad4e;
+	border-color: #E08C14;
 	color: #FFFFFF !important;
 }
 
 .panel-warning {
-    border-color: #D4820F;
+    border-color: #E08C14;
 }
 
 #deleteButton .btn-warning:hover {

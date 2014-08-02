@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String)(navlinks: Html)(content: Html)
 
 <!DOCTYPE html>
 <html>
@@ -27,8 +27,7 @@
 
    	<div class="collapse navbar-collapse navHeaderCollapse">
    		<ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Account</a></li>
-   			<li><a href="@routes.Application.logout()">Logout</a></li>
+        @navlinks
    		</ul>
    	</div>
    	</div>

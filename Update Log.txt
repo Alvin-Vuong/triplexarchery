@@ -1,19 +1,18 @@
 TODO: Add some kind of view button for each round in roundslist, because if description is blank, you can't view it.
+	  (temporarily worked around with description required by HTML5 form "required" attribute; not all browsers support)
 TODO: Implement date input for Complete Round view.
-TODO: After an entire round entry, take to round view. (Need to add button to go back to dashboard)
 TODO: Implement inner 10 vs. outer 10.
 TODO: Implement editing rounds function.
 TODO: Rename html files to more specific ones.
-TODO: Account_id passed into functions might not be needed for every function... Check this. (Example: getAllEnds()).
 TODO: If end submit button is repeatedly clicked too quickly, score is added multiple times.
 TODO: Any number of ends (Maybe in getAllEnds(), use numEnds where numEnds is a column in the round table.
 TODO: Deal with incomplete rounds.
-TODO: Implement add coach button on dashboard.
-TODO: Implement coach view.
+TODO: Implement add friend feature somehow.
+TODO: Implement profiles.
 TODO: Encrypt passwords.
-TODO: Email verification.
+TODO: Email verification. (Check out Heroku's Stormpath User Management add-on?)
 TODO: Graph data plots (Maybe Google Charts?).
-TODO: Autofill for bad complete round submission.
+TODO: Autofill for bad complete round submission. (Implement checker method in Application.java)
 TODO: submitDesktop() still takes ID; otherwise, STACK ERROR.
 TODO: First-timer's tutorial with dialog boxes for guidance.
 TODO: Archery social network; replace athletic-coach relationship with friends;
@@ -28,7 +27,14 @@ TODO: Ensure that URI Injection is not possible for all pages.
 TODO: Change Database to accomodate friend relationships instead of coach.
 TODO: Account settings
 ---------------------------------------------------------------------------------------------------------------------
-8/1/2014 4:00 PM PST (PUSHED TO GITHUB)
+8/1/2014 10:18 PM PST (PUSHED TO GITHUB AND HEROKU)
+
+Changed panel-warning orange to lighter orange.
+Created third parameter for template.scala.html: appropriate navbar links according to logged-in status.
+Removed friend request activity from activity feed.
+Created maintemplate.scala.html that sets up homepage and about page.
+---------------------------------------------------------------------------------------------------------------------
+8/1/2014 4:00 PM PST (PUSHED TO GITHUB AND HEROKU)
 
 Started to implement activity feed on dashboard (dummy feed).
 Migrated some styling from HTML to CSS.
