@@ -29,8 +29,8 @@
 	border: 1px solid #ac2925;
 }
 
-.gold {
-	color: #FFDB4A;
+.green {
+	color: #39CC54;
 }
 
 .blue {
@@ -57,3 +57,43 @@
 	font-style: italic;
 }
 
+.index-icon {
+	font-size: 106pt;
+	color: #f0ad4e;
+}
+
+.img-shadow {
+  -moz-box-shadow:    1px 2px 8px 2px #ccc;
+  -webkit-box-shadow: 1px 2px 8px 2px #ccc;
+  box-shadow:         1px 2px 8px 2px #ccc;
+}
+
+.img-half {
+	width: 85%;
+	height: auto;
+}
+
+.img-fill {
+	width: 100%;
+	height: auto;
+}
+
+.about-row {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.row-center {
+	vertical-align: middle;
+}
+
+/* Gradient transparent - color - transparent */
+		
+hr.style-two {
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+}

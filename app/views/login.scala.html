@@ -23,7 +23,7 @@
             <div class="panel-heading"><h3>Log in</h3></div>
                 <div class="panel-body">
                     @if(!message.isEmpty()) {
-                        <p style="color: #FF0000;">@message</p>
+                        <p class="alert alert-danger">@message</p>
                     }
                     <form action="@routes.Application.login()" method="POST">
    					    <div class="form-group">
