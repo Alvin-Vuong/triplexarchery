@@ -285,7 +285,6 @@ public class Database {
                 rs = pst.getResultSet();
 
                 while (rs.next()) {
-            //        System.out.print(rs.getInt(1));
                     userQuery.id = rs.getInt(1);
                     userQuery.firstname = rs.getString(2);
                 }
@@ -347,7 +346,6 @@ public class Database {
                 rs = pst.getResultSet();
 
                 while (rs.next()) {
-            //        System.out.print(rs.getInt(1));
                     userQuery.email = rs.getString(1);
                     userQuery.firstname = rs.getString(2);
                 }
@@ -463,13 +461,10 @@ public class Database {
                 rs = pst.getResultSet();
 
                 while (rs.next()) {
-            //        System.out.print(rs.getInt(1));
                     rnd_id = rs.getInt(1);
                 }
                 isResult = pst.getMoreResults();
             } while (isResult);
-            
-            //System.out.println("rnd_id: " + rnd_id);
             
             return rnd_id;
 
@@ -526,7 +521,6 @@ public class Database {
                 rs = pst.getResultSet();
 
                 while (rs.next()) {
-            //        System.out.print(rs.getInt(1));
                     rnd_id = rs.getInt(1);
                 }
                 isResult = pst.getMoreResults();
@@ -710,10 +704,6 @@ public class Database {
                 rs = pst.getResultSet();
                 
                 while (rs.next()) {
-                //    System.out.println(rs.getInt(1));
-                //    System.out.println(rs.getInt(2));
-                //    System.out.println(rs.getString(3));
-                //    System.out.println(rs.getString(4));
                     id = rs.getInt(1);
                     score = rs.getInt(2);
                     desc = rs.getString(3);
@@ -723,12 +713,6 @@ public class Database {
                 isResult = pst.getMoreResults();
             } while (isResult);
             
-            /* FOR TESTING            
-            for (Round r : rounds)
-            {
-                System.out.println(r);
-            }
-            */
             return rounds;
 
         } catch (SQLException ex) {
@@ -781,7 +765,6 @@ public class Database {
             rs = pst.executeQuery();
             
             while (rs.next()) {
-            //    System.out.println(rs.getInt(1)); FOR TESTING
                 score = rs.getInt(1);
             }
             
@@ -864,9 +847,6 @@ public class Database {
                 rs = pst.getResultSet();
                 
                 while (rs.next()) {
-                //    System.out.println(rs.getInt(1));
-                //    System.out.println(rs.getString(2));
-                //    System.out.println(rs.getString(3));
                     score = rs.getInt(1);
                     desc = rs.getString(2);
                     date = rs.getString(3);
@@ -907,7 +887,6 @@ public class Database {
         }
     }
     
-    // TODO: Test this.
     // Deletes a round given a round_id from the database.
     // Returns true if successful, false if not.
     public static boolean deleteRound(int rnd_id) {

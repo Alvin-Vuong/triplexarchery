@@ -27,6 +27,11 @@ TODO: Ensure that URI Injection is not possible for all pages.
 TODO: Change Database to accomodate friend relationships instead of coach.
 TODO: Account settings
 ---------------------------------------------------------------------------------------------------------------------
+8/2/2014 1:57 PM PST (PUSHED TO GITHUB)
+
+Created editRound.scala.html with comments on what to change.
+Cleaned up some testing code in Database.java.
+---------------------------------------------------------------------------------------------------------------------
 8/1/2014 10:18 PM PST (PUSHED TO GITHUB AND HEROKU)
 
 Changed panel-warning orange to lighter orange.
