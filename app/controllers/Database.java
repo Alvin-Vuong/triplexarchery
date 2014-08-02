@@ -887,6 +887,54 @@ public class Database {
         }
     }
     
+    // TODO: Finish implementing this and test.
+    // Given new data for an existing round, updates the round information in the database.
+    // If unsuccessful, show throw a SQLException.
+    public static void editRound(int rnd_id, String desc, List<End> ends) throws SQLException {       // TODO: Add date parameter.
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL(); 
+        String user = DB.user();
+        String password = DB.pass();
+        
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            String stm = "?";   // TODO: Use UPDATE query to edit previous data, given round_id.    // TODO: Update ends
+            pst = con.prepareStatement(stm);
+            pst.setString(1, desc);
+            pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
     // Deletes a round given a round_id from the database.
     // Returns true if successful, false if not.
     public static boolean deleteRound(int rnd_id) {

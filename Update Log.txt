@@ -1,8 +1,6 @@
 TODO: Add some kind of view button for each round in roundslist, because if description is blank, you can't view it.
 	  (temporarily worked around with description required by HTML5 form "required" attribute; not all browsers support)
-TODO: Implement date input for Complete Round view.
 TODO: Implement inner 10 vs. outer 10.
-TODO: Implement editing rounds function.
 TODO: Rename html files to more specific ones.
 TODO: If end submit button is repeatedly clicked too quickly, score is added multiple times.
 TODO: Any number of ends (Maybe in getAllEnds(), use numEnds where numEnds is a column in the round table.
@@ -26,6 +24,13 @@ TODO: Ensure that URI Injection is not possible for all pages.
       (check that user ID and round IDs and such match before rendering.)
 TODO: Change Database to accomodate friend relationships instead of coach.
 TODO: Account settings
+TODO: Finish making editing rounds function work (Add Edit button to roundslist view).
+TODO: Implement date input for Complete Round view and editRound view.
+TODO: Add date parameter for editRound, when done with ^.
+---------------------------------------------------------------------------------------------------------------------
+8/2/2014 2:22 PM PST (PUSHED TO GITHUB)
+
+Wrote prototype of editRound() in Database.java.
 ---------------------------------------------------------------------------------------------------------------------
 8/2/2014 1:57 PM PST (PUSHED TO GITHUB)
 
