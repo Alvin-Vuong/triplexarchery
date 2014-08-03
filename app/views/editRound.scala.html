@@ -1,8 +1,9 @@
 @(u: User, endForm: Form[Round])
 
-@template(u.firstname + ": Edit round") {
+@template("Edit Round") {
+    <li><a href="@routes.Application.dashboard()"><span class="glyphicon glyphicon-user"></span> @u.firstname</a></li>
     <li><a href="#">Account</a></li>
-    <li><a href="@routes.Application.logout()">Logout</a></li>
+    <li><a href="@routes.Application.logout()">Log out</a></li>
 } {
 
 	<div class="col-lg-8 col-lg-offset-2">

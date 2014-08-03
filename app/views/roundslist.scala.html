@@ -1,12 +1,13 @@
 @(u: User, rounds: List[Round])
 
-@template(u.firstname) {
+@template("View All Rounds") {
+    <li><a href="@routes.Application.dashboard()"><span class="glyphicon glyphicon-user"></span> @u.firstname</a></li>
     <li><a href="#">Account</a></li>
-    <li><a href="@routes.Application.logout()">Logout</a></li>
+    <li><a href="@routes.Application.logout()">Log out</a></li>
 } {
     <div class="col-lg-8 col-lg-offset-2">
         <ol class="breadcrumb above-panel">
-          <li><a href="../dashboard">Dashboard</a></li>
+          <li><a href="@routes.Application.dashboard()">Dashboard</a></li>
           <li class="active">Rounds</li>
         </ol>
 
