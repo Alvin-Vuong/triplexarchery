@@ -28,6 +28,11 @@ TODO: Finish making editing rounds function work (Add Edit button to roundslist 
 TODO: Implement date input for Complete Round view and editRound view.
 TODO: Add date parameter for editRound, when done with ^.
 ---------------------------------------------------------------------------------------------------------------------
+8/2/2014 10:01 PM PST (PUSHED TO GITHUB AND HEROKU)
+
+Change Network icon on front page glyphicons -> font awesome.
+Added breadcrumbs to view rounds route and createDesktop.
+---------------------------------------------------------------------------------------------------------------------
 8/2/2014 2:46 PM PST (PUSHED TO GITHUB AND HEROKU)
 
 Changed homepage icons from images to glyphicons.
