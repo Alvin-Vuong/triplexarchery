@@ -97,3 +97,13 @@ hr.style-two {
     background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
 }
+
+.above-panel li a {
+	color: #E08C14;
+}
+
+.above-panel li a:hover {
+	color: #777777;
+	text-decoration: none;
+}
+
