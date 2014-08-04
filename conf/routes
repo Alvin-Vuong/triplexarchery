@@ -19,6 +19,10 @@ GET     /round/:roundid                                 controllers.Application.
 GET     /register                                       controllers.Application.register()
 POST    /verify                                         controllers.Application.verify()
 
+# for API development
+POST    /api/hello   									controllers.API.sayHello()
+POST    /api_key=:key/get-user							controllers.API.getUser(key: String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                                   controllers.Assets.at(path="/public", file)
 GET     /webjars/*file                                  controllers.WebJarAssets.at(file)

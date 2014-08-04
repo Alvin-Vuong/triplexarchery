@@ -27,6 +27,12 @@ TODO: Account settings
 TODO: Finish making editing rounds function work (Add Edit button to roundslist view).
 TODO: Implement date input for Complete Round view and editRound view.
 TODO: Add date parameter for editRound, when done with ^.
+TODO: Edit Database.getInfo() to also get last name. (Need for API dev)
+---------------------------------------------------------------------------------------------------------------------
+8/3/2014 8:59 PM PST (PUSHED TO GITHUB)
+
+Added glyphicons next to logged-in navbar.
+Started working on REST API for mobile dev (controller/API.java, routes)
 ---------------------------------------------------------------------------------------------------------------------
 8/2/2014 10:01 PM PST (PUSHED TO GITHUB AND HEROKU)
 
