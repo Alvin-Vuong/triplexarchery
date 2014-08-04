@@ -11,6 +11,8 @@ TODO: Encrypt passwords.
 TODO: Email verification. (Check out Heroku's Stormpath User Management add-on?)
 TODO: Graph data plots (Maybe Google Charts?).
 TODO: Autofill for bad complete round submission. (Implement checker method in Application.java)
+TODO: Form resubmission messes with round total.
+TODO: Initialize default ends to missx3 so that one can fix scores if disconnected.
 TODO: submitDesktop() still takes ID; otherwise, STACK ERROR.
 TODO: First-timer's tutorial with dialog boxes for guidance.
 TODO: Archery social network; replace athletic-coach relationship with friends;
@@ -19,6 +21,8 @@ TODO: Pro version: PDFs scoresheets
       identifying profile link (/profile/username) as opposed to profile link by ID (/profile/314).
 TODO: Link to Facebook
 TODO: Checkbox for discipline type (recurve, compound, barebow, etc.) and display it.
+TODO: Preferred discipline settings in acct settings.
+TODO: Based on discipline scoring view gives scores differently.
 TODO: Confirmation before deleting round.
 TODO: Ensure that URI Injection is not possible for all pages.
       (check that user ID and round IDs and such match before rendering.)
@@ -28,6 +32,12 @@ TODO: Finish making editing rounds function work (Add Edit button to roundslist 
 TODO: Implement date input for Complete Round view and editRound view.
 TODO: Add date parameter for editRound, when done with ^.
 TODO: Edit Database.getInfo() to also get last name. (Need for API dev)
+TODO: Scoring round for field/3D
+TODO: SSL cert namecheap?
+---------------------------------------------------------------------------------------------------------------------
+8/3/2014 11:43 PM PST (PUSHED TO GITHUB)
+
+Update Log TODOs
 ---------------------------------------------------------------------------------------------------------------------
 8/3/2014 8:59 PM PST (PUSHED TO GITHUB)
 
