@@ -107,3 +107,28 @@ hr.style-two {
 	text-decoration: none;
 }
 
+.scrollup {
+	width: 40px;
+	height: 40px;
+	display: none;
+	color: #ec971f;
+	text-decoration: none;
+	text-align: center;
+	font-size: 24pt;
+}
+
+.scrollup:hover {
+	color: #fff !important;
+	text-decoration: none;
+}
+
+#scroll-message {
+	font-size: 10pt;
+	color: #aaa;
+}
+
+#inifiniteLoader {
+	font-size: 24pt;
+	color: #f0ad4e;
+	display: none;
+}

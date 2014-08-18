@@ -305,4 +305,65 @@ public class Application extends Controller {
         }
         return total;
     }
+
+    public static Result loadActivity(String pageNumber) {
+
+        try {
+            Thread.sleep(2000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+        String fakeActivity = "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>";
+        return ok(fakeActivity);
+    }
 }

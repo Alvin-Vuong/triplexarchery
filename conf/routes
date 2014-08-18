@@ -9,6 +9,7 @@ GET     /logout                                         controllers.Application.
 GET     /register-success                               controllers.Application.registrationSuccess()
 GET     /dashboard                                      controllers.Application.dashboard()
 GET     /about                                          controllers.Application.about()
+GET     /loadmore/:pageNumber							controllers.Application.loadActivity(pageNumber: String)
 POST    /new/end-by-end                                 controllers.Application.create()
 GET     /new/completed                                  controllers.Application.createDesktop()
 POST    /dashboard/:id                                  controllers.Application.submitDesktop(id: Int)
