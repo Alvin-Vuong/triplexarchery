@@ -2,7 +2,6 @@ TODO: Add some kind of view button for each round in roundslist, because if desc
 	  (temporarily worked around with description required by HTML5 form "required" attribute; not all browsers support)
 TODO: Implement inner 10 vs. outer 10.
 TODO: Rename html files to more specific ones.
-TODO: If end submit button is repeatedly clicked too quickly, score is added multiple times.
 TODO: Any number of ends (Maybe in getAllEnds(), use numEnds where numEnds is a column in the round table.
 TODO: Deal with incomplete rounds.
 TODO: Implement add friend feature somehow.
@@ -33,6 +32,10 @@ TODO: Add date parameter for editRound, when done with ^.
 TODO: Edit Database.getInfo() to also get last name. (Need for API dev)
 TODO: Scoring round for field/3D
 TODO: SSL cert namecheap?
+---------------------------------------------------------------------------------------------------------------------
+8/18/2014 4:45 PM PST (PUSHED TO GITHUB AND HEROKU)
+
+Disabled submit button onclick in create.scala.html (end-by-end).
 ---------------------------------------------------------------------------------------------------------------------
 8/17/2014 8:20 PM PST (PUSHED TO GITHUB)
 

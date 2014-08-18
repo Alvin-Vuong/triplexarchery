@@ -29,10 +29,18 @@
 
                 <h4 style="text-align: center">Current Total: @curScore / @((end - 1) * 30)</h4>
                 <!-- need spacing here -->
-                <div class="panel panel-footer text-center"><input type="submit" class="btn btn-warning" value="Submit End" />
+                <div class="panel panel-footer text-center"><input type="submit" class="btn btn-warning" value="Submit End" onclick="disableButton(this)"/>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function disableButton(button) {
+        button.disabled = true;
+        button.value = "Submitting..."
+        button.form.submit();
+    }
+</script>
 }
