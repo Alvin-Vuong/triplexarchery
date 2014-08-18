@@ -8,7 +8,7 @@ POST    /login                                          controllers.Application.
 GET     /logout                                         controllers.Application.logout()
 GET     /register-success                               controllers.Application.registrationSuccess()
 GET     /dashboard                                      controllers.Application.dashboard()
-GET     /more                                           controllers.Application.learnMore()
+GET     /about                                          controllers.Application.about()
 POST    /new/end-by-end                                 controllers.Application.create()
 GET     /new/completed                                  controllers.Application.createDesktop()
 POST    /dashboard/:id                                  controllers.Application.submitDesktop(id: Int)

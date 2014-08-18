@@ -3,8 +3,6 @@ package controllers;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
-import play.mvc.*;
-import play.data.*;
 import play.data.Form;
 import views.html.*;
 import models.User;
@@ -13,6 +11,8 @@ import models.Round;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.SQLException;
+import org.jasypt.util.digest.*;
+import org.jasypt.util.password.*;
 
 public class Application extends Controller {
     
@@ -43,7 +43,11 @@ public class Application extends Controller {
         // TODO: check DB to see if user is coach
 
         try {
+            //StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+            //String hashedPassword = encryptor.encryptPassword(user.password);
+            //encryptor.checkPassword(user.password, encryptedPassword)
             boolean log = Database.login(user.email, user.password);
+
             if (log) {
                 User userQuery = Database.getInfo(user.email);
                 userQuery.email = user.email;
@@ -103,6 +107,8 @@ public class Application extends Controller {
             boolean log = Database.registerCheck(created.email);
             // Valid email
             if (log) {
+                //StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+                //String hashedPassword = encryptor.encryptPassword(created.password);
                 Database.registerNew(created.email, created.password, created.firstname, created.lastname);
                 return redirect(routes.Application.registrationSuccess());
             }
@@ -115,8 +121,8 @@ public class Application extends Controller {
         }
     }
     
-    public static Result learnMore() {
-        return ok(more.render());
+    public static Result about() {
+        return ok(about.render());
     }
     
     // Handles round description entry and creation.
