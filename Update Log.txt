@@ -34,15 +34,15 @@ TODO: Edit Database.getInfo() to also get last name. (Need for API dev)
 TODO: Scoring round for field/3D
 TODO: SSL cert namecheap?
 ---------------------------------------------------------------------------------------------------------------------
-8/3/2014 11:43 PM PST (PUSHED TO GITHUB)
-
-Update Log TODOs
----------------------------------------------------------------------------------------------------------------------
 8/17/2014 8:20 PM PST (PUSHED TO GITHUB)
 
 Renamed more.scala.html to about.scala.html; changed routing config for it.
 Included Jasypt encryption library for passwords.
 Changed navbar to fixed instead of static.
+---------------------------------------------------------------------------------------------------------------------
+8/3/2014 11:43 PM PST (PUSHED TO GITHUB)
+
+Update Log TODOs
 ---------------------------------------------------------------------------------------------------------------------
 8/3/2014 8:59 PM PST (PUSHED TO GITHUB)
 
