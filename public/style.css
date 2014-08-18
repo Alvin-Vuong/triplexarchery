@@ -41,6 +41,10 @@
 	color: #000000;
 }
 
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #ec971f;
+}
+
 .activity-feed tr td a {
 	color: #000000;
 	text-decoration: none;
@@ -128,7 +132,6 @@ hr.style-two {
 }
 
 #inifiniteLoader {
-	font-size: 24pt;
 	color: #f0ad4e;
 	display: none;
 }

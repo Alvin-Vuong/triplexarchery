@@ -36,90 +36,90 @@
         </div>
 
         <div class="col-md-7">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3>Activity</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Activity</h3>
+                </div>
+
+                <div class="panel-body">
+                    <table class="table activity-feed" id="activity-feed">
+
+                    <!--<tr>
+                      <th colspan="3">Note: This is a dummy activity feed. None of this information is real.</th>
+                    </tr>-->
+
+                    <tr>
+                        <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                        <td><a href="#">Jane Smith shot a new round, with score: 250.</a></td>
+                        <td class="activity-time"><a href="#">Today</a></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-bullhorn green"></span></a></td>
+                        <td><a href="#">John Doe shot a new PR, with score: 280!</a></td>
+                        <td class="activity-time"><a href="#">Today</a></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                        <td><a href="#">You shot a new round, with score: 299.</a></td>
+                        <td class="activity-time"><a href="#">Today</a></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                        <td><a href="#">John Doe shot a new round, with score: 250.</a></td>
+                        <td class="activity-time"><a href="#">1 day ago</a></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-bullhorn green"></span></a></td>
+                        <td><a href="#">You shot a new PR, with score: 300!</a></td>
+                        <td class="activity-time"><a href="#">1 day ago</a></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                        <td><a href="#">You shot a new round, with score: 270.</a></td>
+                        <td class="activity-time"><a href="#">4 days ago</a></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                        <td><a href="#">You shot a new round, with score: 260.</a></td>
+                        <td class="activity-time"><a href="#">5 days ago</a></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                        <td><a href="#">You shot a new round, with score: 260.</a></td>
+                        <td class="activity-time"><a href="#">5 days ago</a></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                        <td><a href="#">You shot a new round, with score: 260.</a></td>
+                        <td class="activity-time"><a href="#">5 days ago</a></td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                        <td><a href="#">You shot a new round, with score: 260.</a></td>
+                        <td class="activity-time"><a href="#">5 days ago</a></td>
+                    </tr>
+                </table>
+
+                <div class="text-center">
+                    <p id="scroll-message">scroll down for more</p>
+                    <a id="inifiniteLoader"><i class="fa fa-refresh fa-spin fa-3x"></i></a>
+                </div>
+
+                </div>
             </div>
-            <div class="panel-body">
-              <table class="table activity-feed" id="activity-feed">
-
-                <!--<tr>
-                  <th colspan="3">Note: This is a dummy activity feed. None of this information is real.</th>
-                </tr>-->
-
-                <tr>
-                  <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                  <td><a href="#">Jane Smith shot a new round, with score: 250.</a></td>
-                  <td class="activity-time"><a href="#">Today</a></td>
-                </tr>
-
-                <tr>
-                  <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-bullhorn green"></span></a></td>
-                  <td><a href="#">John Doe shot a new PR, with score: 280!</a></td>
-                  <td class="activity-time"><a href="#">Today</a></td>
-                </tr>
-
-                <tr>
-                  <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                  <td><a href="#">You shot a new round, with score: 299.</a></td>
-                  <td class="activity-time"><a href="#">Today</a></td>
-                </tr>
-
-                <tr>
-                  <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                  <td><a href="#">John Doe shot a new round, with score: 250.</a></td>
-                  <td class="activity-time"><a href="#">1 day ago</a></td>
-                </tr>
-
-                <tr>
-                  <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-bullhorn green"></span></a></td>
-                  <td><a href="#">You shot a new PR, with score: 300!</a></td>
-                  <td class="activity-time"><a href="#">1 day ago</a></td>
-                </tr>
-
-                <tr>
-                  <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                  <td><a href="#">You shot a new round, with score: 270.</a></td>
-                  <td class="activity-time"><a href="#">4 days ago</a></td>
-                </tr>
-
-                <tr>
-                  <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                  <td><a href="#">You shot a new round, with score: 260.</a></td>
-                  <td class="activity-time"><a href="#">5 days ago</a></td>
-                </tr>
-
-                <tr>
-                  <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                  <td><a href="#">You shot a new round, with score: 260.</a></td>
-                  <td class="activity-time"><a href="#">5 days ago</a></td>
-                </tr>
-
-                <tr>
-                  <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                  <td><a href="#">You shot a new round, with score: 260.</a></td>
-                  <td class="activity-time"><a href="#">5 days ago</a></td>
-                </tr>
-
-                <tr>
-                  <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                  <td><a href="#">You shot a new round, with score: 260.</a></td>
-                  <td class="activity-time"><a href="#">5 days ago</a></td>
-                </tr>
-                
-              </table>
-
-              <div class="text-center">
-                <p id="scroll-message">scroll down for more</p>
-                <a id="inifiniteLoader"><i class="fa fa-refresh fa-spin"></i></a>
-              </div>
-            </div>
-          </div>
-
         </div>
-
-    <!--modal box for end-by-end round description-->
     </div>
+    
+    <!--modal box for end-by-end round description-->
     <div class="modal fade" id="description" role="dialog">
 	    <div class="modal-dialog">
 		    <div class="modal-content">
@@ -145,53 +145,63 @@
    		    </div>
    	    </div>
     </div>
-
-   
-
 </div>
 
 <script type="text/javascript">
-            var count = 2;
-            $(window).scroll(function(){
-                    if  ($(window).scrollTop() == $(document).height() - $(window).height()){
-                       loadArticle(count);
-                       count++;
-                    }
-            }); 
- 
-            function loadArticle(pageNumber){
-                    document.getElementById("scroll-message").style.display = "none";
-                    $('a#inifiniteLoader').show('fast');
-                    $.ajax({
-                        url: "@routes.Application.loadActivity(" + pageNumber + ")", 
-                        success: function(html){
-                            $('a#inifiniteLoader').hide('1000');
-                            document.getElementById("scroll-message").style.display = "block";
-                            $("#activity-feed").append(html);
-                        }
-                    });
-                return false;
+    var count = 1;
+    var hitEnd = false;
+    $(window).scroll(function(){
+    if (!hitEnd && ($(window).scrollTop() == $(document).height() - $(window).height())) {
+        console.log(count);
+        loadArticle(count);
+        count++;
+    }
+    }); 
+
+    function loadArticle(pageNumber){
+        document.getElementById("scroll-message").style.display = "none";
+        $('a#inifiniteLoader').show('fast');
+        $.ajax({
+            url: "@routes.Application.loadActivity(" + pageNumber + ")", 
+            dataType: 'json',
+            success: function(json_data){
+                $('a#inifiniteLoader').hide('1000');
+                var addon = json_data.html;
+                if (json_data.end) {
+                hitEnd = true;
+                $('a#inifiniteLoader').css('display', 'none');
+                } else {
+                document.getElementById("scroll-message").style.display = "block";
+                }
+                $("#activity-feed").append(json_data.html);
+            }, error: function() {
+                hitEnd = true;
+                $('a#inifiniteLoader').css('display', 'none');
+                $("#activity-feed").append("<tr><td colspan=\"3\"><p class=\"alert alert-danger\">Something went wrong.</p></td></tr>");
             }
+        });
+    return false;
+    }
 </script>
 
 <script type="text/javascript">
-  $(document).ready(function () {
+    $(document).ready(function () {
 
-      $(window).scroll(function () {
-          if ($(this).scrollTop() > 100) {
-              $('.scrollup').fadeIn();
-          } else {
-              $('.scrollup').fadeOut();
-          }
-      });
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('.scrollup').fadeIn();
+            } else {
+                $('.scrollup').fadeOut();
+            }
+        });
 
-      $('.scrollup').click(function () {
-          $("html, body").animate({
-              scrollTop: 0
-          }, 600);
-          return false;
-      });
+        $('.scrollup').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
 
-  });
+    });
 </script>
 }

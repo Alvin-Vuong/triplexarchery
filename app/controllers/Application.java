@@ -5,14 +5,15 @@ import play.mvc.Result;
 import play.mvc.Security;
 import play.data.Form;
 import views.html.*;
-import models.User;
-import models.End;
-import models.Round;
+import models.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.SQLException;
 import org.jasypt.util.digest.*;
 import org.jasypt.util.password.*;
+import play.libs.Json;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Application extends Controller {
     
@@ -364,6 +365,12 @@ public class Application extends Controller {
                                   "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
                                   "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
                               "</tr>";
-        return ok(fakeActivity);
+
+        ObjectNode result = Json.newObject();
+        result.put("end", true);
+        result.put("html", "<tr><td colspan=\"3\"><p class=\"text-muted\">No more news.</p></td></tr>");
+        //result.put("end", false);
+        //result.put("html", fakeActivity);
+        return ok(result);
     }
 }
