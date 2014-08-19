@@ -109,10 +109,11 @@
                     </tr>
                 </table>
 
+                <!--INFINITE SCROLL IN PROGRESS
                 <div class="text-center">
                     <p id="scroll-message">scroll down for more</p>
                     <a id="inifiniteLoader"><i class="fa fa-refresh fa-spin fa-3x"></i></a>
-                </div>
+                </div>-->
 
                 </div>
             </div>
@@ -147,6 +148,7 @@
     </div>
 </div>
 
+<!--INFINITE SCROLL SCRIPT
 <script type="text/javascript">
     var count = 2;
     var hitEnd = false;
@@ -166,12 +168,11 @@
             dataType: 'json',
             success: function(json_data){
                 $('a#inifiniteLoader').hide('1000');
-                var addon = json_data.html;
                 if (json_data.end) {
-                hitEnd = true;
-                $('a#inifiniteLoader').css('display', 'none');
+                    hitEnd = true;
+                    $('a#inifiniteLoader').css('display', 'none');
                 } else {
-                document.getElementById("scroll-message").style.display = "block";
+                    document.getElementById("scroll-message").style.display = "block";
                 }
                 $("#activity-feed").append(json_data.html);
             }, error: function() {
@@ -203,5 +204,5 @@
         });
 
     });
-</script>
+</script>-->
 }

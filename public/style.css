@@ -29,6 +29,10 @@
 	border: 1px solid #ac2925;
 }
 
+.delete-round {
+	text-align: right;
+}
+
 .green {
 	color: #39CC54;
 }

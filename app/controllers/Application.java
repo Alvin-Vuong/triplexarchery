@@ -244,37 +244,41 @@ public class Application extends Controller {
 
     // Renders list of rounds for infinite scroll, to be appended to rounds list page.
     @Security.Authenticated(Secured.class)
-    public static Result roundsListScroll(int set) {
+    public static Result loadRounds(String set) {
+        System.out.println(set);
         User user = Database.getInfo(request().username());
         user.email = request().username();
         List<Round> rounds = new ArrayList<Round>();
+        int setNum = Integer.parseInt(set);
 
         try {
-            rounds = Database.getTenRounds(user.id, set);
+            rounds = Database.getTenRounds(user.id, setNum);
         } catch (SQLException e) {
             return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
 
+        StringBuilder roundsHTML = new StringBuilder(); 
         for (Round r : rounds) {
-            StringBuilder roundsHTML =  "<tr>" +
-                                            "<td><a href=\"@routes.Application.viewAllEnds(r.id)\">@r.description</a></td>" +
-                                            "<td>@r.date</td>" +
-                                            "<td>@r.score</td>" +
-                                            "<td style=\"text-align: right\">" +
-                                                "<form action=\"@routes.Application.deleteRound(r.id)\" method=\"POST\" id=\"deleteButton\">" +
-                                                    "<input type=\"submit\" class=\"btn btn-xs btn-warning\" value=\"Delete\" />" +
-                                                "</form>" +
-                                            "</td>" +
-                                        "</tr>";
+            roundsHTML.append(  "<tr>" +
+                                    "<td><a href=\"@routes.Application.viewAllEnds(" + r.id + ")\">" + r.description + "</a></td>" +
+                                    "<td>" + r.date + "</td>" +
+                                    "<td>" + r.score + "</td>" +
+                                    "<td class=\"delete-round\">" +
+                                        "<form action=\"@routes.Application.deleteRound(" + r.id + ")\" method=\"POST\" id=\"deleteButton\">" +
+                                            "<input type=\"submit\" class=\"btn btn-xs btn-warning\" value=\"Delete\" />" +
+                                        "</form>" +
+                                    "</td>" +
+                                "</tr>");
         }
-        /*ObjectNode roundSet = Json.newObject();
-        ArrayNode roundJSONArray = new ArrayNode(new JsonNodeFactory());
-        roundSet.put("rounds", roundJSONArray);
 
-
-        result.put("end", true);*/
-
-
+        ObjectNode result = Json.newObject();
+        if (rounds.size() < 10) {
+            result.put("end", true);
+        } else {
+            result.put("end", false);
+        }
+        result.put("html", roundsHTML.toString());
+        return ok(result);
     }
     
     // Handles deletion of chosen round and renders the resulting success page.
