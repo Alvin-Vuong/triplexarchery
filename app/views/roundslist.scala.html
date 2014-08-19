@@ -27,7 +27,7 @@
                                 <td><a href="@routes.Application.viewAllEnds(r.id)">@r.description</a></td>
                                 <td>@r.date</td>
                                 <td>@r.score</td>
-                                <td style="text-align: right">
+                                <td class="delete-round">
                                     <form action="@routes.Application.deleteRound(r.id)" method="POST" id="deleteButton">
                				    	    <input type="submit" class="btn btn-xs btn-warning" value="Delete" />
                				    	</form>
