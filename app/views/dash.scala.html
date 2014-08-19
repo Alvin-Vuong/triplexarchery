@@ -1,4 +1,4 @@
-@(u: User, isCoach: Boolean)
+@(u: User)
 
 @template("Dashboard") {
     <li><a href="@routes.Application.dashboard()"><span class="glyphicon glyphicon-user"></span> @u.firstname</a></li>
@@ -21,77 +21,65 @@
                 </div>
             </div>
 
-            @if(isCoach) {
-                <div class="col-md-6">
-                    <div class="panel panel-warning">
-                        <div class="panel-heading">
-                            <h3>Coach panel</h3>
-                        </div>
-                        <div class="panel-body">
-                            <a class="btn btn-lg btn-warning btn-block" href="#">View athletes</a>
-                        </div>
-                    </div>
-                </div>
-            }
         </div>
 
         <div class="col-md-7">
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3>Activity</h3>
-              </div>
-              <div class="panel-body">
-                <table class="table activity-feed">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Activity</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table activity-feed">
 
-                  <!--<tr>
+                    <!--<tr>
                     <th colspan="3">Note: This is a dummy activity feed. None of this information is real.</th>
-                  </tr>-->
+                    </tr>-->
 
-                  <tr>
-                    <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                    <td><a href="#">Jane Smith shot a new round, with score: 250.</a></td>
-                    <td class="activity-time"><a href="#">Today</a></td>
-                  </tr>
+                        <tr>
+                            <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                            <td><a href="#">Jane Smith shot a new round, with score: 250.</a></td>
+                            <td class="activity-time"><a href="#">Today</a></td>
+                        </tr>
 
-                  <tr>
-                    <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-bullhorn green"></span></a></td>
-                    <td><a href="#">John Doe shot a new PR, with score: 280!</a></td>
-                    <td class="activity-time"><a href="#">Today</a></td>
-                  </tr>
+                        <tr>
+                            <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-bullhorn green"></span></a></td>
+                            <td><a href="#">John Doe shot a new PR, with score: 280!</a></td>
+                            <td class="activity-time"><a href="#">Today</a></td>
+                        </tr>
 
-                  <tr>
-                    <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                    <td><a href="#">You shot a new round, with score: 299.</a></td>
-                    <td class="activity-time"><a href="#">Today</a></td>
-                  </tr>
+                        <tr>
+                            <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                            <td><a href="#">You shot a new round, with score: 299.</a></td>
+                            <td class="activity-time"><a href="#">Today</a></td>
+                        </tr>
 
-                  <tr>
-                    <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                    <td><a href="#">John Doe shot a new round, with score: 250.</a></td>
-                    <td class="activity-time"><a href="#">1 day ago</a></td>
-                  </tr>
+                        <tr>
+                            <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                            <td><a href="#">John Doe shot a new round, with score: 250.</a></td>
+                            <td class="activity-time"><a href="#">1 day ago</a></td>
+                        </tr>
 
-                  <tr>
-                    <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-bullhorn green"></span></a></td>
-                    <td><a href="#">You shot a new PR, with score: 300!</a></td>
-                    <td class="activity-time"><a href="#">1 day ago</a></td>
-                  </tr>
+                        <tr>
+                            <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-bullhorn green"></span></a></td>
+                            <td><a href="#">You shot a new PR, with score: 300!</a></td>
+                            <td class="activity-time"><a href="#">1 day ago</a></td>
+                        </tr>
 
-                  <tr>
-                    <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                    <td><a href="#">You shot a new round, with score: 270.</a></td>
-                    <td class="activity-time"><a href="#">4 days ago</a></td>
-                  </tr>
+                        <tr>
+                            <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                            <td><a href="#">You shot a new round, with score: 270.</a></td>
+                            <td class="activity-time"><a href="#">4 days ago</a></td>
+                        </tr>
 
-                  <tr>
-                    <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
-                    <td><a href="#">You shot a new round, with score: 260.</a></td>
-                    <td class="activity-time"><a href="#">5 days ago</a></td>
-                  </tr>
+                        <tr>
+                            <td class="col-xs-1"><a href="#"><span class="glyphicon glyphicon-plus black"></span></a></td>
+                            <td><a href="#">You shot a new round, with score: 260.</a></td>
+                            <td class="activity-time"><a href="#">5 days ago</a></td>
+                        </tr>
 
-                </table>
-              </div>
-          </div>
+                    </table>
+                </div>
+            </div>
         </div>
 
     <!--modal box for end-by-end round description-->

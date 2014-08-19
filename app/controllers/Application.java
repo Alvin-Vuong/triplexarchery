@@ -81,7 +81,7 @@ public class Application extends Controller {
     public static Result dashboard() {
         User user = Database.getInfo(request().username());
         user.email = request().username();
-        return ok(dash.render(user, false));
+        return ok(dash.render(user));
     }
     
     // Renders registration form.

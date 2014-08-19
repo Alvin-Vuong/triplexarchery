@@ -36,6 +36,7 @@ TODO: SSL cert namecheap?
 8/19/2014 1:30 AM PST (PUSHED TO GITHUB AND HEROKU)
 
 Implemented POST-redirect-GET for end-by-end submission.
+Removed isCoach parameter to dashboard view.
 ---------------------------------------------------------------------------------------------------------------------
 8/18/2014 11:35 PM PST (PUSHED TO GITHUB AND HEROKU)
 
