@@ -19,3 +19,4 @@ dist
 activator-sbt-echo-play-shim.sbt
 .DS_Store
 */.DS_Store
+Local Database Credentials.txt
