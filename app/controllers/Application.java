@@ -241,6 +241,41 @@ public class Application extends Controller {
         
         return ok(roundslist.render(user, rounds));
     }
+
+    // Renders list of rounds for infinite scroll, to be appended to rounds list page.
+    @Security.Authenticated(Secured.class)
+    public static Result roundsListScroll(int set) {
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        List<Round> rounds = new ArrayList<Round>();
+
+        try {
+            rounds = Database.getTenRounds(user.id, set);
+        } catch (SQLException e) {
+            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+        }
+
+        for (Round r : rounds) {
+            StringBuilder roundsHTML =  "<tr>" +
+                                            "<td><a href=\"@routes.Application.viewAllEnds(r.id)\">@r.description</a></td>" +
+                                            "<td>@r.date</td>" +
+                                            "<td>@r.score</td>" +
+                                            "<td style=\"text-align: right\">" +
+                                                "<form action=\"@routes.Application.deleteRound(r.id)\" method=\"POST\" id=\"deleteButton\">" +
+                                                    "<input type=\"submit\" class=\"btn btn-xs btn-warning\" value=\"Delete\" />" +
+                                                "</form>" +
+                                            "</td>" +
+                                        "</tr>";
+        }
+        /*ObjectNode roundSet = Json.newObject();
+        ArrayNode roundJSONArray = new ArrayNode(new JsonNodeFactory());
+        roundSet.put("rounds", roundJSONArray);
+
+
+        result.put("end", true);*/
+
+
+    }
     
     // Handles deletion of chosen round and renders the resulting success page.
     @Security.Authenticated(Secured.class)
