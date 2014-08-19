@@ -116,17 +116,15 @@ hr.style-two {
 }
 
 .scrollup {
-	width: 40px;
-	height: 40px;
 	display: none;
 	color: #ec971f;
 	text-decoration: none;
 	text-align: center;
 	font-size: 24pt;
+	margin-top: -5px;
 }
 
 .scrollup:hover {
-	color: #fff !important;
 	text-decoration: none;
 }
 
