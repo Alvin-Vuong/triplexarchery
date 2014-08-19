@@ -36,6 +36,8 @@ TODO: SSL cert namecheap?
 8/18/2014 11:35 PM PST (PUSHED TO GITHUB)
 
 Increased size of password field to 128 for password encryption in database.
+Removed all possible print statements (cannot remove some).
+Finished password hashing for registration and login.
 ---------------------------------------------------------------------------------------------------------------------
 8/18/2014 11:33 PM PST (PUSHED TO GITHUB)
 

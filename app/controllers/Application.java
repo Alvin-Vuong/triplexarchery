@@ -24,31 +24,27 @@ public class Application extends Controller {
     @Security.Authenticated(Secured.class)
     public static Result index() {
         request().username();
-        System.out.println("1a");
         return redirect(routes.Application.dashboard());
     }
     
     public static Result home() {
-        System.out.println("1");
         return ok(index.render(userForm));
     }
     
     // Handle login, redirects to dashboard or renders login.
     public static Result login() {
-        System.out.println("2");
         Form<User> filledForm = userForm.bindFromRequest();
         User user = filledForm.get();
-        // System.out.print(user.email + " " + user.password);
         
         // TODO: check DB to see if user is coach
 
         try {
-            //StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
-            //String hashedPassword = encryptor.encryptPassword(user.password);
-            //encryptor.checkPassword(user.password, encryptedPassword)
-            boolean log = Database.login(user.email, user.password);
+            StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+            String retrievedPW = Database.getPW(user.email);
+            
+            //boolean log = Database.login(user.email, user.password);
 
-            if (log) {
+            if (encryptor.checkPassword(user.password, retrievedPW)) {
                 User userQuery = Database.getInfo(user.email);
                 userQuery.email = user.email;
                 userQuery.password = user.password;
@@ -58,8 +54,6 @@ public class Application extends Controller {
                 } else {
                     session().clear();
                     session("email", userQuery.email);
-                    System.out.println("3");
-                    System.out.println(userQuery.email);
                     return redirect(routes.Application.dashboard());
                 }
             } else {
@@ -85,10 +79,8 @@ public class Application extends Controller {
     // After successful login, user is redirected to dashboard page.
     @Security.Authenticated(Secured.class)
     public static Result dashboard() {
-        System.out.println("4");
         User user = Database.getInfo(request().username());
         user.email = request().username();
-        System.out.println(request().username());
         return ok(dash.render(user, false));
     }
     
@@ -101,15 +93,14 @@ public class Application extends Controller {
     public static Result verify() {
         Form<User> filledForm = userForm.bindFromRequest();
         User created = filledForm.get();
-        // System.out.print("Registered new user " + created.email + created.firstname + created.lastname);
         
         try {
             boolean log = Database.registerCheck(created.email);
             // Valid email
             if (log) {
-                //StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
-                //String hashedPassword = encryptor.encryptPassword(created.password);
-                Database.registerNew(created.email, created.password, created.firstname, created.lastname);
+                StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+                String hashedPassword = encryptor.encryptPassword(created.password);
+                Database.registerNew(created.email, hashedPassword, created.firstname, created.lastname);
                 return redirect(routes.Application.registrationSuccess());
             }
             // Redirect to register again
@@ -132,17 +123,13 @@ public class Application extends Controller {
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
         String d = r.description;
-        // System.out.println(d);
         
         User user = Database.getInfo(request().username());
         user.email = request().username();
-        System.out.println("10");
-        System.out.println(request().username());
-        System.out.println(user.id);
+        System.out.println(user.id); // CANNOT DELETE THIS LINE WHY
         
         try {
             int r_id = Database.addRound(user.id, d);
-            System.out.println("in create(), user's info: " + user.email + user.firstname);
             return ok(create.render(user, r_id, endForm, 1, 0));
         } catch (SQLException e){
             return badRequest(login.render(userForm, "Something is wrong. Try again."));
@@ -153,9 +140,6 @@ public class Application extends Controller {
     public static Result createDesktop() {
         User user = Database.getInfo(request().username());
         user.email = request().username();
-        System.out.println("5");
-        System.out.println(request().username());
-        System.out.println(user.id);
         
         return ok(createDesktopRound.render(user, roundForm));
     }
@@ -171,9 +155,7 @@ public class Application extends Controller {
         
         User user = Database.getInfo(request().username());
         user.email = request().username();
-        System.out.println("11");
-        System.out.println(request().username());
-        System.out.println(user.id);
+        System.out.println(user.id); // CANNOT DELETE THIS LINE WHY AGAIN
         
         try {
             Database.addEnd(user.id, roundid, end, created.a1, created.a2, created.a3);    
@@ -215,8 +197,6 @@ public class Application extends Controller {
         
         User user = Database.getInfo(request().username());
         user.email = request().username();
-        System.out.println("6");
-        System.out.println(request().username());
 
         return redirect(routes.Application.roundsList());
     }
@@ -225,11 +205,7 @@ public class Application extends Controller {
     @Security.Authenticated(Secured.class)
     public static Result roundsList() {
         User user = Database.getInfo(request().username());
-        user.email = request().username();
-        System.out.println("12");
-        System.out.println(request().username());
-        System.out.println(user.id);
-        
+        user.email = request().username();        
         List<Round> rounds = new ArrayList<Round>();
         
         try {
@@ -246,9 +222,6 @@ public class Application extends Controller {
     public static Result deleteRound(int roundid) {
         User user = Database.getInfo(request().username());
         user.email = request().username();
-        System.out.println("13");
-        System.out.println(request().username());
-        System.out.println(user.id);
 
         if (Database.deleteRound(roundid))
             return redirect(routes.Application.roundsList());
@@ -261,9 +234,6 @@ public class Application extends Controller {
     public static Result viewAllEnds(int roundid) {
         User user = Database.getInfo(request().username());
         user.email = request().username();
-        System.out.println("14");
-        System.out.println(request().username());
-        System.out.println(user.id);
         
         Round round = new Round();
         
