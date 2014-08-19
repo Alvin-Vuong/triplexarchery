@@ -1,7 +1,7 @@
 CREATE TABLE account (
 	account_id 	serial PRIMARY KEY,
 	email 		VARCHAR (355) UNIQUE NOT NULL,
-	password 	VARCHAR (40) NOT NULL,
+	password 	VARCHAR (128) NOT NULL,
 	first_name	VARCHAR (45) NOT NULL,
 	last_name	VARCHAR (45) NOT NULL, 
 	isCoach		BOOLEAN NOT NULL,

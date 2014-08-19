@@ -33,6 +33,10 @@ TODO: Edit Database.getInfo() to also get last name. (Need for API dev)
 TODO: Scoring round for field/3D
 TODO: SSL cert namecheap?
 ---------------------------------------------------------------------------------------------------------------------
+8/18/2014 11:35 PM PST (PUSHED TO GITHUB)
+
+Increased size of password field to 128 for password encryption in database.
+---------------------------------------------------------------------------------------------------------------------
 8/18/2014 11:33 PM PST (PUSHED TO GITHUB)
 
 getPW() now throws SQLException as it should.
