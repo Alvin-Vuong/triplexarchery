@@ -130,12 +130,28 @@ public class Application extends Controller {
         
         try {
             int r_id = Database.addRound(user.id, d);
-            return ok(create.render(user, r_id, endForm, 1, 0));
+            return redirect(routes.Application.endSubmission(r_id, 1));
         } catch (SQLException e){
             return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
     }
 
+    @Security.Authenticated(Secured.class)
+    public static Result endSubmission(int r_id, int end) {
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+
+        int curScore = -1;
+        try {
+            curScore = Database.getScore(user.id, r_id);
+        } catch (SQLException e) {
+            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+        }
+
+        return ok(create.render(user, r_id, endForm, end, curScore));
+    }
+
+    // Renders round entry form for round that's completed.
     @Security.Authenticated(Secured.class)
     public static Result createDesktop() {
         User user = Database.getInfo(request().username());
@@ -167,13 +183,7 @@ public class Application extends Controller {
         // TODO: check DB to see if user is coach
             return redirect(routes.Application.roundsList());
         } else {
-            int curScore = -1;
-            try {
-                curScore = Database.getScore(user.id, roundid);
-            } catch (SQLException e) {
-                return badRequest(login.render(userForm, "Something is wrong. Try again."));
-            }
-            return ok(create.render(user, roundid, endForm, end+1, curScore));
+            return redirect(routes.Application.endSubmission(roundid, end+1));
         }
     }
 
@@ -275,4 +285,5 @@ public class Application extends Controller {
         }
         return total;
     }
+
 }

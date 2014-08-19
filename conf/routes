@@ -10,6 +10,7 @@ GET     /register-success                               controllers.Application.
 GET     /dashboard                                      controllers.Application.dashboard()
 GET     /about                                          controllers.Application.about()
 POST    /new/end-by-end                                 controllers.Application.create()
+GET     /new/round/:r_id/end/:end						controllers.Application.endSubmission(r_id: Int, end: Int)
 GET     /new/completed                                  controllers.Application.createDesktop()
 POST    /dashboard/:id                                  controllers.Application.submitDesktop(id: Int)
 POST    /delete/:roundid/                               controllers.Application.deleteRound(roundid: Int)

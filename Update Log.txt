@@ -33,7 +33,11 @@ TODO: Edit Database.getInfo() to also get last name. (Need for API dev)
 TODO: Scoring round for field/3D
 TODO: SSL cert namecheap?
 ---------------------------------------------------------------------------------------------------------------------
-8/18/2014 11:35 PM PST (PUSHED TO GITHUB)
+8/19/2014 1:30 AM PST (PUSHED TO GITHUB AND HEROKU)
+
+Implemented POST-redirect-GET for end-by-end submission.
+---------------------------------------------------------------------------------------------------------------------
+8/18/2014 11:35 PM PST (PUSHED TO GITHUB AND HEROKU)
 
 Increased size of password field to 128 for password encryption in database.
 Removed all possible print statements (cannot remove some).
