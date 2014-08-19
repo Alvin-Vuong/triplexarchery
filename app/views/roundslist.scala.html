@@ -11,16 +11,11 @@
             <li class="active">Rounds</li>
         </ol>
 
-        @if(true) {
-            <div class="alert alert-info alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                You have an incomplete round.
-            </div>
-        }
 
         <div class="panel panel-warning">
             <div class="panel-heading"><h2>Completed Rounds</h2></div>
             <div class="panel-body">
+
                 <table class="table table-striped">
                     <tr>
                         <th class="col-md-4">Description</th>
@@ -43,17 +38,12 @@
                         }
                 </table>
 
-                <div class="text-center">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li class="disabled"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
+                @if(true) {
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        You have an incomplete round.
+                    </div>
+                }
 
             </div>
         </div>
