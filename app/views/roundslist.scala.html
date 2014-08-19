@@ -26,7 +26,7 @@
                         @for( r <- rounds ) {
                             
                             <tr>
-                                <td><a href="@routes.Application.viewAllEnds(r.id)">@r.description</a></td>
+                                <td><a href="@routes.Application.viewAllEnds(r.id)" target="_blank">@r.description</a></td>
                                 <td>@r.date</td>
                                 <td>@r.score</td>
                                 <td class="delete-round">
@@ -73,15 +73,16 @@
             dataType: 'json',
             success: function(json_data){
                 $('a#inifiniteLoader').hide('1000');
+
+                $("#rounds-table").append(json_data.html);
+
                 if (json_data.end) {
                     hitEnd = true;
                     $("#scroll-message").css('display', 'none');
                     $('a#inifiniteLoader').css('display', 'none');
-                    $("#rounds-table").append(json_data.html);
                     $("#rounds-table").append("<tr><td colspan=\"4\"><p class=\"text-muted\">No more rounds.</p></td></tr>");
                 } else {
                     $("#scroll-message").css('display', 'block');
-                    $("#rounds-table").append(json_data.html);
                 }
             }, error: function() {
                 hitEnd = true;

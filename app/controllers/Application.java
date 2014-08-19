@@ -249,11 +249,11 @@ public class Application extends Controller {
         StringBuilder roundsHTML = new StringBuilder(); 
         for (Round r : rounds) {
             roundsHTML.append(  "<tr>" +
-                                    "<td><a href=\"@routes.Application.viewAllEnds(" + r.id + ")\">" + r.description + "</a></td>" +
+                                    "<td><a href=\"/round/" + r.id + "\" target=\"_blank\">" + r.description + "</a></td>" +
                                     "<td>" + r.date + "</td>" +
                                     "<td>" + r.score + "</td>" +
                                     "<td class=\"delete-round\">" +
-                                        "<form action=\"@routes.Application.deleteRound(" + r.id + ")\" method=\"POST\" id=\"deleteButton\">" +
+                                        "<form action=\"/delete/" + r.id + "\" method=\"POST\" id=\"deleteButton\">" +
                                             "<input type=\"submit\" class=\"btn btn-xs btn-warning\" value=\"Delete\" />" +
                                         "</form>" +
                                     "</td>" +
@@ -281,6 +281,12 @@ public class Application extends Controller {
         else
             return badRequest(login.render(userForm, "Something is wrong. Try again."));
     }
+
+    /*// "Overloaded" delete round, parameter String instead of int. (for infinite scroll)
+    public static Result deleteRoundString(String roundid) {
+        int id = Integer.parseInt(roundid);
+        return redirect(routes.Application.deleteRound(id));
+    }*/
     
     // Renders list of ends of a round.
     @Security.Authenticated(Secured.class)
@@ -303,6 +309,12 @@ public class Application extends Controller {
         
         return ok(end.render(user, round.score, round.ends, round.description, round.date));       // TODO: Redirect back to round list.
     }
+
+    /*// "Overloaded" display round's ends, parameter String instead of int. (for infinite scroll)
+    public static Result viewAllEndsString(String roundid) {
+        int id = Integer.parseInt(roundid);
+        return redirect(routes.Application.viewAllEnds(id));
+    }*/
     
     // Takes in an arrow value String.
     // Returns the integer value of the String.
@@ -395,5 +407,5 @@ public class Application extends Controller {
         //result.put("html", fakeActivity);
         return ok(result);
     }
-    
+
 }

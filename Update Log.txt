@@ -36,6 +36,8 @@ TODO: SSL cert namecheap?
 8/19/2014 12:43 PM PST (PUSHED TO GITHUB AND HEROKU)
 
 Fiddled with to-the-top button to fit mobile view.
+Fixed infinite scroll-displayed rounds (had routing error).
+Open rounds in a new tab.
 ---------------------------------------------------------------------------------------------------------------------
 8/19/2014 5:30 AM PST (PUSHED TO GITHUB AND HEROKU)
 
