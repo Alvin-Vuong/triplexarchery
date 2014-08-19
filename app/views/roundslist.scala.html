@@ -43,7 +43,7 @@
                     <a id="inifiniteLoader"><i class="fa fa-refresh fa-spin fa-3x"></i></a>
                 </div>
 
-                @if(true) {
+                @if(false) {
                     <div class="alert alert-info alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         You have an incomplete round.
@@ -65,7 +65,7 @@
     }); 
 
     function loadArticle(pageNumber){
-        document.getElementById("scroll-message").style.display = "none";
+        $("#scroll-message").css('display', 'none');
         $('a#inifiniteLoader').show('fast');
         $.ajax({
             url: "/view-rounds/loadmore",
@@ -79,13 +79,13 @@
                     $("#rounds-table").append(json_data.html);
                     $("#rounds-table").append("<tr><td colspan=\"4\"><p class=\"text-muted\">No more rounds.</p></td></tr>");
                 } else {
-                    document.getElementById("scroll-message").style.display = "block";
+                    $("#scroll-message").css('display', 'block');
                     $("#rounds-table").append(json_data.html);
                 }
             }, error: function() {
                 hitEnd = true;
                 $('a#inifiniteLoader').css('display', 'none');
-                $("#activity-feed").append("<tr><td colspan=\"3\"><p class=\"alert alert-danger\">Something went wrong.</p></td></tr>");
+                $("#rounds-table").append("<tr><td colspan=\"4\"><p class=\"alert alert-danger\">Something went wrong.</p></td></tr>");
             }
         });
     return false;

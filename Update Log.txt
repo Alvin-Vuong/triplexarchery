@@ -33,6 +33,10 @@ TODO: Edit Database.getInfo() to also get last name. (Need for API dev)
 TODO: Scoring round for field/3D
 TODO: SSL cert namecheap?
 ---------------------------------------------------------------------------------------------------------------------
+8/19/2014 5:30 AM PST (PUSHED TO GITHUB AND HEROKU)
+
+Infinite scroll for viewing rounds list.
+---------------------------------------------------------------------------------------------------------------------
 8/19/2014 1:30 AM PST (PUSHED TO GITHUB AND HEROKU)
 
 Implemented POST-redirect-GET for end-by-end submission.
