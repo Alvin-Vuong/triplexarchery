@@ -75,6 +75,7 @@
                 $('a#inifiniteLoader').hide('1000');
                 if (json_data.end) {
                     hitEnd = true;
+                    $("#scroll-message").css('display', 'none');
                     $('a#inifiniteLoader').css('display', 'none');
                     $("#rounds-table").append(json_data.html);
                     $("#rounds-table").append("<tr><td colspan=\"4\"><p class=\"text-muted\">No more rounds.</p></td></tr>");
