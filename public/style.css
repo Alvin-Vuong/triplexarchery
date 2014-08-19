@@ -122,6 +122,11 @@ hr.style-two {
 	text-align: center;
 	font-size: 24pt;
 	margin-top: -5px;
+	margin-left: -10px;
+}
+
+.navbar-brand {
+	padding-right: 8px;
 }
 
 .scrollup:hover {
