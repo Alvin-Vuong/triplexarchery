@@ -260,6 +260,63 @@ public class Database {
     }
     
     // Looks up an email in the database.
+    // Returns encrypted password of account associated with email, SQLException/Empty string if not found.
+    public static String getPW(String em) {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            String pw = "";
+            
+            User userQuery = new User();
+            
+            String query = "SELECT password FROM account WHERE email = ?";
+            pst = con.prepareStatement(query);
+            pst.setString(1, em);
+            rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                pw = rs.getString(1);
+            }
+            
+            return pw;
+            
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            return new User();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+                
+            }
+        }
+    }
+    
+    // Looks up an email in the database.
     // Returns User object with account_id and first_name associated with email, SQLException if not found.
     public static User getInfo(String em) {
         

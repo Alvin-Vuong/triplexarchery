@@ -33,6 +33,10 @@ TODO: Edit Database.getInfo() to also get last name. (Need for API dev)
 TODO: Scoring round for field/3D
 TODO: SSL cert namecheap?
 ---------------------------------------------------------------------------------------------------------------------
+8/18/2014 11:22 PM PST (PUSHED TO GITHUB)
+
+Added getPW() in Database.java for returning encrypted passwords from database.
+---------------------------------------------------------------------------------------------------------------------
 8/18/2014 4:45 PM PST (PUSHED TO GITHUB AND HEROKU)
 
 Disabled submit button onclick in create.scala.html (end-by-end).
