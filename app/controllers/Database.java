@@ -166,7 +166,7 @@ public class Database {
     // Checks database to see if account exists, and that password is correct.
     // Returns true if entries are valid, false if not.
     // (Comment Blocked: Returns JsonArray: {"valid": true} if login successful, false if not.)
-    public static boolean login(String em, String pw) throws SQLException{
+    public static boolean login(String em, String pw) throws SQLException {
         
         Connection con = null;
         PreparedStatement pst = null;
@@ -261,7 +261,7 @@ public class Database {
     
     // Looks up an email in the database.
     // Returns encrypted password of account associated with email, SQLException/Empty string if not found.
-    public static String getPW(String em) {
+    public static String getPW(String em) throws SQLException {
         
         Connection con = null;
         PreparedStatement pst = null;
@@ -292,7 +292,7 @@ public class Database {
         } catch (SQLException ex) {
             Logger lgr = Logger.getLogger(Database.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
-            return new User();
+            throw new SQLException();
 
         } finally {
 
