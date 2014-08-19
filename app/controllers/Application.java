@@ -187,6 +187,8 @@ public class Application extends Controller {
         }
     }
 
+    // Renders end submission page in end-by-end round entry.
+    // for POST-redirect-GET design
     @Security.Authenticated(Secured.class)
     public static Result submitDesktop(int id) {
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
