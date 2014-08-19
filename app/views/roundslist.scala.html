@@ -11,10 +11,12 @@
             <li class="active">Rounds</li>
         </ol>
 
+
         <div class="panel panel-warning">
             <div class="panel-heading"><h2>Completed Rounds</h2></div>
             <div class="panel-body">
-                <table class="table table-striped">
+
+                <table class="table table-striped" id="rounds-table">
                     <tr>
                         <th class="col-md-4">Description</th>
                         <th class="col-md-2">Date</th>
@@ -35,7 +37,78 @@
                             </tr>
                         }
                 </table>
+
+                <div class="text-center">
+                    <p id="scroll-message">scroll down for more</p>
+                    <a id="inifiniteLoader"><i class="fa fa-refresh fa-spin fa-3x"></i></a>
+                </div>
+
+                @if(true) {
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        You have an incomplete round.
+                    </div>
+                }
+
             </div>
         </div>
     </div>
+
+<script type="text/javascript">
+    var count = 2;
+    var hitEnd = false;
+    $(window).scroll(function(){
+    if (!hitEnd && ($(window).scrollTop() == $(document).height() - $(window).height())) {
+        loadArticle(count);
+        count++;
+    }
+    }); 
+
+    function loadArticle(pageNumber){
+        document.getElementById("scroll-message").style.display = "none";
+        $('a#inifiniteLoader').show('fast');
+        $.ajax({
+            url: "/view-rounds/loadmore",
+            data: { page: pageNumber },
+            dataType: 'json',
+            success: function(json_data){
+                $('a#inifiniteLoader').hide('1000');
+                if (json_data.end) {
+                    hitEnd = true;
+                    $('a#inifiniteLoader').css('display', 'none');
+                    $("#rounds-table").append(json_data.html);
+                    $("#rounds-table").append("<tr><td colspan=\"4\"><p class=\"text-muted\">No more rounds.</p></td></tr>");
+                } else {
+                    document.getElementById("scroll-message").style.display = "block";
+                    $("#rounds-table").append(json_data.html);
+                }
+            }, error: function() {
+                hitEnd = true;
+                $('a#inifiniteLoader').css('display', 'none');
+                $("#activity-feed").append("<tr><td colspan=\"3\"><p class=\"alert alert-danger\">Something went wrong.</p></td></tr>");
+            }
+        });
+    return false;
+    }
+    
+    $(document).ready(function () {
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('.scrollup').fadeIn();
+            } else {
+                $('.scrollup').fadeOut();
+            }
+        });
+
+        $('.scrollup').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
+
+    });
+</script>
+
 }

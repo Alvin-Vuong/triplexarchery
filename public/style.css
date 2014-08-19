@@ -45,6 +45,10 @@
 	color: #000000;
 }
 
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #ec971f;
+}
+
 .activity-feed tr td a {
 	color: #000000;
 	text-decoration: none;
@@ -109,4 +113,29 @@ hr.style-two {
 .above-panel li a:hover {
 	color: #777777;
 	text-decoration: none;
+}
+
+.scrollup {
+	width: 40px;
+	height: 40px;
+	display: none;
+	color: #ec971f;
+	text-decoration: none;
+	text-align: center;
+	font-size: 24pt;
+}
+
+.scrollup:hover {
+	color: #fff !important;
+	text-decoration: none;
+}
+
+#scroll-message {
+	font-size: 10pt;
+	color: #aaa;
+}
+
+#inifiniteLoader {
+	color: #f0ad4e;
+	display: none;
 }

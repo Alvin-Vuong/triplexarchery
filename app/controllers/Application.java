@@ -5,14 +5,15 @@ import play.mvc.Result;
 import play.mvc.Security;
 import play.data.Form;
 import views.html.*;
-import models.User;
-import models.End;
-import models.Round;
+import models.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.SQLException;
 import org.jasypt.util.digest.*;
 import org.jasypt.util.password.*;
+import play.libs.Json;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Application extends Controller {
     
@@ -229,6 +230,45 @@ public class Application extends Controller {
         
         return ok(roundslist.render(user, rounds));
     }
+
+    // Renders list of rounds for infinite scroll, to be appended to rounds list page.
+    @Security.Authenticated(Secured.class)
+    public static Result loadRounds(String set) {
+        System.out.println(set);
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        List<Round> rounds = new ArrayList<Round>();
+        int setNum = Integer.parseInt(set);
+
+        try {
+            rounds = Database.getTenRounds(user.id, setNum);
+        } catch (SQLException e) {
+            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+        }
+
+        StringBuilder roundsHTML = new StringBuilder(); 
+        for (Round r : rounds) {
+            roundsHTML.append(  "<tr>" +
+                                    "<td><a href=\"@routes.Application.viewAllEnds(" + r.id + ")\">" + r.description + "</a></td>" +
+                                    "<td>" + r.date + "</td>" +
+                                    "<td>" + r.score + "</td>" +
+                                    "<td class=\"delete-round\">" +
+                                        "<form action=\"@routes.Application.deleteRound(" + r.id + ")\" method=\"POST\" id=\"deleteButton\">" +
+                                            "<input type=\"submit\" class=\"btn btn-xs btn-warning\" value=\"Delete\" />" +
+                                        "</form>" +
+                                    "</td>" +
+                                "</tr>");
+        }
+
+        ObjectNode result = Json.newObject();
+        if (rounds.size() < 10) {
+            result.put("end", true);
+        } else {
+            result.put("end", false);
+        }
+        result.put("html", roundsHTML.toString());
+        return ok(result);
+    }
     
     // Handles deletion of chosen round and renders the resulting success page.
     @Security.Authenticated(Secured.class)
@@ -289,4 +329,71 @@ public class Application extends Controller {
         return total;
     }
 
+    public static Result loadActivity(String pageNumber) {
+
+        try {
+            Thread.sleep(2000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+
+        String fakeActivity = "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>" +
+                              "<tr>" + 
+                                  "<td class=\"col-xs-1\"><a href=\"#\"><span class=\"glyphicon glyphicon-plus black\"></span></a></td>" +
+                                  "<td><a href=\"#\">You shot a new round, with score: 260.</a></td>" +
+                                  "<td class=\"activity-time\"><a href=\"#\">5 days ago</a></td>" +
+                              "</tr>";
+
+        ObjectNode result = Json.newObject();
+        result.put("end", true);
+        result.put("html", "<tr><td colspan=\"3\"><p class=\"text-muted\">No more news.</p></td></tr>");
+        //result.put("end", false);
+        //result.put("html", fakeActivity);
+        return ok(result);
+    }
+    
 }
