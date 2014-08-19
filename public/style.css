@@ -121,15 +121,14 @@ hr.style-two {
 	text-decoration: none;
 	text-align: center;
 	font-size: 22pt;
-	margin-top: -3px;
-}
-
-.navbar-brand {
-	padding-right: 8px;
 }
 
 .scrollup:hover {
 	text-decoration: none;
+}
+
+.navbar-brand {
+	padding-right: 8px;
 }
 
 #scroll-message {
