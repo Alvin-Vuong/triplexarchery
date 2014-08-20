@@ -21,13 +21,14 @@ public class Application extends Controller {
     final static Form<End> endForm = Form.form(End.class);
     final static Form<Round> roundForm = Form.form(Round.class);
     
-    // Render homepage.
+    // Redirect to dashboard if logged in; homepage if not.
     @Security.Authenticated(Secured.class)
     public static Result index() {
         request().username();
         return redirect(routes.Application.dashboard());
     }
     
+    // Renders homepage.
     public static Result home() {
         return ok(index.render(userForm));
     }
@@ -36,33 +37,29 @@ public class Application extends Controller {
     public static Result login() {
         Form<User> filledForm = userForm.bindFromRequest();
         User user = filledForm.get();
-        
-        // TODO: check DB to see if user is coach
 
         try {
             StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
             String retrievedPW = Database.getPW(user.email);
-            
-            //boolean log = Database.login(user.email, user.password);
 
-            if (encryptor.checkPassword(user.password, retrievedPW)) {
+            if (!retrievedPW.equals("") && encryptor.checkPassword(user.password, retrievedPW)) {
                 User userQuery = Database.getInfo(user.email);
                 userQuery.email = user.email;
                 userQuery.password = user.password;
                 // TODO: 911
                 if (userQuery.id == 0) {
-                    return badRequest(login.render(filledForm, "Something is wrong. Try again."));
+                    return internalServerError(login.render(filledForm, "Something is wrong. Try again."));
                 } else {
                     session().clear();
                     session("email", userQuery.email);
                     return redirect(routes.Application.dashboard());
                 }
             } else {
-                return badRequest(login.render(filledForm, "Incorrect email or password."));
+                return unauthorized(login.render(filledForm, "Incorrect email or password."));
                 // TODO: fix navbar on failed login -- says "logout" when not logged in
             }
         } catch (SQLException e) {
-            return badRequest(login.render(filledForm, "Something is wrong. Try again."));
+            return internalServerError(login.render(filledForm, "Something is wrong. Try again."));
         }
     }
     
@@ -106,13 +103,14 @@ public class Application extends Controller {
             }
             // Redirect to register again
             else {
-                return badRequest(register.render(filledForm, created.email + " already has an account."));
+                return unauthorized(register.render(filledForm, created.email + " already has an account."));
             }
         } catch (SQLException e) {
-            return badRequest(register.render(filledForm, "Something is wrong. Try again."));
+            return internalServerError(register.render(filledForm, "Something is wrong. Try again."));
         }
     }
     
+    // Renders about page.
     public static Result about() {
         return ok(about.render());
     }
@@ -127,13 +125,12 @@ public class Application extends Controller {
         
         User user = Database.getInfo(request().username());
         user.email = request().username();
-        System.out.println(user.id); // CANNOT DELETE THIS LINE WHY
         
         try {
             int r_id = Database.addRound(user.id, d);
             return redirect(routes.Application.endSubmission(r_id, 1));
         } catch (SQLException e){
-            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
         }
     }
 
@@ -148,7 +145,7 @@ public class Application extends Controller {
         try {
             curScore = Database.getScore(user.id, r_id);
         } catch (SQLException e) {
-            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
         }
 
         return ok(create.render(user, r_id, endForm, end, curScore));
@@ -174,16 +171,14 @@ public class Application extends Controller {
         
         User user = Database.getInfo(request().username());
         user.email = request().username();
-        System.out.println(user.id); // CANNOT DELETE THIS LINE WHY AGAIN
         
         try {
             Database.addEnd(user.id, roundid, end, created.a1, created.a2, created.a3);    
         } catch (SQLException e) {
-            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
         }
         
         if (end == 10) {                                                // TODO: 10 can be replaced with numEnds
-        // TODO: check DB to see if user is coach
             return redirect(routes.Application.roundsList());
         } else {
             return redirect(routes.Application.endSubmission(roundid, end+1));
@@ -206,7 +201,7 @@ public class Application extends Controller {
              }
              
         } catch (SQLException e) {
-            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
         }
         
         User user = Database.getInfo(request().username());
@@ -223,9 +218,9 @@ public class Application extends Controller {
         List<Round> rounds = new ArrayList<Round>();
         
         try {
-            rounds = Database.getTenRounds(user.id, 1);                      // TODO: Make "Load More" button that increments second parameter.
+            rounds = Database.getTenRounds(user.id, 1);
         } catch (SQLException e) {
-            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
         }
         
         return ok(roundslist.render(user, rounds));
@@ -241,7 +236,7 @@ public class Application extends Controller {
         try {
             rounds = Database.getTenRounds(user.id, set);
         } catch (SQLException e) {
-            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
         }
 
         List<JsonNode> rlist = new ArrayList<JsonNode>();
@@ -255,7 +250,6 @@ public class Application extends Controller {
         }
 
         JsonNode roundSet = Json.toJson(rlist);
-
         ObjectNode result = Json.newObject();
         if (rounds.size() < 10) {
             result.put("end", true);
@@ -275,14 +269,8 @@ public class Application extends Controller {
         if (Database.deleteRound(roundid))
             return redirect(routes.Application.roundsList());
         else
-            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
     }
-
-    /*// "Overloaded" delete round, parameter String instead of int. (for infinite scroll)
-    public static Result deleteRoundString(String roundid) {
-        int id = Integer.parseInt(roundid);
-        return redirect(routes.Application.deleteRound(id));
-    }*/
     
     // Renders list of ends of a round.
     @Security.Authenticated(Secured.class)
@@ -297,20 +285,14 @@ public class Application extends Controller {
             
             // Prevents URL Injection by verifying the logged in user is accessing his/her own data.
             if (user.id != Database.getAccount(roundid))
-                return badRequest(error.render(user));
+                return unauthorized(error.render(user));
             
         } catch (SQLException e) {
-            return badRequest(login.render(userForm, "Something is wrong. Try again."));
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
         }
         
         return ok(end.render(user, round.score, round.ends, round.description, round.date));       // TODO: Redirect back to round list.
     }
-
-    /*// "Overloaded" display round's ends, parameter String instead of int. (for infinite scroll)
-    public static Result viewAllEndsString(String roundid) {
-        int id = Integer.parseInt(roundid);
-        return redirect(routes.Application.viewAllEnds(id));
-    }*/
     
     // Takes in an arrow value String.
     // Returns the integer value of the String.
@@ -339,8 +321,8 @@ public class Application extends Controller {
 
     public static Result loadActivity(String pageNumber) {
 
-        try {
-            Thread.sleep(2000);                 //1000 milliseconds is one second.
+        /*try {
+            Thread.sleep(2000);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -401,7 +383,8 @@ public class Application extends Controller {
         result.put("html", "<tr><td colspan=\"3\"><p class=\"text-muted\">No more news.</p></td></tr>");
         //result.put("end", false);
         //result.put("html", fakeActivity);
-        return ok(result);
+        return ok(result);*/
+        return ok("to be implemented");
     }
 
 }
