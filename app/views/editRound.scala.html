@@ -10,7 +10,7 @@
 		<div class="panel panel-warning">
 		    <div class="panel-heading text-center"><h3>Edit round</h3></div>
 		   	<div class="panel-body text-center">
-		   		<form action="@routes.Application.submitDesktop(u.id)" method="POST">                                                       <!--This needs to call editRound()-->
+		   		<form action="@routes.Application.submitDesktop()" method="POST">                                                       <!--This needs to call editRound()-->
 		   			<div class="form-group">
 				   		<label for"desc"><h4>Round description</h4></label>                                                                 <!--Get Round Description from database-->
 				   		<input type="text" id="desc" class="form-control" name="description" placeholder="" required autofocus/>            <!--Fill in with old description-->

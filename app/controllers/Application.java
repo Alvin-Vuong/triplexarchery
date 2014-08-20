@@ -187,7 +187,10 @@ public class Application extends Controller {
 
     // Renders page for entering completed round.
     @Security.Authenticated(Secured.class)
-    public static Result submitDesktop(int id) {
+    public static Result submitDesktop() {
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        int id = user.id;
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
 
@@ -203,9 +206,6 @@ public class Application extends Controller {
         } catch (SQLException e) {
             return internalServerError(login.render(userForm, "Something is wrong. Try again."));
         }
-        
-        User user = Database.getInfo(request().username());
-        user.email = request().username();
 
         return redirect(routes.Application.roundsList());
     }
