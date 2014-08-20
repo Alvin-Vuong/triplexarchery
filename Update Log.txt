@@ -38,6 +38,7 @@ TODO: SSL cert namecheap?
 Fiddled with to-the-top button to fit mobile view.
 Fixed infinite scroll-displayed rounds (had routing error).
 Open rounds in a new tab.
+Migrated round formatting from Application.java to roundslist.scala.html (javascript).
 ---------------------------------------------------------------------------------------------------------------------
 8/19/2014 5:30 AM PST (PUSHED TO GITHUB AND HEROKU)
 

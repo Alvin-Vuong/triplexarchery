@@ -17,7 +17,7 @@ POST    /dashboard/:id                                  controllers.Application.
 POST    /delete/:roundid                                controllers.Application.deleteRound(roundid: Int)
 POST    /round/:roundid/end/:end                        controllers.Application.submit(roundid:Int, end: Int)
 GET     /view-rounds                                    controllers.Application.roundsList()
-GET     /view-rounds/loadmore							controllers.Application.loadRounds(page: String)
+GET     /view-rounds/loadmore/:page						controllers.Application.loadRounds(page: Int)
 GET     /round/:roundid                                 controllers.Application.viewAllEnds(roundid: Int)
 GET     /register                                       controllers.Application.register()
 POST    /verify                                         controllers.Application.verify()

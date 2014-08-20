@@ -64,17 +64,22 @@
     }
     }); 
 
-    function loadArticle(pageNumber){
+    function loadArticle(pageNumber) {
         $("#scroll-message").css('display', 'none');
         $('a#inifiniteLoader').show('fast');
         $.ajax({
-            url: "/view-rounds/loadmore",
-            data: { page: pageNumber },
+            url: "/view-rounds/loadmore/" + pageNumber, 
             dataType: 'json',
             success: function(json_data){
                 $('a#inifiniteLoader').hide('1000');
 
-                $("#rounds-table").append(json_data.html);
+                for (var i = 0; i < json_data.rounds.length; i++) {
+                    $("#rounds-table").append(formatRound(json_data.rounds[i].id,
+                                                          json_data.rounds[i].description,
+                                                          json_data.rounds[i].date,
+                                                          json_data.rounds[i].score
+                                                         ));
+                }
 
                 if (json_data.end) {
                     hitEnd = true;
@@ -91,6 +96,20 @@
             }
         });
     return false;
+    }
+
+    function formatRound(id, desc, date, score) {
+        var roundHtml=  "<tr>" +
+                            "<td><a href=\"/round/" + id + "\" target=\"_blank\">" + desc + "</a></td>" +
+                            "<td>" + date + "</td>" +
+                            "<td>" + score + "</td>" +
+                            "<td class=\"delete-round\">" +
+                                "<form action=\"/delete/" + id + "\" method=\"POST\" id=\"deleteButton\">" +
+                                    "<input type=\"submit\" class=\"btn btn-xs btn-warning\" value=\"Delete\" />" +
+                                "</form>" +
+                            "</td>" +
+                        "</tr>";
+        return roundHtml;
     }
     
     $(document).ready(function () {

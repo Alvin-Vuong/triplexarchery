@@ -233,32 +233,28 @@ public class Application extends Controller {
 
     // Renders list of rounds for infinite scroll, to be appended to rounds list page.
     @Security.Authenticated(Secured.class)
-    public static Result loadRounds(String set) {
-        System.out.println(set);
+    public static Result loadRounds(Integer set) {
         User user = Database.getInfo(request().username());
         user.email = request().username();
         List<Round> rounds = new ArrayList<Round>();
-        int setNum = Integer.parseInt(set);
 
         try {
-            rounds = Database.getTenRounds(user.id, setNum);
+            rounds = Database.getTenRounds(user.id, set);
         } catch (SQLException e) {
             return badRequest(login.render(userForm, "Something is wrong. Try again."));
         }
 
-        StringBuilder roundsHTML = new StringBuilder(); 
+        List<JsonNode> rlist = new ArrayList<JsonNode>();
         for (Round r : rounds) {
-            roundsHTML.append(  "<tr>" +
-                                    "<td><a href=\"/round/" + r.id + "\" target=\"_blank\">" + r.description + "</a></td>" +
-                                    "<td>" + r.date + "</td>" +
-                                    "<td>" + r.score + "</td>" +
-                                    "<td class=\"delete-round\">" +
-                                        "<form action=\"/delete/" + r.id + "\" method=\"POST\" id=\"deleteButton\">" +
-                                            "<input type=\"submit\" class=\"btn btn-xs btn-warning\" value=\"Delete\" />" +
-                                        "</form>" +
-                                    "</td>" +
-                                "</tr>");
+            ObjectNode round = Json.newObject();
+            round.put("id", r.id);
+            round.put("description", r.description);
+            round.put("date", r.date);
+            round.put("score", r.score);
+            rlist.add(round);
         }
+
+        JsonNode roundSet = Json.toJson(rlist);
 
         ObjectNode result = Json.newObject();
         if (rounds.size() < 10) {
@@ -266,7 +262,7 @@ public class Application extends Controller {
         } else {
             result.put("end", false);
         }
-        result.put("html", roundsHTML.toString());
+        result.put("rounds", roundSet);
         return ok(result);
     }
     
