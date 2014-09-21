@@ -33,7 +33,7 @@ TODO: Edit Database.getInfo() to also get last name. (Need for API dev)
 TODO: Scoring round for field/3D
 TODO: SSL cert namecheap?
 
-TODO: Handle Incomplete Rounds (maybe initialize  with all fields with Incomplete and rewrite each field as scores are entered)
+TODO: Handle Incomplete Rounds (maybe initialize with all fields with Incomplete and rewrite each field as scores are entered)
 TODO: ^ Add a check to see if round is incomplete before viewing.
 TODO: Account Settings (deleting account, changing password)
 TODO: Editing rounds.
