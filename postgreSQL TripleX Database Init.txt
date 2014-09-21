@@ -45,3 +45,33 @@ SET DEFAULT '';
 
 ALTER TABLE round ALTER COLUMN date_created
 SET DEFAULT CURRENT_DATE;
+
+ALTER TABLE round ALTER COLUMN end_1
+SET DEFAULT ARRAY['0','0','0']::text[];
+
+ALTER TABLE round ALTER COLUMN end_2
+SET DEFAULT ARRAY['0','0','0']::text[];
+
+ALTER TABLE round ALTER COLUMN end_3
+SET DEFAULT ARRAY['0','0','0']::text[];
+
+ALTER TABLE round ALTER COLUMN end_4
+SET DEFAULT ARRAY['0','0','0']::text[];
+
+ALTER TABLE round ALTER COLUMN end_5
+SET DEFAULT ARRAY['0','0','0']::text[];
+
+ALTER TABLE round ALTER COLUMN end_6
+SET DEFAULT ARRAY['0','0','0']::text[];
+
+ALTER TABLE round ALTER COLUMN end_7
+SET DEFAULT ARRAY['0','0','0']::text[];
+
+ALTER TABLE round ALTER COLUMN end_8
+SET DEFAULT ARRAY['0','0','0']::text[];
+
+ALTER TABLE round ALTER COLUMN end_9
+SET DEFAULT ARRAY['0','0','0']::text[];
+
+ALTER TABLE round ALTER COLUMN end_10
+SET DEFAULT ARRAY['0','0','0']::text[];
