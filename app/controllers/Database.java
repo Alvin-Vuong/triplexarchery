@@ -1042,4 +1042,63 @@ public class Database {
             }
         }
     }
+    
+    // Deletes an account from the database.
+    // Returns true if successful, false if not.
+    public static boolean deleteUser(int user_id) {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+
+        try {
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            // Delete rounds associated with account first.
+            String stm = "DELETE FROM round WHERE account_id = ?";              //TODO: Test this function. Pretty sure it works.
+            pst = con.prepareStatement(stm);
+            pst.setInt(1, user_id);
+            
+            pst.executeUpdate();
+            
+            // Now delete the account itself.
+            stm = "DELETE FROM account WHERE account_id = ?";
+            pst = con.prepareStatement(stm);
+            pst.setInt(1, user_id);
+            
+            pst.executeUpdate();
+            
+            return true;
+
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            return false;
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
 }
