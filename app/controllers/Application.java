@@ -218,6 +218,11 @@ public class Application extends Controller {
         int id = user.id;
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
+		try {
+            rounds = Database.getTenRounds(user.id, 1);
+        } catch (SQLException e) {
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
+        }
 		List<Round> rounds = new ArrayList<Round>();
 
 		for (int i = 0; i <= 29; i++) {                                                               
