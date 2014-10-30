@@ -246,7 +246,7 @@ public class Application extends Controller {
 			else if (r.rawEnds[i] == "10")
 			{}
 			else
-				return ok(roundslist.render(user, rounds);
+				return ok(roundslist.render(user, rounds));
 		}
         try {
 			int total = 0;
