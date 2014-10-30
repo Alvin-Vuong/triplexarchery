@@ -245,12 +245,12 @@ public class Application extends Controller {
 			else if (r.rawEnds[i] == "10")
 			{}
 			else
-				return unauthorized(editRound.render(filledForm, "You may only enter m, 1-10, or X."));
+				return unauthorized(editRound.render(user, round.ends, round.description, round.date, roundForm));
 		}
         try {
 			int total = 0;
 			for (int i = 0; i <= 29; i++) {
-				total += toValue(r.rawEnds[i]);
+				total += toValue(r.rawEnds[i], false);
 			}
 			
             for (int i = 1; i <= 10; i++) {                                                                  // TODO: Replace 10 with numEnds.
