@@ -209,6 +209,60 @@ public class Application extends Controller {
 
         return redirect(routes.Application.roundsList());
     }
+
+	// Renders page for entering edited round
+    @Security.Authenticated(Secured.class)
+    public static Result submitEdit() {
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        int id = user.id;
+        Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
+        Round r = filledForm.get();
+
+		for (int i = 0; i <= 29; i++) {                                                               
+        		if (r.rawEnds[i] == "m")
+			{}
+			else if (r.rawEnds[i] == "X")
+			{}
+			else if (r.rawEnds[i] == "1")
+			{}
+			else if (r.rawEnds[i] == "2")
+			{}
+			else if (r.rawEnds[i] == "3")
+			{}
+			else if (r.rawEnds[i] == "4")
+			{}
+			else if (r.rawEnds[i] == "5")
+			{}
+			else if (r.rawEnds[i] == "6")
+			{}
+			else if (r.rawEnds[i] == "7")
+			{}
+			else if (r.rawEnds[i] == "8")
+			{}
+			else if (r.rawEnds[i] == "9")
+			{}
+			else if (r.rawEnds[i] == "10")
+			{}
+			else
+				return unauthorized(editRound.render(filledForm, "You may only enter m, 1-10, or X."));
+		}
+        try {
+			int total = 0;
+			for (int i = 0; i <= 29; i++) {
+				total += toValue(r.rawEnds[i]);
+			}
+			
+            for (int i = 1; i <= 10; i++) {                                                                  // TODO: Replace 10 with numEnds.
+                Database.editEnd(id, rnd_id, i, r.rawEnds[(i*3)-3], r.rawEnds[(i*3)-2], r.rawEnds[(i*3)-1], total);
+            }
+             
+        } catch (SQLException e) {
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
+        }
+
+        return redirect(routes.Application.roundsList());
+    }
     
     // Renders list of rounds, with links to view each round specifically.
     @Security.Authenticated(Secured.class)
@@ -294,6 +348,28 @@ public class Application extends Controller {
         return ok(end.render(user, round.score, round.ends, round.description, round.date));       // TODO: Redirect back to round list.
     }
     
+	//Renders edit page for a round
+	@Security.Authenticated(Secured.class)
+    public static Result viewEndEditor(int roundid) {
+        User user = Database.getInfo(request().username());
+        user.email = request().username();
+        
+        Round round = new Round();
+        
+        try {
+            round = Database.getRoundInfo(roundid);
+            
+            // Prevents URL Injection by verifying the logged in user is accessing his/her own data.
+            if (user.id != Database.getAccount(roundid))
+                return unauthorized(error.render(user));
+            
+        } catch (SQLException e) {
+            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
+        }
+        
+        return ok(editRound.render(user, round.ends, round.description, round.date, roundForm)); 	//TODO: EVERYTHINGGGGGGGGGGGGGGGGGGG
+    }
+
     // Takes in an arrow value String.
     // Returns the integer value of the String.
     public static int toValue(String s, boolean isOuter) {

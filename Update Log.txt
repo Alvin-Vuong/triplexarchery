@@ -34,10 +34,11 @@ TODO: Account settings
 TODO: Say no rounds if user has no rounds
 
 ---------------------------------------------------------------------------------------------------------------------
-//2014 : M PST (PUSHED TO GITHUB)
+10/30/2014 3:51 AM PST (PUSHED TO GITHUB AND HEROKU)
 
 Added deleteUser() function to Database.java.
 Cleaned up TODO's in Update Log.
+Implemented waaaayyyyy too much bullshit, but hopefully created a working edit mode
 ---------------------------------------------------------------------------------------------------------------------
 9/21/2014 2:40 PM PST (PUSHED TO GITHUB AND HEROKU)
 

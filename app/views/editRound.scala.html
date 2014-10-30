@@ -1,59 +1,99 @@
-@(u: User, endForm: Form[Round])
+@(u: User, ends: List[End], desc: String, date: String, endForm: Form[Round])
 
-@template("Edit Round") {
+@template("View Round") {
     <li><a href="@routes.Application.dashboard()"><span class="glyphicon glyphicon-user"></span> @u.firstname</a></li>
     <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Account</a></li>
     <li><a href="@routes.Application.logout()"><span class="glyphicon glyphicon-off"></span> Log out</a></li>
 } {
 
-	<div class="col-lg-8 col-lg-offset-2">
-		<div class="panel panel-warning">
-		    <div class="panel-heading text-center"><h3>Edit round</h3></div>
-		   	<div class="panel-body text-center">
-		   		<form action="@routes.Application.submitDesktop()" method="POST">                                                       <!--This needs to call editRound()-->
-		   			<div class="form-group">
-				   		<label for"desc"><h4>Round description</h4></label>                                                                 <!--Get Round Description from database-->
-				   		<input type="text" id="desc" class="form-control" name="description" placeholder="" required autofocus/>            <!--Fill in with old description-->
-				   	</div><br />
+    <div class="col-lg-8 col-lg-offset-2">
+        <ol class="breadcrumb above-panel">
+          <li><a href="@routes.Application.dashboard()">Dashboard</a></li>
+          <li><a href="@routes.Application.roundsList()">Rounds</a></li>
+          <li class="active">View Round</li>
+        </ol>
 
-				   	<h4>Enter arrow scores</h4>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h2>@desc</h2>
+                <h4>@date</h4>
+            </div>
 
-				   		<table class="table table-striped">
-				   			<tr class="warning table-bordered">
-				   				<th class="col-sm-2 text-center">End</th>
-				   				<th class="col-sm-2 text-center">Arrow 1</th>
-				   				<th class="col-sm-2 text-center">Arrow 2</th>
-				   				<th class="col-sm-2 text-center">Arrow 3</th>
-				   			</tr>
-
-				   			@for(a <- 1 to 10) {
+            <div class="panel-body">
+				<form action="@routes.Application.submitEdit()" method="POST">
+                		<table class="table table-striped">
+                		    <tr class="warning">
+                		        <th class="col-md-1 text-center" style="border-right: 1px solid #dddddd;">End #</th>
+                		        <th class="col-md-2 text-center">Arrow 1</th>
+                		        <th class="col-md-2 text-center">Arrow 2</th>
+                		        <th class="col-md-2 text-center">Arrow 3</th>
+                		    </tr>
+							@for(e <- ends) {
 				   				<tr>
-				   					<td>@a</td>
-
-					   				@for(e <- 3 to 1 by -1) {
-					   					<td>
-						   					<select class="form-control" name="rawEnds[@(3*a-e)]">
-											    <option value="m">miss</option>
-											    @for(v <- 1 to 10) {
-											    	<option value="@v">@v</option>
-											    }
-											    <option value="X" selected>X</option>                                                       <!--Get previous arrow values and use as selected-->
-											</select>
-										</td>
-					   				}
-
-				   			</tr>
+									<td>@e.endNumber</td>
+									<td>
+										<div class="form-group">
+                  							<input type="arr1" class="form-control" name="rawEnds[@(3*a-3)]" value="e.a1" />
+                							</div>
+									</td>
+									<td>
+										<div class="form-group">
+                  							<input type="arr2" class="form-control" name="rawEnds[@(3*a-2)]" value="e.a2" />
+                							</div>
+									</td>
+									<td>
+										<div class="form-group">
+					                			<input type="arr3" class="form-control" name="rawEnds[@(3*a-1)]" value="e.a3" />
+                							</div>				   					
+									</td>
+							}							
+							<!--		<td>
+					   					<select class="form-control" name="rawEnds[@(3*a-3)]">
+										    <option value="m">miss</option>
+										    @for(v <- 1 to 10) {
+										    	<option value="@v">@v</option>
+										    }
+										    <option value="X" selected>X</option>
+										</select>
+									</td>
+									<td>
+					   					<select class="form-control" name="rawEnds[@(3*a-2)]">
+										    <option value="m">miss</option>
+										    @for(v <- 1 to 10) {
+										    	<option value="@v">@v</option>
+										    }
+										    <option value="X" selected>X</option>
+										</select>
+									</td>
+									<td>
+					   					<select class="form-control" name="rawEnds[@(3*a-1)]">
+										    <option value="m">miss</option>
+										    @for(v <- 1 to 10) {
+										    	<option value="@v">@v</option>
+										    }
+										    <option value="X" selected>X</option>
+										</select>
+									</td>
+				   				</tr>
 				   			}
+                        @for( e <- ends ) {
+                            <tr>
+                                <td class="text-center" style="border-right: 1px solid #dddddd;">@e.endNumber</td>
+                                <td class="text-center">@e.a1</td>
+                                <td class="text-center">@e.a2</td>
+                                <td class="text-center">@e.a3</td>
+                            </tr>
+                    					
+                        }
+                    				-->
+					</table>
+			
+					<div class="form-group">
+				   		<input type="submit" class="btn btn-warning" value="Submit Round" />
+				 	</div>
 
-				   		</table>
-
-				   		<div class="form-group">
-				   			<input type="submit" class="btn btn-warning" value="Done Editing" />
-				   		</div>
-	            	
-		   		</form>
-
-		   	</div>
-	   	</div>
-	</div>
+				</form>
+            </div>
+        </div>
+    </div>
 }

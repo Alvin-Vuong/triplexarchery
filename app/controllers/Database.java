@@ -663,6 +663,58 @@ public class Database {
             }
         }
     }
+
+    // Edits an end in the round table in the database.
+    // If unsuccessful, should throw a SQLException.
+    public static void editEnd(int acc_id, int rnd_id, int end, String arrow1, String arrow2, String arrow3, int newTotal) throws SQLException {
+        
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        String url = DB.URL();
+        String user = DB.user();
+        String password = DB.pass();
+        
+        try {
+            
+            String[] arrows = {arrow1, arrow2, arrow3};
+            int endTotal = Application.sumArrows(arrows, true);
+            
+            con = DriverManager.getConnection(url, user, password);
+            
+            String stm = "UPDATE round SET end_" + end + " = '{" + arrow1 + ", " + arrow2 + ", " + arrow3 + "}', score = ?, end_" + end + "_total = " + endTotal + " WHERE account_id = ? AND round_id = ?";
+            pst = con.prepareStatement(stm);
+            pst.setInt(1, newTotal);
+            pst.setInt(2, acc_id);
+            pst.setInt(3, rnd_id);
+            pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            throw new SQLException();
+
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+
+                Logger lgr = Logger.getLogger(Database.class.getName());
+                lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
     
     // Retrieves all ends of a given round in the database.
     // Returns a List containing these ends, throws SQLException otherwise.
