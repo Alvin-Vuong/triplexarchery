@@ -218,12 +218,6 @@ public class Application extends Controller {
         int id = user.id;
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
-		List<Round> rounds = new ArrayList<Round>();
-		try {
-            rounds = Database.getTenRounds(user.id, 1);
-        } catch (SQLException e) {
-            return internalServerError(login.render(userForm, "Something is wrong. Try again."));
-        }
 
 		for (int i = 0; i <= 29; i++) {                                                               
         		if (r.rawEnds[i] == "m")
@@ -251,6 +245,12 @@ public class Application extends Controller {
 			else if (r.rawEnds[i] == "10")
 			{}
 			else
+				List<Round> rounds = new ArrayList<Round>();
+				try {
+         		   rounds = Database.getTenRounds(user.id, 1);
+				} catch (SQLException e) {
+            			return internalServerError(login.render(userForm, "Something is wrong. Try again."));
+       			}
 				return ok(roundslist.render(user, rounds));
 		}
         try {
