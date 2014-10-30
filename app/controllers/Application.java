@@ -218,6 +218,7 @@ public class Application extends Controller {
         int id = user.id;
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
+		rounds = Database.getTenRounds(user.id, 1);
 
 		for (int i = 0; i <= 29; i++) {                                                               
         		if (r.rawEnds[i] == "m")
@@ -245,7 +246,7 @@ public class Application extends Controller {
 			else if (r.rawEnds[i] == "10")
 			{}
 			else
-				return unauthorized(editRound.render(user, round.ends, round.description, round.date, roundForm));
+				return ok(roundslist.render(user, rounds);
 		}
         try {
 			int total = 0;
