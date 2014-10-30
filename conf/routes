@@ -14,7 +14,7 @@ POST    /new/end-by-end                                 controllers.Application.
 GET     /new/round/:r_id/end/:end						controllers.Application.endSubmission(r_id: Int, end: Int)
 GET     /new/completed                                  controllers.Application.createDesktop()
 POST    /submit-completed-round                         controllers.Application.submitDesktop()
-POST		/submit-edited-round								controllers.Application.submitEdit()
+POST		/submit-edited-round								controllers.Application.submitEdit(roundid: Int)
 POST    /delete/:roundid                                controllers.Application.deleteRound(roundid: Int)
 POST    /round/:roundid/end/:end                        controllers.Application.submit(roundid:Int, end: Int)
 GET     /view-rounds                                    controllers.Application.roundsList()

@@ -1,4 +1,4 @@
-@(u: User, ends: List[End], desc: String, date: String, endForm: Form[Round])
+@(u: User, r: Int, ends: List[End], desc: String, date: String, endForm: Form[Round])
 
 @template("View Round") {
     <li><a href="@routes.Application.dashboard()"><span class="glyphicon glyphicon-user"></span> @u.firstname</a></li>
@@ -20,7 +20,7 @@
             </div>
 
             <div class="panel-body">
-				<form action="@routes.Application.submitEdit()" method="POST">
+				<form action="@routes.Application.submitEdit(r)" method="POST">
                 		<table class="table table-striped">
                 		    <tr class="warning">
                 		        <th class="col-md-1 text-center" style="border-right: 1px solid #dddddd;">End #</th>

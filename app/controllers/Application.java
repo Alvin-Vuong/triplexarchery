@@ -212,13 +212,13 @@ public class Application extends Controller {
 
 	// Renders page for entering edited round
     @Security.Authenticated(Secured.class)
-    public static Result submitEdit() {
+    public static Result submitEdit(int rnd_id) {
         User user = Database.getInfo(request().username());
         user.email = request().username();
         int id = user.id;
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
-		rounds = Database.getTenRounds(user.id, 1);
+		List<Round> rounds = new ArrayList<Round>();
 
 		for (int i = 0; i <= 29; i++) {                                                               
         		if (r.rawEnds[i] == "m")
@@ -252,8 +252,8 @@ public class Application extends Controller {
 			int total = 0;
 			for (int i = 0; i <= 29; i++) {
 				total += toValue(r.rawEnds[i], false);
-			}
-			
+			}			
+
             for (int i = 1; i <= 10; i++) {                                                                  // TODO: Replace 10 with numEnds.
                 Database.editEnd(id, rnd_id, i, r.rawEnds[(i*3)-3], r.rawEnds[(i*3)-2], r.rawEnds[(i*3)-1], total);
             }
@@ -368,7 +368,7 @@ public class Application extends Controller {
             return internalServerError(login.render(userForm, "Something is wrong. Try again."));
         }
         
-        return ok(editRound.render(user, round.ends, round.description, round.date, roundForm)); 	//TODO: EVERYTHINGGGGGGGGGGGGGGGGGGG
+        return ok(editRound.render(user, roundid, round.ends, round.description, round.date, roundForm)); 	//TODO: EVERYTHINGGGGGGGGGGGGGGGGGGG
     }
 
     // Takes in an arrow value String.
