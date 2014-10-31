@@ -29,7 +29,7 @@ TODO: Ad's
 TODO: Paypal Donation
 
 TODO: Account Settings (deleting account, changing password)
-TODO: Editing rounds.
+TODO: Editing rounds works, just need form validation now.
 TODO: Account settings
 TODO: Say no rounds if user has no rounds
 
