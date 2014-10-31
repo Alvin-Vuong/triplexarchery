@@ -218,32 +218,32 @@ public class Application extends Controller {
         int id = user.id;
         Form<Round> filledForm = Form.form(Round.class).bindFromRequest();
         Round r = filledForm.get();
-/*		List<Round> rounds = new ArrayList<Round>();
+		List<Round> rounds = new ArrayList<Round>();
 
 		for (int i = 0; i <= 29; i++) {                                                               
-        		if (r.rawEnds[i] == "m")
+        		if (r.rawEnds[i].equals("m"))
 			{}
-			else if (r.rawEnds[i] == "X")
+			else if (r.rawEnds[i].equals("X"))
 			{}
-			else if (r.rawEnds[i] == "1")
+			else if (r.rawEnds[i].equals("1"))
 			{}
-			else if (r.rawEnds[i] == "2")
+			else if (r.rawEnds[i].equals("2"))
 			{}
-			else if (r.rawEnds[i] == "3")
+			else if (r.rawEnds[i].equals("3"))
 			{}
-			else if (r.rawEnds[i] == "4")
+			else if (r.rawEnds[i].equals("4"))
 			{}
-			else if (r.rawEnds[i] == "5")
+			else if (r.rawEnds[i].equals("5"))
 			{}
-			else if (r.rawEnds[i] == "6")
+			else if (r.rawEnds[i].equals("6"))
 			{}
-			else if (r.rawEnds[i] == "7")
+			else if (r.rawEnds[i].equals("7"))
 			{}
-			else if (r.rawEnds[i] == "8")
+			else if (r.rawEnds[i].equals("8"))
 			{}
-			else if (r.rawEnds[i] == "9")
+			else if (r.rawEnds[i].equals("9"))
 			{}
-			else if (r.rawEnds[i] == "10")
+			else if (r.rawEnds[i].equals("10"))
 			{}
 			else
 				try {
@@ -252,14 +252,14 @@ public class Application extends Controller {
             			return internalServerError(login.render(userForm, "Something is wrong. Try again."));
        			}
 				return ok(roundslist.render(user, rounds));
-		} */
+		} 
         try {
 			int total = 0;
 			for (int i = 0; i <= 29; i++) {
-				total += toValue(r.rawEnds[i], false);
+				total += toValue(r.rawEnds[i], true);
 			}			
 
-            for (int i = 1; i <= 10; i++) {                                                                  // TODO: Replace 10 with numEnds.
+            for (int i = 1; i <= 10; i++) {                                                                  
                 Database.editEnd(id, rnd_id, i, r.rawEnds[(i*3)-3], r.rawEnds[(i*3)-2], r.rawEnds[(i*3)-1], total);
             }
              
