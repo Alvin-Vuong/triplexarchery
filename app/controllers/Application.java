@@ -220,7 +220,7 @@ public class Application extends Controller {
         Round r = filledForm.get();
 		List<Round> rounds = new ArrayList<Round>();
 
-		for (int i = 0; i <= 29; i++) {                                                               
+/*		for (int i = 0; i <= 29; i++) {                                                               
         		if (r.rawEnds[i].equals("m"))
 			{}
 			else if (r.rawEnds[i].equals("X"))
@@ -251,8 +251,8 @@ public class Application extends Controller {
 				} catch (SQLException e) {
             			return internalServerError(login.render(userForm, "Something is wrong. Try again."));
        			}
-				return ok(roundslist.render(user, rounds));
-		} 
+				return unauthorized(roundslist.render(user, rounds));
+		}  */
         try {
 			int total = 0;
 			for (int i = 0; i <= 29; i++) {
